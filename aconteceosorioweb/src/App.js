@@ -1,16 +1,18 @@
 import React from 'react';
-import {BrowserRouter as Router} from 'react-router-dom';
+import {Provider} from 'react-redux';
+import MainRoutes from './routes';
+import store from './store';
+import ReduxToastr from 'react-redux-toastr'
 
-import Routes from './routes';
-
-function App() {
-  return (
-    <Router>
-     <Routes/>
-    </Router>
+function App (){
+  
+  return(
+    <Provider store={store}>
+      <>
+      <MainRoutes/>
+      </>
+    </Provider>
   );
-  //link react router dom
-  //<link to={}>
 }
 
 export default App;

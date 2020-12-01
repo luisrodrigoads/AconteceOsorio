@@ -1,7 +1,7 @@
 import React from 'react';
 import violao from '../../violao.jpg';
 
-export default function ListOfEvents(){
+export default function ListOfEvents () {
     return(
         <div class="row justify-content-center">
                 
@@ -56,3 +56,4 @@ export default function ListOfEvents(){
         </div>
     );
 }
+
