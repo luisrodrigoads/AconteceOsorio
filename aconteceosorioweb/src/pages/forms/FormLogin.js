@@ -35,13 +35,16 @@ const FormLogin = props => {
                         <button  type="submit" class="btn btn-secondary btn-lg btn-block">                       
                                     {loading ? 'Carregando':'Entrar'}
                         </button> 
-                        <button type="button" class="btn btn-secondary btn-sm btn-block">
-                                <Link to="/RegisterUserPage">
-                                    <h3 class="navbar-brand text-white">
-                                        Cadastrar
-                                    </h3>
-                                </Link> 
-                        </button> 
+                        
+                        <Link to="/RegisterUserPage">
+                        
+                            <button type="button" class="btn btn-secondary btn-sm btn-block" style={{marginTop:'15px'}}>
+                                <h3 class="navbar-brand text-white">
+                                            Cadastrar
+                                </h3>
+                            </button>
+                        
+                        </Link> 
                           
                     </form> 
 
