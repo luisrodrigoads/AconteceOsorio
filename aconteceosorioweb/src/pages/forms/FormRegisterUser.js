@@ -9,7 +9,7 @@ const FormRegisterUser = props => {
    
     return(
         <div class="row  align-items-center justify-content-center ">
-            <div class="card col-lg-3 col-md-5 col-sm-10 m-3 p-3 bg-light">
+            <div class="card col-lg-3 col-md-5 col-sm-10 m-3 p-3 bg-light shadow">
                 <form onSubmit={props.handleForm}>
                     <div class="form-group">
                         <label for="razaoSocial">Razão Social:</label>
@@ -124,7 +124,7 @@ const FormRegisterUser = props => {
                     </div>
                     
 
-                    <button  type="submit" class="btn btn-secondary">                       
+                    <button  type="submit" class="btn btn-secondary btn-lg btn-block">                       
                             {loading ? 'Carregando':'Cadastrar'}
                     </button>
                 </form> 

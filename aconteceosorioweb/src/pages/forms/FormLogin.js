@@ -8,11 +8,11 @@ const FormLogin = props => {
     const loading = useSelector(state => state.auth.loading)
 
     return(
-        <div class="row  align-items-center justify-content-center ">
-                <div class="card col-lg-3 col-md-5 col-sm-10 m-3 p-3 bg-light">
+        <div class="row  align-items-center justify-content-center">
+                <div class="card col-lg-3 col-md-5 col-sm-10 m-3 p-3 bg-light shadow">
                     <form onSubmit={props.handleForm}>
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Email:</label>
+                            <label for="email">Email:</label>
                             <Field
                                 required
                                 name='email'
@@ -23,7 +23,7 @@ const FormLogin = props => {
                             />
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputPassword1">Senha:</label>
+                            <label for="senha">Senha:</label>
                             <Field
                                 required
                                 name='senha'
@@ -32,21 +32,17 @@ const FormLogin = props => {
                                 className='form-control'
                             />
                         </div>
-
-                        <div class="row  align-items-center justify-content-center ">
-                            <button  type="submit" class="btn btn-secondary">                       
+                        <button  type="submit" class="btn btn-secondary btn-lg btn-block">                       
                                     {loading ? 'Carregando':'Entrar'}
-                            </button>                    
-                        </div>
-                       
-                        <div class="row  align-items-center justify-content-center ">
-                            <Link to="/RegisterUserPage">
-                                <h3>
-                                    Cadastrar
-                                </h3>
-                            </Link>
-                        </div>  
-                        
+                        </button> 
+                        <button type="button" class="btn btn-secondary btn-sm btn-block">
+                                <Link to="/RegisterUserPage">
+                                    <h3 class="navbar-brand text-white">
+                                        Cadastrar
+                                    </h3>
+                                </Link> 
+                        </button> 
+                          
                     </form> 
 
                     

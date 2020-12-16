@@ -6,8 +6,7 @@ export default function HeaderPage (props) {
 
     return(
         <header>
-            <nav class="navbar navbar-expand-lg navbar-light bg-secondary">
-                
+            <nav class="navbar navbar-expand-lg navbar-light bg-secondary shadow-sm">
                 
                 <h2 class="navbar-brand text-white">
                     AconteceOsório
@@ -17,6 +16,7 @@ export default function HeaderPage (props) {
                 </button>
 
                 <div class="collapse navbar-collapse" id="navbarToggler">
+                    <hr/>
                     <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                        
                     </ul>
