@@ -7,21 +7,24 @@ export default function InitialPage () {
     return(
         <div class="container-fluid">
             <HeaderPage urlPath="/LoginPage" textButton="Login"/>
-            <div class="row justify-content-center">
-                <div class="col-lg-2 col-md-2 col-sm-2 m-2 bg-light shadow-sm">
-                    <h6>Categoria 1</h6>
+            <div class="row justify-content-around" style={{marginTop:'15px'}}>
+                <div class="col-lg-1 col-md-2 col-sm-2 col-5 m-2 bg-light shadow-sm">
+                    <h6>Eventos</h6>
                 </div>
-                <div class="col-lg-2 col-md-2 col-sm-2 m-2 bg-light shadow-sm">
-                    <h6>Categoria 2</h6>
+                <div class="col-lg-1 col-md-2 col-sm-2 col-5 m-2 bg-light shadow-sm">
+                    <h6>Artistas</h6>
                 </div>
-                <div class="col-lg-2 col-md-2 col-sm-2 m-2 bg-light shadow-sm">
-                    <h6>Categoria 3</h6>
+                <div class="col-lg-2 col-md-4 col-sm-4 col-6 m-2 bg-light shadow-sm">
+                    <h6>Prestadores de serviços</h6>
                 </div>
-                <div class="col-lg-2 col-md-2 col-sm-2 m-2 bg-light shadow-sm">
-                    <h6>Categoria 4</h6>
+                <div class="col-lg-2 col-md-4 col-sm-4 col-4 m-2 bg-light shadow-sm">
+                    <h6>Espaços Culturais</h6>
                 </div>
-                <div class="col-lg-2 col-md-2 col-sm-2 m-2 bg-light shadow-sm">
-                    <h6>Categoria 5</h6>
+                <div class="col-lg-1 col-md-3 col-sm-3 m-2 col-4 bg-light shadow-sm">
+                    <h6>Instituições</h6>
+                </div>
+                <div class="col-lg-2 col-md-4 col-sm-4 col-6 m-2 bg-light shadow-sm">
+                    <h6>Promotores de eventos</h6>
                 </div>
             </div>
             <hr/>
