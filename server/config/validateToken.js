@@ -3,8 +3,8 @@ const env = require('../config/secret.env')
 
 const validateToken = (req, res, next) => {
 
-    //CORS é ativado
-    // Enviado para asber quais as origens permitidas em requisições feitas pelo serviço disponibilizado
+    //CORS is activated
+    // Sent to know which origins are allowed in requests made by the service provided
     if(req.method === 'OPTIONS')
         next()
 
@@ -14,7 +14,7 @@ const validateToken = (req, res, next) => {
         if(!token)
             return res.status(403).json('No token provided.')
 
-            jwt.verify(token, env.authSecret,(error, decoded) => { // Se o token é válido o fluxo continua
+            jwt.verify(token, env.authSecret,(error, decoded) => { // If token is valid the flux continue
                 if(error)
                     return res.status(403).json('Failed to authenticate token.')
 

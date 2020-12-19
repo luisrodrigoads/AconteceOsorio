@@ -1,15 +1,15 @@
 const jwt = require('jsonwebtoken')
-const {instituicao} = require('../config/db')
+const {user} = require('../config/db')
 const env = require('../config/secret.env')
 const mongoose = require('mongoose')
 
 const login = (req, res) => {
     
-    instituicao.findOne({email: req.body.email}, (err, result) => {
+    user.findOne({email: req.body.email}, (err, result) => {
         if(err)
             return res.status(500).json('Internal error')
 
-        else if(result && result.senha === req.body.senha){
+        else if(result && result.password === req.body.password){
             return res.status(200).json({result, token: getJWT(result.toJSON()) })
         }
 
@@ -21,7 +21,7 @@ const login = (req, res) => {
 const getJWT = data => jwt.sign(data, env.authSecret, {expiresIn: "30 days"})
 const decodeJWT = token => jwt.decode(token)
 
-const tradeTokenToInstituicao = (req, res) => {
+const tradeTokenToUser = (req, res) => {
     let data = jwt.decode(req.headers['authorization']);
 
     res.status(200).json(data);
@@ -33,7 +33,7 @@ const validateToken = (req, res) =>
 
 
 const updateToken = (req, res) => {
-    instituicao.findOne(
+    user.findOne(
         {
             _id: mongoose.Types.ObjectId(decodeJWT(req.headers['authorization'])._id)
         }, (err, result) =>
@@ -43,4 +43,4 @@ const updateToken = (req, res) => {
     )
 }
 
-module.exports = {login, validateToken, tradeTokenToInstituicao, updateToken, decodeJWT}
+module.exports = {login, validateToken, tradeTokenToUser, updateToken, decodeJWT}

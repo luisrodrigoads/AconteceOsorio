@@ -1,6 +1,6 @@
 const mongoose =  require('mongoose')
 
-const instituicaoSchema = require('../models/instituicaoSchema')
+const userSchema = require('../models/userSchema')
 
 mongoose.connect(
     "mongodb://localhost/acontece-osorio",
@@ -11,6 +11,6 @@ mongoose.connect(
         useUnifiedTopology: true}
 );
 
-const instituicao = mongoose.model('instituicao', instituicaoSchema)
+const user = mongoose.model('user', userSchema)
 
-module.exports = { instituicao }
+module.exports = { user }
