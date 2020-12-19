@@ -1,6 +1,6 @@
 const mongoose =  require('mongoose')
 
-const instituicaoSchema = require('../api/dbSchema/instituicaoSchema')
+const instituicaoSchema = require('../models/instituicaoSchema')
 
 mongoose.connect(
     "mongodb://localhost/acontece-osorio",

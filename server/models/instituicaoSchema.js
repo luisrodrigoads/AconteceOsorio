@@ -13,9 +13,9 @@ const instituicaoSchema = new mongoose.Schema({
     senha: String,
     endereco: String,
     tipoInstituicao: String,
-    espacos: [String],
-    eventosCulturais: [String],
-    atividadesCulturais: [String],
+    espacos: [],
+    eventosCulturais: [],
+    atividadesCulturais: [],
     tipoUsuario: {
         type: String,
         default: 'INSTITUICAO'

@@ -1,7 +1,7 @@
 const cors = require('cors');
 const express =  require('express');
 
-const instituicaoDAO = require('./models/instituicaoDAO');
+const instituicaoDAO = require('./daos/instituicaoDAO');
 
 const validateToken = require('./config/validateToken');
 
@@ -17,7 +17,7 @@ app.options('*',cors());
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 
-const AuthInstituicao = require('./models/auth/authInstituicao');
+const AuthInstituicao = require('./auth/authInstituicao');
 
 
 app.use(function(req, res, next) {
@@ -30,7 +30,7 @@ app.use(function(req, res, next) {
 
 //rotas públicas
 app.post('/login', (req, res) => AuthInstituicao.login(req, res));
-app.post('/signup', (req, res) => AuthInstituicao.signup(req, res));
+app.post('/signup', (req, res) => instituicaoDAO.signup(req, res));
 app.post('/validateToken', (req, res) => AuthInstituicao.validateToken(req, res));
 
 ///todos os usuários logados pode acessar por aqui
@@ -41,5 +41,6 @@ app.get('/updateToken', (req, res) => AuthInstituicao.updateToken(req, res));
 app.post('/tradeTokenToInstituicao', (req, res) => AuthInstituicao.tradeTokenToInstituicao(req, res));
 
 app.post('/updateInstituicao', (req, res) => instituicaoDAO.update(req, res));
+
 
 app.listen(port,() => console.log('Server on port: ' + port));
