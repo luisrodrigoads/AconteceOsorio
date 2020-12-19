@@ -10,14 +10,14 @@ module.exports = {
 
         let dataNewUser = req.body
     
-        //verifica se o email recebido é realmente um email
+        //checks if the email received is really an email
         if(!dataNewUser.email.match(emailRegex))
             return res.status(202).json('Email inválido.')
     
         else if(dataNewUser.password.length < 5)
             return res.status(202).json('A senha deve ter no mínimo 5 digitos')
     
-        //se não for encontrado erros, verifica se o email já existe, se não um novo usuário é criado
+        //if no errors are found, check if the email already exists, if not a new user is created
         user.findOne({email: dataNewUser.email}, (err, result) => {
             if(err)
                 return res.status(500).json('Internal server error')
