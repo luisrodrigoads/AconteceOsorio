@@ -47,7 +47,7 @@ export const login = values => {
     }
 }
 
-export const signup = values => {
+export const instituteSignup = values => {
     console.log(values);
     values.type = values.type.value;
 
