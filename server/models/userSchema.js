@@ -27,7 +27,7 @@ const userSchema = new mongoose.Schema({
     fantasyName: String,
     cnpj: String,
     responsiblePerson: String,
-    telephone: String,
+    phone: String,
     address: String,
     institutionType: String,
     description: String,

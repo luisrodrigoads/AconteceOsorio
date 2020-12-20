@@ -6,108 +6,69 @@ import { useSelector } from 'react-redux'
 const FormRegisterUser = props => {
     
     const loading = useSelector(state => state.auth.loading)
-   
+    
+    const formComponents = [
+        {   
+            label: 'Razão Social:',
+            name: 'companyName',
+        },
+        {   
+            label: 'Nome Fantasia:',
+            name: 'fantasyName',
+        },
+        {   
+            label: 'CNPJ:',
+            name: 'cnpj',
+        },
+        {   
+            label: 'Pessoa Responsável:',
+            name: 'responsiblePerson',
+        },
+        {   
+            label: 'Telefone:',
+            name: 'phone',
+        },
+        {   
+            label: 'Endereço:',
+            name: 'address',
+        },
+        {   
+            label: 'Email:',
+            name: 'email',
+        },
+        {   
+            label: 'Senha:',
+            name: 'password',
+            type: 'password'
+        },
+    ];
+
     return(
         <div class="row  align-items-center justify-content-center ">
             <div class="card col-lg-3 col-md-5 col-sm-10 m-3 p-3 bg-light shadow">
-                <form onSubmit={props.handleForm}>
-                    <div class="form-group">
-                        <label for="razaoSocial">Razão Social:</label>
-                        <Field
-                            required
-                            name='razaoSocial'
-                            component='input'
-                            type='text'
-                            className='form-control' 
-                        />
-                    </div>
-
-                    <div class="form-group">
-                        <label for="nomeFantasia">Nome Fantasia:</label>
-                        <Field
-                            required
-                            name='nomeFantasia'
-                            component='input'
-                            type='text'
-                            className='form-control' 
-                        />
-                    </div>
-
-                    <div class="form-group">
-                        <label for="cnpj">CNPJ:</label>
-                        <Field
-                            required
-                            name='cnpj'
-                            component='input'
-                            type='text'
-                            className='form-control' 
-                        />
-                    </div>
-
-                    <div class="form-group">
-                        <label for="pessoaResponsavel">Pessoa Responsável:</label>
-                        <Field
-                            required
-                            name='pessoaResponsavel'
-                            component='input'
-                            type='text'
-                            className='form-control' 
-                        />
-                    </div>
-
-                    <div class="form-group">
-                        <label for="telefone">Telefone:</label>
-                        <Field
-                            required
-                            name='telefone'
-                            component='input'
-                            type='text'
-                            className='form-control' 
-                        />
-                    </div>
-
-                    <div class="form-group">
-                        <label for="email">Email:</label>
-                        <Field
-                            required
-                            name='email'
-                            component='input'
-                            type='text'
-                            className='form-control' 
-                        />
-                    </div>
-
-
-                    <div class="form-group">
-                        <label for="senha">Senha:</label>
-                        <Field
-                            required
-                            name='senha'
-                            component='input'
-                            type='password'
-                            className='form-control'
-                        />
-                    </div>
-
-                    <div class="form-group">
-                        <label for="endereco">Endereço:</label>
-                        <Field
-                            required
-                            name='endereco'
-                            component='input'
-                            type='text'
-                            className='form-control' 
-                        />
-                    </div>
-
-
+                <form onSubmit={props.handleSubmit}>
+                    
+                    {formComponents.map(comp => {
+                        return (
+                            <div key={comp.name} class="form-group">
+                                <label for={comp.name}>{comp.label}</label>
+                                <Field
+                                    required
+                                    name={comp.name}
+                                    component='input'
+                                    type={comp.type ? comp.type : 'text'}
+                                    className='form-control' 
+                                />
+                            </div>
+                        );
+                    })}
+                  
+                    
                     <div className="form-group">
-                        <label for="tipoUsuario">Tipo de Usuário</label>
+                        <label for="userType">Tipo de Usuário</label>
                         <div className="input-group"> 
-                            <Field required name="tipoUsuario" component="select" className="form-control select">
-                                <option value="" disabled defaultValue>Selecione um tipo</option>
-                                <option value="Instituicao" >Instituição</option>
-                                <option value="Outro">Outro</option>
+                            <Field required name="userType" component="select" className="form-control select">
+                                <option value="INSTITUTION" >Instituição</option>
                             </Field>
                         </div>
                     </div>

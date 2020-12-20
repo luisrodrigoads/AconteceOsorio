@@ -48,9 +48,7 @@ export const login = values => {
 }
 
 export const instituteSignup = values => {
-    console.log(values);
-    values.type = values.type.value;
-
+    
     return dispatch => {
         axios
             .post(`${BASE_URL}/signup`,values)

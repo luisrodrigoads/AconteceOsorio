@@ -27,6 +27,7 @@ export default function RegisterUserPage(){
     }
 
     const handleInstituteForm = data => {
+        console.log("FORM HANDLED")
         console.log(data);
         dispatch(instituteSignup(data))
     }
