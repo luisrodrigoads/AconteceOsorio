@@ -1,30 +1,40 @@
 const mongoose = require('mongoose')
 
 const userSchema = new mongoose.Schema({
+    
+    //COMMON DATA BETWEEN ACTORS
+    email: {
+        type: String,
+        unique: true
+    },
+    password: {
+        type: String,
+        required: true
+    },
+    userType: {
+        type: String,
+        enum : ['INSTITUTION', 'ARTIST', 'CULTURAL_PLACE', 'ADMIN', 'SERVICES', 'PROMOTER'], 
+        required: true
+    },  
+
+    accountActivation: {
+        type: Boolean,
+        default: true   //IT IS NOT VALIDATED?
+    },
+    
+    //COMPLEMENTARY DATA - INSTITUTION
     companyName: String,
     fantasyName: String,
     cnpj: String,
     responsiblePerson: String,
     telephone: String,
-    email: {
-        type: String,
-        unique: true
-    },
-    password: String,
     address: String,
     institutionType: String,
-    espaces: [],
+    description: String,
+    places: [],
     culturalEvents: [],
     culturalActivities: [],
-    userType: {
-        type: String,
-        default: 'INSTITUICAO'
-    },  
-    accountActivation: {
-        type: Boolean,
-        default: true
-    },
-    description: String
+        
 })
 
 module.exports = userSchema
