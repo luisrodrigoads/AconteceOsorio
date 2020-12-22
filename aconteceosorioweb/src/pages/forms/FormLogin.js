@@ -7,31 +7,38 @@ const FormLogin = props => {
 
     const loading = useSelector(state => state.auth.loading)
 
+    const formComponents = [
+        {
+            label: 'Email',
+            name: 'email',
+        },
+        {
+            label: 'Senha',
+            name: 'password',
+            type: 'password'
+        },
+    ];
+
     return(
         <div class="row  align-items-center justify-content-center">
                 <div class="card col-lg-3 col-md-5 col-sm-10 m-3 p-3 bg-light shadow">
                     <form onSubmit={props.handleForm}>
-                        <div class="form-group">
-                            <label for="email">Email:</label>
-                            <Field
-                                required
-                                name='email'
-                                component='input'
-                                type='text'
-                                placeholder='username@email.com'
-                                className='form-control' 
-                            />
-                        </div>
-                        <div class="form-group">
-                            <label for="senha">Senha:</label>
-                            <Field
-                                required
-                                name='senha'
-                                component='input'
-                                type='password'
-                                className='form-control'
-                            />
-                        </div>
+                        
+                        {formComponents.map(comp => {
+                            return(
+                                <div key={comp.name} class="form-group">
+                                    <label for={comp.name}>{comp.label}</label>
+                                    <Field
+                                        required
+                                        name={comp.name}
+                                        component='input'
+                                        type={comp.type ? comp.type : 'text'}
+                                        className='form-control'
+                                    />
+                                </div>
+                            );
+                        })}
+
                         <button  type="submit" class="btn btn-secondary btn-lg btn-block">                       
                                     {loading ? 'Carregando':'Entrar'}
                         </button> 

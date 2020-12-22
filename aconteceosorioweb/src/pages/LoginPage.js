@@ -9,8 +9,9 @@ export default function LoginPage() {
     const dispatch = useDispatch();
 
     const handleForm = data => {
+        console.log("FORM LOGIN HANDLED")
         console.log(data);
-        dispatch(login(data))
+        dispatch(login(data));
     }
 
 

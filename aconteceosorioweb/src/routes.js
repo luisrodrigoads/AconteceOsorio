@@ -22,7 +22,7 @@ const PrivateRoute = ({component: Component, ...rest }) => {
             render={(props, ) =>{
                 return(
                     
-                    AuthOrApp() && rest.enabledFor.indexOf(user.tipoUsuario) > -1
+                    AuthOrApp() && rest.enabledFor.indexOf(user.userType) > -1
                         ? <Component {...props} {...rest}/>
                         : 
                         <Redirect from='*' to='/' />
@@ -42,7 +42,7 @@ export default function MainRoutes(){
                 <Route exact path='/' component={InitialPage} />
                 <Route path='/LoginPage' component={LoginPage}/>
                 <Route path='/RegisterUserPage' component={RegisterUserPage}/>
-                <PrivateRoute enabledFor={['INSTITUICAO']} path='/InitialUserPage' component={UserInitialPage}/>
+                <PrivateRoute enabledFor={['INSTITUTION']} path='/InitialUserPage' component={UserInitialPage}/>
             </Switch>
         </BrowserRouter>  
     );

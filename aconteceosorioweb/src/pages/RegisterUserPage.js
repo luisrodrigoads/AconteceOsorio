@@ -36,15 +36,21 @@ export default function RegisterUserPage(){
         <div class="container-fluid">
             <HeaderPage urlPath="/" textButton="Voltar"/>
 
-            <br/>
-            <label>
-                Selecione o tipo de usuário
-                <select value={userType} onChange={changeUserForm}>
-                    <option value="">Selecione</option>
-                    <option value="institution">Instituição</option>
-                    <option value="other">Outro</option>
-                </select>
-            </label>
+            <div class="row  align-items-center justify-content-center ">
+                <div class="card col-lg-3 col-md-5 col-sm-10 m-3 p-3 bg-light shadow"> 
+                    <div className="form-group">
+                        <label>Selecione o tipo de usuário</label>
+                        <div className="input-group">
+                            <select value={userType} onChange={changeUserForm}>
+                                <option value="">Selecione</option>
+                                <option value="institution">Instituição</option>
+                                <option value="other">Outro</option>
+                            </select>
+                        </div>
+                    </div>    
+                </div>
+            </div>
+ 
             { renderCorrectForm() }
             
         </div>

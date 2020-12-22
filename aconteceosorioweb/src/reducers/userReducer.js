@@ -1,21 +1,21 @@
 const INITIAL_STATE = {
     personalInfo: {
         _id: '',
-        razaoSocial: '',
-        nomeFantasia: '',
+        companyName: '',
+        fantasyName: '',
         cnpj: '',
-        pessoaResponsavel: '',
-        telefone: '',
+        responsiblePerson: '',
+        phone: '',
         email: '',
-        senha: '',
-        endereco: '',
-        tipoInstituicao: '',
-        espacos: [],
-        eventosCulturais: [],
-        atividadesCulturais: [],
-        tipoUsuario: '',  
-        ativacaoConta: true,
-        descricao: ''
+        password: '',
+        address: '',
+        institutionType: '',
+        places: [],
+        culturalEvents: [],
+        culturalActivities: [],
+        userType: '',  
+        accountActivation: true,
+        description: ''
     }
 }
 
@@ -27,21 +27,21 @@ export default (state = INITIAL_STATE, action) => {
                 ...state,
                 personalInfo:{
                     _id: action.payload._id,
-                    razaoSocial: action.payload.razaoSocial,
-                    nomeFantasia: action.payload.nomeFantasia,
+                    companyName: action.payload.companyName,
+                    fantasyName: action.payload.fantasyName,
                     cnpj: action.payload.cnpj,
-                    pessoaResponsavel: action.payload.pessoaResponsavel,
-                    telefone: action.payload.telefone,
+                    responsiblePerson: action.payload.responsiblePerson,
+                    phone: action.payload.phone,
                     email: action.payload.email,
-                    senha: action.payload.senha,
-                    endereco: action.payload.endereco,
-                    tipoInstituicao: action.payload.tipoInstituicao,
-                    espacos: action.payload.espacos,
-                    eventosCulturais: action.payload.eventosCulturais,
-                    atividadesCulturais: action.payload.atividadesCulturais,
-                    tipoUsuario: action.payload.tipoUsuario,  
-                    ativacaoConta: action.payload.ativacaoConta,
-                    descricao: action.payload.descricao
+                    password: action.payload.password,
+                    address: action.payload.address,
+                    institutionType: action.payload.institutionType,
+                    places: action.payload.places,
+                    culturalEvents: action.payload.culturalEvents,
+                    culturalActivities: action.payload.culturalActivities,
+                    userType: action.payload.userType,  
+                    accountActivation: action.payload.accountActivation,
+                    description: action.payload.description
                 }
             }
         
