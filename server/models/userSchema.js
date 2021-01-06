@@ -15,7 +15,8 @@ const userSchema = new mongoose.Schema({
         type: String,
         enum : ['INSTITUTION', 'ARTIST', 'CULTURAL_PLACE', 'ADMIN', 'SERVICES', 'PROMOTER'], 
         required: true
-    },  
+    },
+    description: String, 
 
     accountActivation: {
         type: Boolean,
@@ -34,7 +35,32 @@ const userSchema = new mongoose.Schema({
     places: [],
     culturalEvents: [],
     culturalActivities: [],
-        
+
+    //COMPLEMENTARY DATA - CULTURAL PLACE
+    profilePhoto: {
+        type: String,
+        default: "../uploads/default-avatar.png"
+    },
+    otherPictures: [String],
+    linkedInstitution: String,
+    chargingFee: {
+        type: Boolean,
+        default: false
+    },
+    publicCapacity: Number,
+    bathroom: {
+        type: Boolean,
+        default: false
+    },
+    diaperChanger: {
+        type: Boolean,
+        default: false
+    },
+    wheelchairAccessibility: {
+        type: Boolean,
+        default: false
+    },
+      
 })
 
 module.exports = userSchema

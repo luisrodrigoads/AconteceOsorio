@@ -3,6 +3,7 @@ import { instituteSignup } from '../actions/authActions';
 import HeaderPage from './componentsPage/HeaderPage';
 import FormRegisterInstitution from './forms/FormRegisterInstitution';
 import { useDispatch} from 'react-redux';
+import FormRegisterCulturalPlace from './forms/FormRegisterCulturalPlace';
 
 
 export default function RegisterUserPage(){
@@ -20,6 +21,8 @@ export default function RegisterUserPage(){
         switch (userType) {
             case 'institution':
                 return <FormRegisterInstitution onSubmit={values => handleInstituteForm(values)}/>
+            case 'cultural_place':
+                return <FormRegisterCulturalPlace onSubmit={values => handleInstituteForm(values)} />
             default: 
                 return null;
         }
@@ -41,9 +44,10 @@ export default function RegisterUserPage(){
                     <div className="form-group">
                         <label>Selecione o tipo de usuário</label>
                         <div className="input-group">
-                            <select value={userType} onChange={changeUserForm}>
+                            <select value={userType} onChange={changeUserForm} className="form-control select">
                                 <option value="">Selecione</option>
                                 <option value="institution">Instituição</option>
+                                <option value="cultural_place">Espaço cultural</option>
                                 <option value="other">Outro</option>
                             </select>
                         </div>
