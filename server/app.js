@@ -6,6 +6,8 @@ const userDAO = require('./daos/userDAO');
 const validateToken = require('./config/validateToken');
 
 const app = express();
+const upload = require('./config/multer')
+
 const port = process.env.PORT || 8080;
 
 const corsOptions = {
@@ -30,7 +32,7 @@ app.use(function(req, res, next) {
 
 //public routes
 app.post('/login', (req, res) => AuthUser.login(req, res));
-app.post('/signup', (req, res) => userDAO.signup(req, res));
+app.post('/signup', upload.array('otherPictures',3),(req, res) => userDAO.signup(req, res));
 app.post('/validateToken', (req, res) => AuthUser.validateToken(req, res));
 
 app.use('*', validateToken);

@@ -8,6 +8,7 @@
     "@testing-library/user-event": "^12.1.10",
     "axios": "^0.21.0",
     "bootstrap": "^4.5.3",
+    "form-data": "^3.0.0",
     "history": "^5.0.0",
     "jquery": "^3.5.1",
     "popper.js": "^1.16.1",

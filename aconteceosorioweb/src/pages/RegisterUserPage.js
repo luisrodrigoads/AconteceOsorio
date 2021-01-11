@@ -5,12 +5,21 @@ import FormRegisterInstitution from './forms/FormRegisterInstitution';
 import { useDispatch} from 'react-redux';
 import FormRegisterCulturalPlace from './forms/FormRegisterCulturalPlace';
 
+import FormData from 'form-data'
 
 export default function RegisterUserPage(){
 
     const dispatch = useDispatch();
 
     const [userType, setUserType] = useState('')
+
+    const [files, setFiles] = useState({ otherPictures: [] })
+
+    const fileSelectedHandler = event =>{
+        let otherPictures = files['otherPictures']
+        Object.values(event.target.files).map(picture => otherPictures.push(picture))
+        setFiles({otherPictures})
+    }
 
     const changeUserForm = e => {
         setUserType(e.target.value);
@@ -22,17 +31,28 @@ export default function RegisterUserPage(){
             case 'institution':
                 return <FormRegisterInstitution onSubmit={values => handleInstituteForm(values)}/>
             case 'cultural_place':
-                return <FormRegisterCulturalPlace onSubmit={values => handleInstituteForm(values)} />
+                return <FormRegisterCulturalPlace onSubmit={values => handleInstituteForm(values)}  handleImage = { values => fileSelectedHandler(values) }  otherPictures={ files['otherPictures'] }/>
             default: 
                 return null;
         }
 
     }
 
-    const handleInstituteForm = data => {
-        console.log("FORM HANDLED")
-        console.log(data);
-        dispatch(instituteSignup(data))
+    const handleInstituteForm = values => {
+
+        const fd = new FormData()
+            
+            if(files['otherPictures'] !== undefined)
+                files['otherPictures'].forEach(img => fd.append('otherPictures',img))
+
+            for (let key in values)
+                if(values.hasOwnProperty(key))
+                    fd.append(key, values[key])
+
+            setFiles({ otherPictures: []})
+            dispatch(instituteSignup(fd))
+        
+        //dispatch(instituteSignup(data))
     }
     
     return(

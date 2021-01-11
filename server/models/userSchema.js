@@ -39,7 +39,7 @@ const userSchema = new mongoose.Schema({
     //COMPLEMENTARY DATA - CULTURAL PLACE
     profilePhoto: {
         type: String,
-        default: "../uploads/default-avatar.png"
+        default: "default-avatar.png"
     },
     otherPictures: [String],
     linkedInstitution: String,

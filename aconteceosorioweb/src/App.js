@@ -9,7 +9,16 @@ function App (){
   return(
     <Provider store={store}>
       <>
-      <MainRoutes/>
+        <MainRoutes/>
+        <ReduxToastr
+          timeOut={3500}
+          newestOnTop={true}
+          preventDuplicates
+          position="top-right"
+          transitionIn="fadeIn"
+          transitionOut="fadeOut"
+          progressBar
+          closeOnToastrClick/>
       </>
     </Provider>
   );

@@ -5,30 +5,29 @@ export default function HeaderPage (props) {
 
 
     return(
-        <header>
+        <header >
             <nav class="navbar navbar-expand-lg navbar-light bg-secondary shadow-sm">
                 
-                <h2 class="navbar-brand text-white">
-                    AconteceOsório
-                </h2>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+                <div class="container-fluid" >
+                    <img style={{width:'80px'}} src='images/logoAcontece.png' />
 
-                <div class="collapse navbar-collapse" id="navbarToggler">
-                    <hr/>
-                    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navbarToggler">
+                        <hr/>
                        
-                    </ul>
-                    <div class="my-2 my-lg-0 mr-sm-2 my-2 my-sm-0">
-                        <Link to={props.urlPath}>
-                            <h2 class="navbar-brand text-white">
-                                {props.textButton}
-                            </h2>
-                        </Link>
-                    </div> 
+                        
+                        <div class="navbar-nav ml-auto">
+                            <Link to={props.urlPath}>
+                                <h2 class="navbar-brand text-white">
+                                    {props.textButton}
+                                </h2>
+                            </Link>
+                        </div> 
+                    </div>
                 </div>
-     
             </nav>
         </header>
     )   

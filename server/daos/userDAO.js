@@ -9,6 +9,13 @@ module.exports = {
     signup (req, res) {
 
         let dataNewUser = req.body
+
+        let paths = new Array()
+
+        if(req.files)
+            req.files.forEach(pic => paths.push(pic.filename))
+
+        dataNewUser.otherPictures = paths
     
         //checks if the email received is really an email
         if(!dataNewUser.email.match(emailRegex))

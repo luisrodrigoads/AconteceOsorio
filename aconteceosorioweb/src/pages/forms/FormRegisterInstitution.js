@@ -57,7 +57,7 @@ const FormRegisterUser = props => {
                                     name={comp.name}
                                     component='input'
                                     type={comp.type ? comp.type : 'text'}
-                                    className='form-control' 
+                                    className='form-control'
                                 />
                             </div>
                         );

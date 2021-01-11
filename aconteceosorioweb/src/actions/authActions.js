@@ -51,15 +51,24 @@ export const instituteSignup = values => {
     
     return dispatch => {
         axios
-            .post(`${BASE_URL}/signup`,values)
-            .then(response => {
-                if(response.status === 202)
-                    console.log('Erro no signup web!!!',response.data)
-                else if(response.status === 200){
-                    console.log('Sucesso no signup!!!',response.data)
+            .post(`${BASE_URL}/signup`,values, {
+                headers: {
+                    'content-type': 'multipart/form-data'
                 }
             })
-            .catch(error => console.log('Erro no catch do signup web!!!',error))
+            .then(response => {
+                if(response.status === 202)
+                    toastr.error('Erro!',response.data)
+                else if(response.status === 200){
+                    toastr.success('Sucesso!',response.data)
+                    if(values.userType === 'INSTITUTION')
+                        dispatch(reset('formRegisterUser'))
+                    else if(values.userType === 'CULTURAL_PLACE')
+                        dispatch(reset('formRegisterCulturalPlace'))
+
+                }
+            })
+            .catch(error => toastr.error('Erro!','Internal server error'))
     }
 }
 
