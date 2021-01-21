@@ -100,6 +100,20 @@ module.exports = {
         });
     },
 
+    
+    disableUser(req, res){
+        user.updateOne({_id: decodeJWT(req.headers['authorization']._id)},
+        {
+            accountActivation: false
+        })
+        .then(response => {
+            user.findOne({_id: decodeJWT(req.headers['authorization']._id)}, (err, result) =>
+                res.status(200).json({result, token: getJWT(result.toJSON()) })
+            )
+        }).catch(err => res.status(202).json('Internal server error!'))
+
+    },
+
     async delete(req, res) {
         const id = req.params.id;
         const userData = await user.findByIdAndDelete(id);

@@ -42,6 +42,7 @@ app.get('/updateToken', (req, res) => AuthUser.updateToken(req, res));
 app.post('/tradeTokenToUser', (req, res) => AuthUser.tradeTokenToUser(req, res));
 
 app.post('/updateUser', (req, res) => userDAO.update(req, res));
+app.post('/disableUser', (req,res) => userDAO.disableUser(req,res));
 
 
 app.listen(port,() => console.log('Server on port: ' + port));
