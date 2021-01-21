@@ -8,6 +8,7 @@ const USER_FETCHED = 'USER_FETCHED'
 const TOKEN_VALIDATED = 'TOKEN_VALIDATED'
 const TOKEN_FETCHED = 'TOKEN_FETCHED'
 const LOGIN = 'LOGIN'
+const USER_LOGOUT = 'USER_LOGOUT'
 
 export const login = values => {
     return dispatch => {
@@ -73,9 +74,21 @@ export const instituteSignup = values => {
 }
 
 export const logout = () => {
-    return{
-        type: TOKEN_VALIDATED,
-        payload: false
+    return dispatch => {
+
+        axios.defaults.headers.common['authorization'] = ''; 
+        axios.defaults.headers.common['user_id'] = '';
+
+        dispatch({
+            type: TOKEN_VALIDATED,
+            payload: false
+        })    
+
+        dispatch({
+            type: USER_LOGOUT,
+            payload: null
+        })
+
     }
 }
 

@@ -2,6 +2,7 @@ import React,{useEffect} from 'react';
 import {useSelector} from 'react-redux'
 import InitialPage from './pages/InitialPage';
 import LoginPage from './pages/LoginPage';
+import LogoutPage from './pages/LogoutPage';
 import UserInitialPage from './pages/UserInitialPage';
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 import AuthOrApp from  './main/Auth';
@@ -43,6 +44,8 @@ export default function MainRoutes(){
                 <Route path='/LoginPage' component={LoginPage}/>
                 <Route path='/RegisterUserPage' component={RegisterUserPage}/>
                 <PrivateRoute enabledFor={['INSTITUTION']} path='/InitialUserPage' component={UserInitialPage}/>
+
+                <Route path='/Logout' component={LogoutPage}/>
             </Switch>
         </BrowserRouter>  
     );

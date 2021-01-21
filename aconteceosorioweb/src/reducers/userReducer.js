@@ -22,7 +22,7 @@ const INITIAL_STATE = {
 export default (state = INITIAL_STATE, action) => {
     switch(action.type){
         case 'USER_FETCHED':
-            console.log("User: ",action.payload.type)
+            console.log("User: ", action.payload)
             return {
                 ...state,
                 personalInfo:{
@@ -45,6 +45,14 @@ export default (state = INITIAL_STATE, action) => {
                 }
             }
         
+        case 'USER_LOGOUT': 
+            return {
+                ...state,
+                personalInfo:{
+                    _id: '',
+                }
+            }
+
         default:
             return state
     }

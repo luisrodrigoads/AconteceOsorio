@@ -15,6 +15,10 @@ export default function HeaderPage (props) {
                         <span class="navbar-toggler-icon"></span>
                     </button>
 
+                    {props.name != '' && 
+                    <h2 class="text-white">{props.name}</h2>
+                    }
+
                     <div class="collapse navbar-collapse" id="navbarToggler">
                         <hr/>
                        
