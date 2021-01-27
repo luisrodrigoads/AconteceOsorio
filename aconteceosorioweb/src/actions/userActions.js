@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { toastr } from 'react-redux-toastr';
 
 import BASE_URL from '../config/consts'
 
@@ -52,9 +53,11 @@ export const updateUser = values => {
             .then(response => {
                 if(response.status === 202){
                     console.log('Erro no updateuser', response.data)
+                    toastr.error('Erro ao atualizar usuário',response.data)
                     dispatch({type: LOAD, payload: false})
                 }else if(response.status === 200){
                     console.log('Sucesso! Usuário atualizado.')
+                    toastr.success('Sucesso!','Usuário atualizado.')
 
                     axios.defaults.headers.common['authorization'] = response.data.token
                     axios.defaults.headers.common['user_id'] = response.data.result._id
@@ -73,6 +76,7 @@ export const updateUser = values => {
                 }
             }).catch(error => {
                 console.log('Erro no catch do updateuser',error)
+                toastr.error('Erro!', 'Internal server error')
                 dispatch({type: LOAD, payload: false})
             })
     }

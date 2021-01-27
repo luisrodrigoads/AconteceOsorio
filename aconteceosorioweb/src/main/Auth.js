@@ -12,11 +12,21 @@ const AuthOrApp = () => {
     const user = useSelector(state => state.user.personalInfo)
 
     useEffect(() => {
-		if (auth.user) 
-			dispatch(validatedToken(auth.user))
+
+        console.log('user auth effect',auth.user)
+
+		if (auth.user){
+            console.log('validated token useeffect: ',validatedToken(auth.user));
+            dispatch(validatedToken(auth.user))
+        } 
+            
+            
     }, [])
     
-    if (auth.user && auth.validToken) {
+
+    console.log(' auth user', auth.user);
+    console.log(' auth validtoken', auth.validToken);
+    if ((auth.user != null) && auth.validToken) {
 		axios.defaults.headers.common['authorization'] = auth.user
 		axios.defaults.headers.common['user_id'] = user._id
 		axios.defaults.headers.common['Access-Control-Allow-Origin'] = '*'

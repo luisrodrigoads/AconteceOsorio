@@ -51,7 +51,10 @@ const FormRegisterUser = props => {
                     {formComponents.map(comp => {
                         return (
                             <div key={comp.name} class="form-group">
-                                <label for={comp.name}>{comp.label}</label>
+                                <div style={{marginRight:'8px',marginLeft:'2px'}} className="row justify-content-between">   
+                                    <label for={comp.name}>{comp.label}</label>
+                                    <h5 style={{color:'red'}}>*</h5>
+                                </div>
                                 <Field
                                     required
                                     name={comp.name}
@@ -65,7 +68,10 @@ const FormRegisterUser = props => {
                   
                     
                     <div className="form-group">
-                        <label for="userType">Tipo de Usuário</label>
+                        <div style={{marginRight:'8px',marginLeft:'2px'}} className="row justify-content-between">
+                            <label for="userType">Tipo de Usuário:</label>
+                            <h5 style={{color:'red'}}>*</h5>
+                        </div>
                         <div className="input-group"> 
                             <Field required name="userType" component="select" className="form-control select">
                                 <option value="INSTITUTION" defaultValue >Instituição</option>
@@ -74,7 +80,11 @@ const FormRegisterUser = props => {
                     </div>
 
                     <div className="form-group">
-                        <label for="institutionType">Tipo de Instituição</label>
+                        <div style={{marginRight:'8px',marginLeft:'2px'}} className="row justify-content-between">
+                            <label for="institutionType">Tipo de Instituição</label>
+                            <h5 style={{color:'red'}}>*</h5>
+                        </div>
+                        
                         <div className="input-group"> 
                             <Field required name="institutionType" component="select" className="form-control select">
                                 <option value="" disabled defaultValue>Selecione um tipo</option>
@@ -85,12 +95,16 @@ const FormRegisterUser = props => {
                     </div>
 
                     <div className="form-group">
-                        <label for="description">Descrição</label>
+                        <div style={{marginRight:'8px',marginLeft:'2px'}} className="row justify-content-between">
+                            <label for="description">Descrição:</label>
+                            <h5 style={{color:'red'}}>*</h5>
+                        </div>
                         <div className="input-group"> 
                             <Field required name="description" component="textarea" rows="5"  className="form-control"/>          
                         </div>
                     </div>
                     
+                    <h6 style={{color:'red'}}>Todos os campos marcados com (*) são obrigatórios.</h6>
 
                     <button  type="submit" class="btn btn-secondary btn-lg btn-block">                       
                             {loading ? 'Carregando':'Cadastrar'}

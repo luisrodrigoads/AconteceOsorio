@@ -92,13 +92,17 @@ const FormRegisterCulturalPlace = props => {
                     {formComponents.map(comp => {
                         return (
                             <div key={comp.name} class="form-group">
-                                <label for={comp.name}>{comp.label}</label>
+                                <div style={{marginRight:'8px',marginLeft:'2px'}} className="row justify-content-between">   
+                                    <label for={comp.name}>{comp.label}</label>
+                                    <h5 style={{color:'red'}}>*</h5>
+                                </div>
+                                
                                 <Field
                                     required
                                     name={comp.name}
                                     component='input'
                                     type={comp.type ? comp.type : 'text'}
-                                    className='form-control' 
+                                    className='form-control'
                                 />
                             </div>
                         );
@@ -106,7 +110,10 @@ const FormRegisterCulturalPlace = props => {
                   
                     
                     <div className="form-group">
-                        <label for="userType">Tipo de Usuário</label>
+                        <div style={{marginRight:'8px',marginLeft:'2px'}} className="row justify-content-between">
+                            <label for="userType">Tipo de Usuário:</label>
+                            <h5 style={{color:'red'}}>*</h5>
+                        </div>
                         <div className="input-group"> 
                             <Field required name="userType" component="select" className="form-control select">
                                 <option value="CULTURAL_PLACE" defaultValue >Espaço cultural</option>
@@ -125,7 +132,10 @@ const FormRegisterCulturalPlace = props => {
                     })}
 
                     <div className="form-group">
-                        <label for="description">Descrição</label>
+                        <div style={{marginRight:'8px',marginLeft:'2px'}} className="row justify-content-between">
+                            <label for="description">Descrição:</label>
+                            <h5 style={{color:'red'}}>*</h5>
+                        </div>     
                         <div className="input-group"> 
                             <Field required name="description" value="" component="textarea" rows="5"  className="form-control"/>          
                         </div>
@@ -161,6 +171,8 @@ const FormRegisterCulturalPlace = props => {
                         onChange={ handleImage } 
                         multiple 
                         style={{ display: 'none' }} />
+
+                    <h6 style={{color:'red'}}>Todos os campos marcados com (*) são obrigatórios.</h6>
 
                     <button  type="submit" class="btn btn-secondary btn-lg btn-block">                       
                             {loading ? 'Carregando':'Cadastrar'}

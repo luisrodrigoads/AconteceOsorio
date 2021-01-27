@@ -17,7 +17,7 @@ export const login = values => {
             .post(`${BASE_URL}/login`,values)
             .then(response => {
                 if(response.status === 202){
-                    //toastr.error('erro no login web!',response.data)
+                    toastr.error('Erro no login!',response.data)
                     dispatch({type: LOGIN, payload: false})
                 }else if(response.status === 200){
 
@@ -41,8 +41,8 @@ export const login = values => {
             })
             .catch(error => {
                 dispatch({type: LOGIN, payload: false})
-                //toastr.error('Erro!', 'Internal server error')
-                console.log('Erro no catch do login web!!!',error)
+                toastr.error('Erro!', 'Internal server error')
+                //console.log('Erro no catch do login web!!!',error)
             })
 
     }
@@ -61,12 +61,14 @@ export const instituteSignup = values => {
                 if(response.status === 202)
                     toastr.error('Erro!',response.data)
                 else if(response.status === 200){
-                    toastr.success('Sucesso!',response.data)
-                    if(values.userType === 'INSTITUTION')
-                        dispatch(reset('formRegisterUser'))
-                    else if(values.userType === 'CULTURAL_PLACE')
+                    if(values.userType === 'INSTITUTION'){
+                        toastr.success('Sucesso!','Instituição cadastrada.')
+                        dispatch(reset('formRegisterUser'))  
+                    } else if(values.userType === 'CULTURAL_PLACE'){
+                        toastr.success('Sucesso!','Espaço cultural cadastrado.')
                         dispatch(reset('formRegisterCulturalPlace'))
-
+                    }
+                        
                 }
             })
             .catch(error => toastr.error('Erro!','Internal server error'))

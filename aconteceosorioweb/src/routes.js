@@ -4,11 +4,12 @@ import InitialPage from './pages/InitialPage';
 import LoginPage from './pages/LoginPage';
 import LogoutPage from './pages/LogoutPage';
 import UserInitialPage from './pages/UserInitialPage';
-import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
+import { BrowserRouter,Route, Switch, Redirect } from 'react-router-dom';
 import AuthOrApp from  './main/Auth';
 import RegisterUserPage from './pages/RegisterUserPage';
+import {createBrowserHistory} from 'history';
 
-const PrivateRoute = ({component: Component, ...rest }) => {
+const PrivateRoute = ({component: Component}) => {
 
 
     const user = useSelector(state => state.user.personalInfo);
@@ -19,31 +20,36 @@ const PrivateRoute = ({component: Component, ...rest }) => {
 
     return(
         <Route
-            {...rest}
-            render={(props, ) =>{
-                return(
+            
+            render={(props) =>{
                     
-                    AuthOrApp() && rest.enabledFor.indexOf(user.userType) > -1
-                        ? <Component {...props} {...rest}/>
-                        : 
-                        <Redirect from='*' to='/' />
+                    AuthOrApp()
+                        ? (<Component {...props}/>)
+                        : (<Redirect to={{pathname:"/", state: {from: props.location}}}/>)
+                        
+                        //<Redirect from='*' to='/' />
                         
                         //<Redirect to={{pathname:"/", state: {from: props.location}}}/>
                         
-                )}}
+                }}
         />
     )
 }
 
+
 export default function MainRoutes(){
 
+    const user = useSelector(state => state.user.personalInfo);
+
+    const browserHistory = createBrowserHistory();
+
     return(
-        <BrowserRouter>
+        <BrowserRouter history={browserHistory}>
             <Switch>
                 <Route exact path='/' component={InitialPage} />
                 <Route path='/LoginPage' component={LoginPage}/>
                 <Route path='/RegisterUserPage' component={RegisterUserPage}/>
-                <PrivateRoute enabledFor={['INSTITUTION']} path='/InitialUserPage' component={UserInitialPage}/>
+                <PrivateRoute  path='/InitialUserPage' component={UserInitialPage}/>
 
                 <Route path='/Logout' component={LogoutPage}/>
             </Switch>
