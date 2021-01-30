@@ -1,9 +1,9 @@
 import React,{useEffect, useState} from 'react'
 import {logout} from '../actions/authActions'
 import { useDispatch} from 'react-redux';
-import { Redirect } from 'react-router';
+import { Redirect, withRouter } from 'react-router';
 
-export default function LogoutPage() {
+function LogoutPage() {
 
     const dispatch = useDispatch();
     
@@ -17,3 +17,5 @@ export default function LogoutPage() {
         <Redirect to="/" />
     );
 }
+
+export default withRouter(LogoutPage);

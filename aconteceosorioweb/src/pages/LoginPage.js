@@ -3,9 +3,9 @@ import {login} from '../actions/authActions'
 import { useSelector, useDispatch} from 'react-redux';
 import HeaderPage from './componentsPage/HeaderPage'
 import FormLogin from './forms/FormLogin';
-import { Redirect } from 'react-router';
+import { Redirect,withRouter } from 'react-router';
 
-export default function LoginPage() {
+function LoginPage() {
 
     const dispatch = useDispatch();
     const user = useSelector(state => state.user.personalInfo);
@@ -26,8 +26,10 @@ export default function LoginPage() {
                 <FormLogin onSubmit={values => handleForm(values)}/>
             </div>
         :
-            <Redirect to="/" />
+            <Redirect to="/InitialUserPage" />
         }
         </>
     );
 }
+
+export default withRouter(LoginPage);

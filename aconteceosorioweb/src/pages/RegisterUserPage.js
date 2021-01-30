@@ -4,10 +4,11 @@ import HeaderPage from './componentsPage/HeaderPage';
 import FormRegisterInstitution from './forms/FormRegisterInstitution';
 import { useDispatch} from 'react-redux';
 import FormRegisterCulturalPlace from './forms/FormRegisterCulturalPlace';
+import {withRouter} from 'react-router-dom';
 
 import FormData from 'form-data'
 
-export default function RegisterUserPage(){
+function RegisterUserPage(){
 
     const dispatch = useDispatch();
 
@@ -80,3 +81,5 @@ export default function RegisterUserPage(){
         </div>
     );
 }
+
+export default withRouter(RegisterUserPage);

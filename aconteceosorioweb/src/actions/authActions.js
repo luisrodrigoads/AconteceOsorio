@@ -61,14 +61,7 @@ export const instituteSignup = values => {
                 if(response.status === 202)
                     toastr.error('Erro!',response.data)
                 else if(response.status === 200){
-                    if(values.userType === 'INSTITUTION'){
-                        toastr.success('Sucesso!','Instituição cadastrada.')
-                        dispatch(reset('formRegisterUser'))  
-                    } else if(values.userType === 'CULTURAL_PLACE'){
-                        toastr.success('Sucesso!','Espaço cultural cadastrado.')
-                        dispatch(reset('formRegisterCulturalPlace'))
-                    }
-                        
+                    toastr.success('Cadastro realizado com Sucesso!')    
                 }
             })
             .catch(error => toastr.error('Erro!','Internal server error'))

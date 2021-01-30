@@ -2,8 +2,9 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import HeaderPage from './componentsPage/HeaderPage';
 import ListOfEvents from './componentsPage/ListOfEvents';
+import {withRouter} from 'react-router-dom';
 
-export default function InitialPage () {
+function InitialPage () {
     
     const user = useSelector(state => state.user.personalInfo);
 
@@ -42,3 +43,5 @@ export default function InitialPage () {
     );
     
 }
+
+export default withRouter(InitialPage);
