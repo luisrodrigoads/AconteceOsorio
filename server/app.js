@@ -16,19 +16,11 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 app.options('*',cors());
+
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 
 const AuthUser = require('./auth/authUser');
-
-
-app.use(function(req, res, next) {
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    res.header('Access-Control-Allow-Origin', '*');
-    res.header('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
-    res.header('Access-Control-Allow-Headers', 'Content-Type');
-    next();
-})
 
 //public routes
 app.post('/login', (req, res) => AuthUser.login(req, res));
