@@ -25,11 +25,13 @@ export default function HeaderPage (props) {
                         
                         <div class="navbar-nav ml-auto">
 
-                            <Link to='InitialUserPage'>
-                                <h2 class="navbar-brand text-white">
-                                {props.name} - PERFIL
-                                </h2>
-                            </Link>
+                            {props.name &&
+                                <Link to='InitialUserPage'>
+                                    <h2 class="navbar-brand text-white">
+                                    {props.name} - PERFIL
+                                    </h2>
+                                </Link>
+                            }
 
                             <Link to={props.urlPath}>
                                 <h2 class="navbar-brand text-white ml-4">
