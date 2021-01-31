@@ -1,13 +1,14 @@
 import React,{useEffect} from 'react';
-import {useSelector} from 'react-redux'
+import {useDispatch, useSelector} from 'react-redux'
 import InitialPage from './pages/InitialPage';
 import LoginPage from './pages/LoginPage';
 import LogoutPage from './pages/LogoutPage';
 import UserInitialPage from './pages/UserInitialPage';
-import { BrowserRouter as  Router,Switch, Redirect ,Route } from 'react-router-dom';
+import { BrowserRouter as  Router, Redirect ,Route } from 'react-router-dom';
 import AuthOrApp from  './main/Auth';
 import RegisterUserPage from './pages/RegisterUserPage';
-import {createBrowserHistory} from 'history';
+//import {createBrowserHistory} from 'history';
+import { relogin } from './actions/authActions';
 
 /*const PrivateRoute = ({component: Component}) => {
 
@@ -59,11 +60,16 @@ function ProtectedRoute({component: Component, ...rest}){
 
 export default function MainRoutes(){
 
-    const user = useSelector(state => state.user.personalInfo);
-    
-
-
+    //const user = useSelector(state => state.user.personalInfo);
     //const browserHistory = createBrowserHistory();
+
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+
+        dispatch(relogin());
+        
+    }, []);
 
     return(
         

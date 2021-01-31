@@ -10,6 +10,65 @@ const TOKEN_FETCHED = 'TOKEN_FETCHED'
 const LOGIN = 'LOGIN'
 const USER_LOGOUT = 'USER_LOGOUT'
 
+
+export const relogin = () => {
+
+    return dispatch => {
+
+        const data = JSON.parse(localStorage.getItem('acontece-osorio'));
+
+        dispatch({
+            type: USER_FETCHED,
+            payload: data.result
+        })
+
+        if (data) {
+
+            console.log("Trying automatic login")
+
+            axios.defaults.headers.common['authorization'] = data.token 
+            axios.defaults.headers.common['user_id'] = data.result.user_id
+
+            axios.get(`${BASE_URL}/updateToken`)
+            .then(response => {
+                
+                axios.defaults.headers.common['authorization'] = response.data.token;
+
+                data.token = response.data.token;
+                localStorage.setItem('acontece-osorio', JSON.stringify(response.data));
+
+                console.log("Data updated!")
+
+                dispatch({
+                    type: TOKEN_FETCHED,
+                    payload: response.data.token
+                })
+
+                dispatch({
+                    type: USER_FETCHED,
+                    payload: response.data.result
+                })
+
+            })
+            .catch(error => {
+                console.log("error validating token.")
+                dispatch({
+                    type: TOKEN_VALIDATED,
+                    payload: false
+                })    
+        
+                dispatch({
+                    type: USER_LOGOUT,
+                    payload: null
+                })
+        
+            })
+        } 
+
+    }
+
+}
+
 export const login = values => {
     return dispatch => {
         dispatch({type: LOGIN, payload: true})
@@ -20,6 +79,9 @@ export const login = values => {
                     toastr.error('Erro no login!',response.data)
                     dispatch({type: LOGIN, payload: false})
                 }else if(response.status === 200){
+
+                    console.log("Logged in. Saving data!")
+                    localStorage.setItem('acontece-osorio', JSON.stringify(response.data));
 
                     axios.defaults.headers.common['authorization'] = response.data.token 
                     axios.defaults.headers.common['user_id'] = response.data.result.user_id
@@ -73,6 +135,9 @@ export const logout = () => {
 
         axios.defaults.headers.common['authorization'] = ''; 
         axios.defaults.headers.common['user_id'] = '';
+
+        localStorage.removeItem('acontece-osorio');
+
 
         dispatch({
             type: TOKEN_VALIDATED,

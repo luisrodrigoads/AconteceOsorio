@@ -4,12 +4,14 @@ import HeaderPage from './componentsPage/HeaderPage';
 import ListOfEvents from './componentsPage/ListOfEvents';
 import {withRouter} from 'react-router-dom';
 
+
 function InitialPage () {
     
     const user = useSelector(state => state.user.personalInfo);
 
-    console.log(user)
-
+   
+    
+    
     return(
         <div class="container-fluid">
             <HeaderPage 
