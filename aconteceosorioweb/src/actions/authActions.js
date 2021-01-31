@@ -17,12 +17,12 @@ export const relogin = () => {
 
         const data = JSON.parse(localStorage.getItem('acontece-osorio'));
 
-        dispatch({
-            type: USER_FETCHED,
-            payload: data.result
-        })
-
         if (data) {
+
+            dispatch({
+                type: USER_FETCHED,
+                payload: data.result
+            })
 
             console.log("Trying automatic login")
 

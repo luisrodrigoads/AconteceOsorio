@@ -69,7 +69,7 @@ export default function MainRoutes(){
 
         dispatch(relogin());
         
-    }, []);
+    }, [dispatch]);
 
     return(
         

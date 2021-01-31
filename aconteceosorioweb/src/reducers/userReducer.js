@@ -19,7 +19,7 @@ const INITIAL_STATE = {
     }
 }
 
-export default (state = INITIAL_STATE, action) => {
+export default function userStateUpdate(state = INITIAL_STATE, action) {
     switch(action.type){
         case 'USER_FETCHED':
             console.log("User: ", action.payload)

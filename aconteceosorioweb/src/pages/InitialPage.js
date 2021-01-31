@@ -15,8 +15,8 @@ function InitialPage () {
     return(
         <div class="container-fluid">
             <HeaderPage 
-                urlPath={ user._id == '' ? "/LoginPage" : '/Logout' }
-                textButton= { user._id == '' ? "Entrar" : "Sair" }  
+                urlPath={ user._id === '' ? "/LoginPage" : '/Logout' }
+                textButton= { user._id === '' ? "Entrar" : "Sair" }  
                 name={user.fantasyName}/>
             
             <div class="row justify-content-around" style={{marginTop:'15px'}}>

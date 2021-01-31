@@ -4,7 +4,7 @@ const INITIAL_STATE ={
     loading: false
 }
 
-export default (state = INITIAL_STATE, action) => {
+export default function autStateUpdate(state = INITIAL_STATE, action) {
     switch (action.type){
         case 'TOKEN_VALIDATED':
             if(action.payload)

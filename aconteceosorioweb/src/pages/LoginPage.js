@@ -1,9 +1,9 @@
-import React,{useState} from 'react'
-import {login} from '../actions/authActions'
-import { useSelector, useDispatch} from 'react-redux';
+import React from 'react'
+import { login } from '../actions/authActions'
+import { useSelector, useDispatch } from 'react-redux';
 import HeaderPage from './componentsPage/HeaderPage'
 import FormLogin from './forms/FormLogin';
-import { Redirect,withRouter } from 'react-router';
+import { Redirect, withRouter } from 'react-router';
 
 function LoginPage() {
 
@@ -17,17 +17,16 @@ function LoginPage() {
     }
 
 
-
     return (
         <>
-        { user._id == '' ? 
-            <div class="container-fluid">
-                <HeaderPage urlPath="/" textButton={"Voltar"}/>
-                <FormLogin onSubmit={values => handleForm(values)}/>
-            </div>
-        :
-            <Redirect to="/InitialUserPage" />
-        }
+            { user._id === '' ?
+                <div class="container-fluid">
+                    <HeaderPage urlPath="/" textButton={"Voltar"} />
+                    <FormLogin onSubmit={values => handleForm(values)} />
+                </div>
+                :
+                <Redirect to="/InitialUserPage" />
+            }
         </>
     );
 }

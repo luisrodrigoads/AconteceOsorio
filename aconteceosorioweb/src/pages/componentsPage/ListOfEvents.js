@@ -10,7 +10,7 @@ export default function ListOfEvents () {
                     eventos.map((item,id) => {
                         return(
                             <div key={id} class="card col-lg-3 col-md-5 col-sm-10 m-3 bg-light shadow">
-                                <img class="card-img-top" style={{width:'100%',height:'300px'}} src='images/violao.jpg' alt="Card image cap"/>
+                                <img class="card-img-top" style={{width:'100%',height:'300px'}} src='images/violao.jpg' alt="Alternative description"/>
                                 <div class="card-body">
                                     <h5 class="card-title">{item.titulo}</h5>
                                     <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
