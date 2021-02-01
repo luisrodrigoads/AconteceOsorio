@@ -18,7 +18,9 @@ app.use(cors(corsOptions));
 app.options('*',cors());
 
 app.use(express.json());
-app.use(express.urlencoded({extended: true}));
+app.use(express.urlencoded({extended: false}));
+
+app.use(express.static('uploads'));
 
 const AuthUser = require('./auth/authUser');
 
@@ -33,6 +35,7 @@ app.use('*', validateToken);
 app.get('/updateToken', (req, res) => AuthUser.updateToken(req, res));
 app.post('/tradeTokenToUser', (req, res) => AuthUser.tradeTokenToUser(req, res));
 
+app.post('/updateUserImg', upload.single('image'), (req, res) => userDAO.updateImg(req, res));
 app.post('/updateUser', (req, res) => userDAO.update(req, res));
 app.post('/disableUser', (req,res) => userDAO.disableUser(req,res));
 

@@ -22,6 +22,12 @@ const userSchema = new mongoose.Schema({
         type: Boolean,
         default: true   //IT IS NOT VALIDATED?
     },
+
+    profilePhoto: {
+        type: String,
+        default: "default-avatar.png"
+    },
+    
     
     //COMPLEMENTARY DATA - INSTITUTION
     companyName: String,
@@ -37,10 +43,6 @@ const userSchema = new mongoose.Schema({
     culturalActivities: [],
 
     //COMPLEMENTARY DATA - CULTURAL PLACE
-    profilePhoto: {
-        type: String,
-        default: "default-avatar.png"
-    },
     otherPictures: [String],
     linkedInstitution: String,
     chargingFee: {

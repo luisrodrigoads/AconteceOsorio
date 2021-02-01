@@ -48,28 +48,25 @@ export const updateToken = () => {
 
 export const updateUser = values => {
     return dispatch => {
+        
         dispatch({type: LOAD, payload: true})
+        console.log(values)
         axios.post(`${ BASE_URL }/updateUser`, values)
             .then(response => {
-                if(response.status === 202){
+                
+                if(response.status !== 200){
+                    
                     console.log('Erro no updateuser', response.data)
                     toastr.error('Erro ao atualizar usuário',response.data)
                     dispatch({type: LOAD, payload: false})
-                }else if(response.status === 200){
+
+                } else if (response.status === 200){
                     console.log('Sucesso! Usuário atualizado.')
                     toastr.success('Sucesso!','Usuário atualizado.')
-
-                    axios.defaults.headers.common['authorization'] = response.data.token
-                    axios.defaults.headers.common['user_id'] = response.data.result._id
                     
                     dispatch({
-                        type: TOKEN_FETCHED,
-                        payload: response.data.token
-                    })
-
-                    dispatch({
                         type: USER_FETCHED,
-                        payload: response.data.result
+                        payload: response.data
                     })
 
                     dispatch({type:LOAD, payload: false})
@@ -79,5 +76,34 @@ export const updateUser = values => {
                 toastr.error('Erro!', 'Internal server error')
                 dispatch({type: LOAD, payload: false})
             })
+    }
+}
+
+
+export const updateUserImg = values => {
+    return dispatch => {
+
+        console.log("Sending image", values)
+
+        const requestConfig = {
+            headers: {
+              'accept': 'application/json',
+              'Content-Type': 'multipart/form-data'
+            }
+          }
+
+        axios.post(`${ BASE_URL }/updateUserImg`, values, requestConfig)
+            .then(response => {
+                toastr.success('Sucesso!','Imagem atualizada.')
+                dispatch({
+                    type: USER_FETCHED,
+                    payload: response.data
+                })
+            })
+            .catch(error => {
+                console.log('Erro no catch do updateuser',error);
+                toastr.error('Erro!', 'Internal server error');
+            });
+
     }
 }

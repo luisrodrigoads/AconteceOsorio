@@ -15,7 +15,7 @@ function UserInitialPage () {
 
         switch(user.userType){
             case 'INSTITUTION':
-                return <InstitutionInitialPage User={user} />;
+                return <InstitutionInitialPage user={user} />;
             case 'CULTURAL_PLACE':
                 return <CulturalPlaceInitialPage User={user} />;
             default:
@@ -25,7 +25,7 @@ function UserInitialPage () {
 
     return (
 
-        <div class="container-fluid">
+        <div className="container-fluid">
             <HeaderPage urlPath="/Logout" textButton="Sair"/>
             {renderCorrectUserPage()}
         </div>

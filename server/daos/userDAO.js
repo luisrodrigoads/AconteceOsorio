@@ -48,7 +48,8 @@ module.exports = {
     update(req, res) {
 
         const data = req.body;
-    
+        console.log("Updating user: ", data, req.decoded)
+        
         if(!req.file){
             let changePassword = false;
     
@@ -61,31 +62,35 @@ module.exports = {
                     return res.status(202).json('A senha deve ter no mínimo 5 digitos')
     
             }
-            if(Object.keys(data).length == 1)
+            if(Object.keys(data).length == 0)
                 return res.status(202).json('Você precisa atualizar no mínimo um campo!')
                 
-            user.findOne({_id: decodeJWT(req.headers['authorization']._id)}, (err, result) => {
+            user.findOneAndUpdate({_id: req.decoded._id}, data, {new: true}, (err, result) => {
                 if(err)
                     return res.status(500).json('Internal server error!')
     
-                if(data.password == result.password){
-                    if(changePassword){
-                        data['password'] = data['newPassword']
-                        delete data ['newPassword']
-                        delete data ['newPasswordConfirm']
-                    }
-    
-                    user.updateOne({_id: decodeJWT(req.headers['authorization']._id)},data)
-                        .then(response => {
-                            user.findOne({_id: decodeJWT(req.headers['authorization']._id)}, (err, result) =>
-                                res.status(200).json({result, token: getJWT(result.toJSON()) })
-                            )
-                        }).catch(err => res.status(202).json('Internal server error!'))
-                } else
-                    return res.status(202).json('Senha Incorreta!')
-            })
+                    console.log(result);
+                return res.status(200).json(result)
+
+             }) 
         }
     
+    },
+
+
+    updateImg(req, res) {
+        
+        if (req.file)
+        user.findOneAndUpdate({_id: req.decoded._id}, {profilePhoto: req.file.filename}, {new: true}, (err, result) => {
+            if(err)
+                return res.status(500).json('Internal server error!')
+
+            console.log(result);
+            return res.status(200).json(result)
+
+        }) 
+        
+
     },
 
     get(req, res) {
@@ -102,13 +107,13 @@ module.exports = {
 
     
     disableUser(req, res){
-        user.updateOne({_id: decodeJWT(req.headers['authorization']._id)},
+        user.updateOne({_id: req.decoded._id},
         {
             accountActivation: false
         })
         .then(response => {
-            user.findOne({_id: decodeJWT(req.headers['authorization']._id)}, (err, result) =>
-                res.status(200).json({result, token: getJWT(result.toJSON()) })
+            user.findOne({_id: req.decoded._id}, (err, result) =>
+                res.status(200).json(result)
             )
         }).catch(err => res.status(202).json('Internal server error!'))
 
