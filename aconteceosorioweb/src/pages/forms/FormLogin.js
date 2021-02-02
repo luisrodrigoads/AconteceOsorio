@@ -3,6 +3,8 @@ import {Field, reduxForm} from 'redux-form'
 import {useSelector} from 'react-redux'
 import { Link } from 'react-router-dom';
 
+import styles from '../../styles/LoginPageStyle';
+
 const FormLogin = props => {
 
     const loading = useSelector(state => state.auth.loading)
@@ -20,13 +22,13 @@ const FormLogin = props => {
     ];
 
     return(
-        <div class="row  align-items-center justify-content-center">
-                <div class="card col-lg-3 col-md-5 col-sm-10 m-3 p-3 bg-light shadow">
+        <div className="row  align-items-center justify-content-center">
+                <div className="card col-lg-3 col-md-5 col-sm-10 m-3 p-3 bg-light shadow">
                     <form onSubmit={props.handleSubmit} >
                         
                         {formComponents.map(comp => {
                             return(
-                                <div key={comp.name} class="form-group">
+                                <div key={comp.name} className="form-group">
                                     <label htmlFor={comp.name}>{comp.label}</label>
                                     <Field
                                         required
@@ -39,14 +41,14 @@ const FormLogin = props => {
                             );
                         })}
 
-                        <button  type="submit" class="btn btn-secondary btn-lg btn-block">                       
+                        <button  type="submit" className="btn btn-secondary btn-lg btn-block">                       
                                     {loading ? 'Carregando':'Entrar'}
                         </button> 
                         
                         <Link to="/RegisterUserPage">
                         
-                            <button type="button" class="btn btn-secondary btn-sm btn-block" style={{marginTop:'15px'}}>
-                                <h3 class="navbar-brand text-white">
+                            <button type="button" className="btn btn-secondary btn-sm btn-block" style={styles.buttonRegister}>
+                                <h3 className="navbar-brand text-white">
                                             Cadastrar
                                 </h3>
                             </button>

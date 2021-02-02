@@ -20,7 +20,7 @@ function LoginPage() {
     return (
         <>
             { user._id === '' ?
-                <div class="container-fluid">
+                <div className="container-fluid">
                     <HeaderPage urlPath="/" textButton={"Voltar"} />
                     <FormLogin onSubmit={values => handleForm(values)} />
                 </div>

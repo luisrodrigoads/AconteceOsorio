@@ -7,35 +7,8 @@ import UserInitialPage from './pages/UserInitialPage';
 import { BrowserRouter as  Router, Redirect ,Route } from 'react-router-dom';
 import AuthOrApp from  './main/Auth';
 import RegisterUserPage from './pages/RegisterUserPage';
-//import {createBrowserHistory} from 'history';
+
 import { relogin } from './actions/authActions';
-
-/*const PrivateRoute = ({component: Component}) => {
-
-
-    const user = useSelector(state => state.user.personalInfo);
-
-    useEffect(() => {
-        
-    }, []);
-
-    return(
-        <Route
-            
-            render={(props) =>{
-                    
-                    AuthOrApp()
-                        ? (<Component {...props}/>)
-                        : (<Redirect to={{pathname:"/", state: {from: props.location}}}/>)
-                        
-                        //<Redirect from='*' to='/' />
-                        
-                        //<Redirect to={{pathname:"/", state: {from: props.location}}}/>
-                        
-                }}
-        />
-    )
-}*/
 
 function ProtectedRoute({component: Component, ...rest}){
 
@@ -59,9 +32,6 @@ function ProtectedRoute({component: Component, ...rest}){
 
 
 export default function MainRoutes(){
-
-    //const user = useSelector(state => state.user.personalInfo);
-    //const browserHistory = createBrowserHistory();
 
     const dispatch = useDispatch();
 
