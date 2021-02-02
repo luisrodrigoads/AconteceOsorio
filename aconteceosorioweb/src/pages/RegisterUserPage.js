@@ -57,11 +57,11 @@ function RegisterUserPage(){
     }
     
     return(
-        <div class="container-fluid">
+        <div className="container-fluid">
             <HeaderPage urlPath="/" textButton="Voltar"/>
 
-            <div class="row  align-items-center justify-content-center ">
-                <div class="card col-lg-3 col-md-5 col-sm-10 m-3 p-3 bg-light shadow"> 
+            <div className="row  align-items-center justify-content-center ">
+                <div className="card col-lg-3 col-md-5 col-sm-10 m-3 p-3 bg-light shadow"> 
                     <div className="form-group">
                         <label>Selecione o tipo de usuário</label>
                         <div className="input-group">

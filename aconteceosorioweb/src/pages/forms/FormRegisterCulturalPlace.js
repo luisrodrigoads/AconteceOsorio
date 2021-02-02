@@ -88,7 +88,7 @@ const FormRegisterCulturalPlace = props => {
                         return (
                             <div key={comp.name} className="form-group">
                                 <div style={styles.labelInputDiv} className="row justify-content-between">   
-                                    <label for={comp.name}>{comp.label}</label>
+                                    <label htmlFor={comp.name}>{comp.label}</label>
                                     <h5 style={styles.markingRequiredInput}>*</h5>
                                 </div>
                                 
@@ -106,7 +106,7 @@ const FormRegisterCulturalPlace = props => {
                     
                     <div className="form-group">
                         <div style={styles.labelInputDiv} className="row justify-content-between">
-                            <label for="userType">Tipo de Usuário:</label>
+                            <label htmlFor="userType">Tipo de Usuário:</label>
                             <h5 style={styles.markingRequiredInput}>*</h5>
                         </div>
                         <div className="input-group"> 
@@ -119,7 +119,7 @@ const FormRegisterCulturalPlace = props => {
                     {formCheckComponents.map(compCheck => {
                         return(
                             <div key={compCheck.name}>
-                                <label style={styles.labelInputCheckDiv} for={compCheck.name} className="form-check-label">{compCheck.label}</label>
+                                <label style={styles.labelInputCheckDiv} htmlFor={compCheck.name} className="form-check-label">{compCheck.label}</label>
                                 <Field name={compCheck.name} component="input" type="checkbox"  />
                                 <hr/>
                             </div>           
@@ -128,7 +128,7 @@ const FormRegisterCulturalPlace = props => {
 
                     <div className="form-group">
                         <div style={styles.labelInputDiv} className="row justify-content-between">
-                            <label for="description">Descrição:</label>
+                            <label htmlFor="description">Descrição:</label>
                             <h5 style={styles.markingRequiredInput}>*</h5>
                         </div>     
                         <div className="input-group"> 

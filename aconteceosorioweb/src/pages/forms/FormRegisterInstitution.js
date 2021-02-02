@@ -53,7 +53,7 @@ const FormRegisterUser = props => {
                         return (
                             <div key={comp.name} className="form-group">
                                 <div style={styles.labelInputDiv} className="row justify-content-between">   
-                                    <label for={comp.name}>{comp.label}</label>
+                                    <label htmlFor={comp.name}>{comp.label}</label>
                                     <h5 style={styles.markingRequiredInput}>*</h5>
                                 </div>
                                 <Field
@@ -70,7 +70,7 @@ const FormRegisterUser = props => {
                     
                     <div className="form-group">
                         <div style={styles.labelInputDiv} className="row justify-content-between">
-                            <label for="userType">Tipo de Usuário:</label>
+                            <label htmlFor="userType">Tipo de Usuário:</label>
                             <h5 style={styles.markingRequiredInput}>*</h5>
                         </div>
                         <div className="input-group"> 
@@ -82,7 +82,7 @@ const FormRegisterUser = props => {
 
                     <div className="form-group">
                         <div style={styles.labelInputDiv} className="row justify-content-between">
-                            <label for="institutionType">Tipo de Instituição</label>
+                            <label htmlFor="institutionType">Tipo de Instituição</label>
                             <h5 style={styles.markingRequiredInput}>*</h5>
                         </div>
                         
@@ -97,7 +97,7 @@ const FormRegisterUser = props => {
 
                     <div className="form-group">
                         <div style={styles.labelInputDiv} className="row justify-content-between">
-                            <label for="description">Descrição:</label>
+                            <label htmlFor="description">Descrição:</label>
                             <h5 style={styles.markingRequiredInput}>*</h5>
                         </div>
                         <div className="input-group"> 
