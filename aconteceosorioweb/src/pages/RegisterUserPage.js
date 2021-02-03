@@ -52,8 +52,7 @@ function RegisterUserPage(){
 
             setFiles({ otherPictures: []})
             dispatch(instituteSignup(fd))
-        
-        //dispatch(instituteSignup(data))
+  
     }
     
     return(

@@ -14,14 +14,14 @@ export const tradeTokenToUser = token => {
         axios.post(`${ BASE_URL }/tradeTokenToUser`, tokenID)
             .then(response => {
                 if(response.status === 400)
-                    console.log('Erro no tradetokentouser web!!!',response)
+                    toastr.error('Ocorreu um erro no servidor!', 'Tente mais tarde')
                     
                 else if(response.status === 200)
                     dispatch({
                         type: USER_FETCHED,
                         payload: response.data
                     })
-            }).catch(error => console.log('Erro no catch do tradetokentouser web!!!',error))
+            }).catch(error => toastr.error('Ocorreu um erro no servidor!', 'Tente mais tarde'))
     }
 }
 
@@ -30,7 +30,7 @@ export const updateToken = () => {
         axios.get(`${ BASE_URL }/updateToken`)
             .then(response => {
                 if(response.status === 202)
-                    console.log('Erro no updateToken web!!!',response.data)
+                    toastr.error('Ocorreu um erro no servidor!', 'Tente mais tarde')
 
                 else if(response.status === 200){
                     dispatch({
@@ -42,7 +42,7 @@ export const updateToken = () => {
                         payload: response.data.token
                     })
                 }
-            }).catch(error => console.log('Erro no catch do updatetoken',error))
+            }).catch(error => toastr.error('Ocorreu um erro no servidor!', 'Tente mais tarde'))
     }
 }
 
@@ -56,12 +56,10 @@ export const updateUser = values => {
                 
                 if(response.status !== 200){
                     
-                    console.log('Erro no updateuser', response.data)
                     toastr.error('Erro ao atualizar usuário',response.data)
                     dispatch({type: LOAD, payload: false})
 
                 } else if (response.status === 200){
-                    console.log('Sucesso! Usuário atualizado.')
                     toastr.success('Sucesso!','Usuário atualizado.')
                     
                     dispatch({
@@ -72,8 +70,7 @@ export const updateUser = values => {
                     dispatch({type:LOAD, payload: false})
                 }
             }).catch(error => {
-                console.log('Erro no catch do updateuser',error)
-                toastr.error('Erro!', 'Internal server error')
+                toastr.error('Ocorreu um erro no servidor!', 'Tente mais tarde')
                 dispatch({type: LOAD, payload: false})
             })
     }
@@ -101,8 +98,7 @@ export const updateUserImg = values => {
                 })
             })
             .catch(error => {
-                console.log('Erro no catch do updateuser',error);
-                toastr.error('Erro!', 'Internal server error');
+                toastr.error('Ocorreu um erro no servidor!', 'Tente mais tarde')
             });
 
     }

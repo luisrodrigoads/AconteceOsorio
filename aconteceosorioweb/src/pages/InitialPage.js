@@ -6,7 +6,6 @@ import {withRouter} from 'react-router-dom';
 
 import styles from '../styles/InitialPageStyle';
 
-
 function InitialPage () {
     
     const user = useSelector(state => state.user.personalInfo);

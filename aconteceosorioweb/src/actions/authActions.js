@@ -10,7 +10,6 @@ const TOKEN_FETCHED = 'TOKEN_FETCHED'
 const LOGIN = 'LOGIN'
 const USER_LOGOUT = 'USER_LOGOUT'
 
-
 export const relogin = () => {
 
     return dispatch => {
@@ -24,8 +23,6 @@ export const relogin = () => {
                 payload: data.result
             })
 
-            console.log("Trying automatic login")
-
             axios.defaults.headers.common['authorization'] = data.token 
             axios.defaults.headers.common['user_id'] = data.result.user_id
 
@@ -36,8 +33,6 @@ export const relogin = () => {
 
                 data.token = response.data.token;
                 localStorage.setItem('acontece-osorio', JSON.stringify(response.data));
-
-                console.log("Data updated!")
 
                 dispatch({
                     type: TOKEN_FETCHED,
@@ -51,7 +46,6 @@ export const relogin = () => {
 
             })
             .catch(error => {
-                console.log("error validating token.")
                 dispatch({
                     type: TOKEN_VALIDATED,
                     payload: false
@@ -80,7 +74,6 @@ export const login = values => {
                     dispatch({type: LOGIN, payload: false})
                 }else if(response.status === 200){
 
-                    console.log("Logged in. Saving data!")
                     localStorage.setItem('acontece-osorio', JSON.stringify(response.data));
 
                     axios.defaults.headers.common['authorization'] = response.data.token 
@@ -103,8 +96,7 @@ export const login = values => {
             })
             .catch(error => {
                 dispatch({type: LOGIN, payload: false})
-                toastr.error('Erro!', 'Internal server error')
-                //console.log('Erro no catch do login web!!!',error)
+                toastr.error('Ocorreu um erro no servidor!', 'Tente mais tarde')
             })
 
     }
@@ -126,7 +118,7 @@ export const instituteSignup = values => {
                     toastr.success('Cadastro realizado com Sucesso!')    
                 }
             })
-            .catch(error => toastr.error('Erro!','Internal server error'))
+            .catch(error => toastr.error('Ocorreu um erro no servidor!','Tente mais tarde'))
     }
 }
 
@@ -137,7 +129,6 @@ export const logout = () => {
         axios.defaults.headers.common['user_id'] = '';
 
         localStorage.removeItem('acontece-osorio');
-
 
         dispatch({
             type: TOKEN_VALIDATED,

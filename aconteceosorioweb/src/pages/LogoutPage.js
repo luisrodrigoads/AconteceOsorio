@@ -7,7 +7,6 @@ function LogoutPage() {
 
     const dispatch = useDispatch();
 
-
     useEffect(() => {
         dispatch(logout());
     }, [dispatch])

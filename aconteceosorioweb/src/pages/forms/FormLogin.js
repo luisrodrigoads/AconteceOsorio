@@ -1,13 +1,10 @@
 import React from 'react'
 import {Field, reduxForm} from 'redux-form'
-import {useSelector} from 'react-redux'
 import { Link } from 'react-router-dom';
 
 import styles from '../../styles/LoginPageStyle';
 
 const FormLogin = props => {
-
-    const loading = useSelector(state => state.auth.loading)
 
     const formComponents = [
         {
@@ -41,27 +38,18 @@ const FormLogin = props => {
                             );
                         })}
 
-                        <button  type="submit" className="btn btn-secondary btn-lg btn-block">                       
-                                    {loading ? 'Carregando':'Entrar'}
-                        </button> 
+                        <button  type="submit" className="btn btn-secondary btn-lg btn-block">Entrar</button> 
                         
                         <Link to="/RegisterUserPage">
-                        
                             <button type="button" className="btn btn-secondary btn-sm btn-block" style={styles.buttonRegister}>
-                                <h3 className="navbar-brand text-white">
-                                            Cadastrar
-                                </h3>
-                            </button>
-                        
-                        </Link> 
-                          
-                    </form> 
+                                <h3 className="navbar-brand text-white">Cadastrar</h3>
+                            </button>   
+                        </Link>  
 
-                    
+                    </form>    
                 </div>
         </div>
     )
-
 }
 
 export default reduxForm({form: 'formLogin'})(FormLogin)

@@ -5,7 +5,6 @@ import {withRouter} from 'react-router-dom';
 import InstitutionInitialPage from './componentsPage/InstitutionInitialPage';
 import CulturalPlaceInitialPage from './componentsPage/CulturalPlaceInitialPage';
 
-
 function UserInitialPage () {
 
     const user = useSelector(state => state.user.personalInfo);

@@ -1,5 +1,5 @@
 import React,{useEffect} from 'react';
-import {useDispatch, useSelector} from 'react-redux'
+import {useDispatch} from 'react-redux'
 import InitialPage from './pages/InitialPage';
 import LoginPage from './pages/LoginPage';
 import LogoutPage from './pages/LogoutPage';
@@ -11,10 +11,6 @@ import RegisterUserPage from './pages/RegisterUserPage';
 import { relogin } from './actions/authActions';
 
 function ProtectedRoute({component: Component, ...rest}){
-
-    const auth = useSelector(state => state.auth);
-
-    console.log('valid token: ',auth.validToken);
 
     return(
         <Route
@@ -29,7 +25,6 @@ function ProtectedRoute({component: Component, ...rest}){
         />
     );
 }
-
 
 export default function MainRoutes(){
 

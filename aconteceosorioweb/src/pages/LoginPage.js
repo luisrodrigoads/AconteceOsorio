@@ -16,7 +16,6 @@ function LoginPage() {
         dispatch(login(data));
     }
 
-
     return (
         <>
             { user._id === '' ?

@@ -1,12 +1,9 @@
 import React, { useState } from 'react'
 import {Field, reduxForm} from 'redux-form'
-import { useSelector } from 'react-redux'
 
 import styles from '../../styles/FormRegisterUserStyle';
 
 const FormRegisterCulturalPlace = props => {
-
-    const loading = useSelector(state => state.auth.loading)
 
     const { handleSubmit,handleImage} = props
 
@@ -156,9 +153,7 @@ const FormRegisterCulturalPlace = props => {
 
                     <h6 style={styles.markingRequiredInput}>Todos os campos marcados com (*) são obrigatórios.</h6>
 
-                    <button  type="submit" className="btn btn-secondary btn-lg btn-block">                       
-                            {loading ? 'Carregando':'Cadastrar'}
-                    </button>
+                    <button  type="submit" className="btn btn-secondary btn-lg btn-block">Cadastrar</button>
                 </form> 
             </div>
     </div>
