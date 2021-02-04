@@ -80,8 +80,6 @@ export const updateUser = values => {
 export const updateUserImg = values => {
     return dispatch => {
 
-        console.log("Sending image", values)
-
         const requestConfig = {
             headers: {
               'accept': 'application/json',

@@ -73,7 +73,7 @@ export const login = values => {
                     toastr.error('Erro no login!',response.data)
                     dispatch({type: LOGIN, payload: false})
                 }else if(response.status === 200){
-
+                    
                     localStorage.setItem('acontece-osorio', JSON.stringify(response.data));
 
                     axios.defaults.headers.common['authorization'] = response.data.token 

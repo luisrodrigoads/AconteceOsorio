@@ -15,7 +15,14 @@ const INITIAL_STATE = {
         culturalActivities: [],
         userType: '',  
         accountActivation: true,
-        description: ''
+        description: '',
+        //Complementary data - cultural place
+        otherPictures:[],
+        linkedInstitution: '',
+        chargingFee: true,
+        bathroom: true,
+        diaperChanger: true,
+        wheelchairAccessibility: true
     }
 }
 

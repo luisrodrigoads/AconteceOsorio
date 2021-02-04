@@ -4,6 +4,32 @@ import { Link } from 'react-router-dom';
 export default function HeaderPage (props) {
 
 
+    /*const confirmModalDialog = () =>{
+        return(
+            <div className="modal fade" id="confirmLogoutModal" tabIndex="-1" role="dialog" aria-labelledby="confirmLogoutLabel" aria-hidden="true">
+                <div className="modal-dialog" role="document">
+                    <div className="modal-content">
+                        <div className="modal-header">
+                                <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                        </div>
+                        <div className="modal-body text-justify">
+                            <h6>Deseja realmente sair?</h6>      
+                        </div>
+                        <div className="modal-footer">
+                            <button type="button" className="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+
+                            <Link to="/Logout">  
+                                <button type="button" className="btn btn-secondary" data-dismiss="modal" aria-label="Close">Confirmar</button>
+                            </Link>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        );
+    }*/
+
     return(
         <header >
             <nav className="navbar navbar-expand-lg navbar-light bg-secondary shadow-sm">
@@ -33,11 +59,31 @@ export default function HeaderPage (props) {
                                 </Link>
                             }
 
-                            <Link to={props.urlPath}>
-                                <h2 className="navbar-brand text-white ml-4">
+                            {
+                                <Link to={props.urlPath}>
+                                    <h2 className="navbar-brand text-white ml-4" data-toggle="modal" data-target="#confirmLogoutModal">
+                                        {props.textButton}
+                                    </h2>
+                                </Link>
+                            }
+                        
+                            {
+                                /*
+                                props.urlPath === '/Logout' ?
+                                <h2 className="navbar-brand text-white ml-4" data-toggle="modal" data-target="#confirmLogoutModal">
                                     {props.textButton}
-                                </h2>
-                            </Link>
+                                </h2> :
+                                <Link to={props.urlPath}>
+                                    <button type="button" className="btn btn-secondary">
+                                        <h2 className="navbar-brand text-white ml-4" >
+                                            {props.textButton}
+                                        </h2>
+                                    </button>
+                                </Link>
+                                */                  
+                            }
+                            {/*confirmModalDialog()*/}
+                            
                         </div> 
                     </div>
                 </div>

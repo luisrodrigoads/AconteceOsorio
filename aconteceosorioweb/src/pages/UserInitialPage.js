@@ -20,7 +20,6 @@ function UserInitialPage () {
         inputFile.current.click();
     }
 
-
     const updatePerfilPhoto = e => {
         console.log(e.target.files[0]);
         
@@ -40,23 +39,10 @@ function UserInitialPage () {
         }))
     }
 
-    /*const renderCorrectUserPage = () => {
-
-        switch(user.userType){
-            case 'INSTITUTION':
-                return <InstitutionInitialPage user={user} />;
-            case 'CULTURAL_PLACE':
-                return <CulturalPlaceInitialPage User={user} />;
-            default:
-                return <h1>Ocorreu um erro na aplicação, tente mais tarde.</h1>;
-        }
-    }*/
-
     return (
 
         <div className="container-fluid">
             <HeaderPage urlPath="/Logout" textButton="Sair"/>
-            {/*renderCorrectUserPage()*/}
             <>
             <div className="row  align-items-center justify-content-center">
                 <div className="col-lg-3 col-md-5 col-sm-10 m-3 p-3 text-center">

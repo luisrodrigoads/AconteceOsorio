@@ -1,6 +1,16 @@
 import React from 'react';
+import CulturalPlaceModalInfo from './CulturalPlaceModalInfo';
 
 export default function UserInfoModal ({User: user}){
+
+
+    const renderComplementaryInfo = () =>{
+        if(user.userType === 'CULTURAL_PLACE'){
+           return <CulturalPlaceModalInfo User={user}/>;
+        }else{
+           return null;
+        }
+    }
 
     return(
         <div className="modal fade" id="infoUserModal" tabIndex="-1" role="dialog" aria-labelledby="infoUserModalLabel" aria-hidden="true">
@@ -27,6 +37,7 @@ export default function UserInfoModal ({User: user}){
                         <hr/>
                         <h6><b>Pessoa responsável: </b>{user.responsiblePerson}</h6>
                         <hr/>
+                        {renderComplementaryInfo()} 
                         <h6><b>Descrição: </b>{user.description}</h6>
                     </div>
                      <div className="modal-footer">
