@@ -1,34 +1,8 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import {Link} from 'react-router-dom';
+import ConfirmModalDialog from './ConfirmModalDialog';
 
 export default function HeaderPage (props) {
-
-
-    /*const confirmModalDialog = () =>{
-        return(
-            <div className="modal fade" id="confirmLogoutModal" tabIndex="-1" role="dialog" aria-labelledby="confirmLogoutLabel" aria-hidden="true">
-                <div className="modal-dialog" role="document">
-                    <div className="modal-content">
-                        <div className="modal-header">
-                                <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                        </div>
-                        <div className="modal-body text-justify">
-                            <h6>Deseja realmente sair?</h6>      
-                        </div>
-                        <div className="modal-footer">
-                            <button type="button" className="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-
-                            <Link to="/Logout">  
-                                <button type="button" className="btn btn-secondary" data-dismiss="modal" aria-label="Close">Confirmar</button>
-                            </Link>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        );
-    }*/
 
     return(
         <header >
@@ -68,7 +42,7 @@ export default function HeaderPage (props) {
                             }
                         
                             {
-                                /*
+                               /* 
                                 props.urlPath === '/Logout' ?
                                 <h2 className="navbar-brand text-white ml-4" data-toggle="modal" data-target="#confirmLogoutModal">
                                     {props.textButton}
@@ -80,9 +54,9 @@ export default function HeaderPage (props) {
                                         </h2>
                                     </button>
                                 </Link>
-                                */                  
+                                       */           
                             }
-                            {/*confirmModalDialog()*/}
+                            {/*<ConfirmModalDialog/>*/}
                             
                         </div> 
                     </div>
@@ -91,4 +65,3 @@ export default function HeaderPage (props) {
         </header>
     )   
 }
-

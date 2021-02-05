@@ -101,3 +101,37 @@ export const updateUserImg = values => {
 
     }
 }
+
+export const disableUser = () => {
+    return dispatch => {
+        
+        axios.post(`${ BASE_URL }/disableUser`)
+            .then(response => {
+                toastr.success('Sucesso!','Usuário está invisivel.')
+                dispatch({
+                    type: USER_FETCHED,
+                    payload: response.data
+                })
+            })
+            .catch(error => {
+                toastr.error('Ocorreu um erro no servidor!', 'Tente mais tarde')
+            });
+    }
+}
+
+export const enableUser = () => {
+    return dispatch => {
+
+        axios.post(`${ BASE_URL }/enableUser`)
+            .then(response => {
+                toastr.success('Sucesso!','Usuário está visivel.')
+                dispatch({
+                    type: USER_FETCHED,
+                    payload: response.data
+                })
+            })
+            .catch(error => {
+                toastr.error('Ocorreu um erro no servidor!', 'Tente mais tarde')
+            });
+    }
+}

@@ -2,7 +2,7 @@ import React, { useRef } from 'react'
 import { useSelector, useDispatch} from 'react-redux';
 import HeaderPage from './componentsPage/HeaderPage';
 import {withRouter} from 'react-router-dom';
-import { updateUser, updateUserImg } from '../actions/userActions';
+import { disableUser, enableUser, updateUser, updateUserImg } from '../actions/userActions';
 import BASE_URL from '../config/consts';
 import ListOfEvents from './componentsPage/ListOfEvents';
 import UserInfoModal from './componentsPage/UserInfoModal';
@@ -37,6 +37,13 @@ function UserInitialPage () {
         dispatch(updateUser({
             profilePhoto: 'default-avatar.png'
         }))
+    }
+
+    const changeVisibilityUser = () => {
+        
+        user.accountActivation ? dispatch(disableUser()) 
+        :
+        dispatch(enableUser())
     }
 
     return (
@@ -79,6 +86,25 @@ function UserInitialPage () {
                         </div>
                     </div>
 
+                    <div className="modal modal-dialog fade" id="visibilityUserModal" tabIndex="-1" aria-labelledby="visibilityUserModal" aria-hidden="true">
+                
+                        <div className="modal-dialog">
+                            <div className="modal-content">
+                                <div className="modal-header">
+                                    <h5 className="modal-title" id="visibilityUserModal">{user.accountActivation ? 'Deixar conta invisivel?' : 'Deixar conta visivel?'}</h5>
+                                    <button type="button" className="close" ref={closeModal} data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div className="modal-body container">
+                                    <button type="button" className="row col-sm mt-3 btn btn-secondary" data-dismiss="modal" onClick={changeVisibilityUser}>Confirmar</button>
+                                    <button type="button" className="row col-sm mt-3 btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>                    
+
+                    <h5 style={{color:'#4682b4',marginTop:'10px'}} data-toggle="modal" data-target="#visibilityUserModal">{user.accountActivation ? 'Deixar conta invisivel' : 'Deixar conta visivel'}</h5>
                     <h2>{user.fantasyName}</h2>
                     <h5>{user.description}</h5>
                     <button type="button" className="btn btn-outline-secondary btn-rounded waves-effect" data-toggle="modal" data-target="#infoUserModal">   

@@ -119,6 +119,19 @@ module.exports = {
 
     },
 
+    enableUser(req, res){
+        user.updateOne({_id: req.decoded._id},
+        {
+            accountActivation: true
+        })
+        .then(response => {
+            user.findOne({_id: req.decoded._id}, (err, result) =>
+                res.status(200).json(result)
+            )
+        }).catch(err => res.status(202).json('Internal server error!'))
+
+    },
+
     async delete(req, res) {
         const id = req.params.id;
         const userData = await user.findByIdAndDelete(id);

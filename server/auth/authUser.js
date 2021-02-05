@@ -11,14 +11,6 @@ const login = (req, res) => {
 
         else if(result && result.password === req.body.password){
 
-            if(!result.accountActivation){
-                user.updateOne({_id: mongoose.Types.ObjectId(result._id)},
-                {
-                    accountActivation: true
-                },
-                (err,response) => err ? response.status(500).json(err) : response.status(200).json('Conta ativada'))
-            }
-
             return res.status(200).json({result, token: getJWT(result.toJSON()) })
         }
 
