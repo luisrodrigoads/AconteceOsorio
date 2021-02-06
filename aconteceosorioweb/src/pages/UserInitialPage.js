@@ -1,11 +1,11 @@
 import React, { useRef } from 'react'
 import { useSelector, useDispatch} from 'react-redux';
-import HeaderPage from './componentsPage/HeaderPage';
 import {withRouter} from 'react-router-dom';
 import { disableUser, enableUser, updateUser, updateUserImg } from '../actions/userActions';
 import BASE_URL from '../config/consts';
 import ListOfEvents from './componentsPage/ListOfEvents';
 import UserInfoModal from './componentsPage/UserInfoModal';
+import UpdateForm from './forms/UpdateForm';
 
 function UserInitialPage () {
 
@@ -46,12 +46,18 @@ function UserInitialPage () {
         dispatch(enableUser())
     }
 
+
+    const updateHandle = values => {
+        dispatch(updateUser(values))
+    }
+
+
     return (
 
         <div className="container-fluid">
-            <HeaderPage urlPath="/Logout" textButton="Sair"/>
+            
             <>
-            <div className="row  align-items-center justify-content-center">
+            <div className="row  justify-content-center">
                 <div className="col-lg-3 col-md-5 col-sm-10 m-3 p-3 text-center">
                       
                     <input type="file" id="file" ref={inputFile} style={{display: "none"}} onChange={e => updatePerfilPhoto(e)}/>
@@ -114,6 +120,13 @@ function UserInitialPage () {
                     <UserInfoModal User={user} />
 
                 </div>
+
+                <div className="col-6">
+
+                    <UpdateForm initialValues={user} onSubmit={values => updateHandle(values)}/>
+                    {console.log("USER: ", user)}
+                </div>
+
             </div>
 
             {user.userType !== 'SERVICE_PROVIDER' ? 
