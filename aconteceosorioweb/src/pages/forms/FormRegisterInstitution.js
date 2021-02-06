@@ -48,7 +48,10 @@ const FormRegisterUser = props => {
     return(
         <div className="row  align-items-center justify-content-center ">
             <div className="card col-lg-3 col-md-5 col-sm-10 m-3 p-3 bg-light shadow">
-                <form onSubmit={props.handleSubmit}>
+                <form
+                    initialValues={props.initialValues}
+                    onSubmit={props.handleSubmit}
+                >
                     
                     {formComponents.map(comp => {
                         return (
@@ -95,7 +98,7 @@ const FormRegisterUser = props => {
                     
                     <h6 style={styles.markingRequiredInput}>Todos os campos marcados com (*) são obrigatórios.</h6>
 
-                    <button  type="submit" className="btn btn-secondary btn-lg btn-block">Cadastrar</button>
+                    <button  type="submit" className="btn btn-secondary btn-lg btn-block">{props.isUpdateForm ? 'Atualizar' : 'Cadastrar'}</button>
 
                 </form> 
             </div>
@@ -104,4 +107,4 @@ const FormRegisterUser = props => {
 }
 
 
-export default reduxForm({form: 'formRegisterUser'})(FormRegisterUser);
+export default reduxForm({form: 'formRegisterUser',enableReinitialize: true})(FormRegisterUser);

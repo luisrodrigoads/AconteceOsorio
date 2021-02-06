@@ -1,11 +1,10 @@
 import React, { useRef } from 'react'
 import { useSelector, useDispatch} from 'react-redux';
-import {withRouter} from 'react-router-dom';
+import {Link, withRouter} from 'react-router-dom';
 import { disableUser, enableUser, updateUser, updateUserImg } from '../actions/userActions';
 import BASE_URL from '../config/consts';
 import ListOfEvents from './componentsPage/ListOfEvents';
 import UserInfoModal from './componentsPage/UserInfoModal';
-import UpdateForm from './forms/UpdateForm';
 
 function UserInitialPage () {
 
@@ -45,12 +44,6 @@ function UserInitialPage () {
         :
         dispatch(enableUser())
     }
-
-
-    const updateHandle = values => {
-        dispatch(updateUser(values))
-    }
-
 
     return (
 
@@ -111,6 +104,10 @@ function UserInitialPage () {
                     </div>                    
 
                     <h5 style={{color:'#4682b4',marginTop:'10px'}} data-toggle="modal" data-target="#visibilityUserModal">{user.accountActivation ? 'Deixar conta invisivel' : 'Deixar conta visivel'}</h5>
+                    <Link to="/EditUserPage">
+                        <h5 style={{color:'#4682b4'}}>Editar informações</h5>
+                    </Link>
+                    <hr/>
                     <h2>{user.fantasyName}</h2>
                     <h5>{user.description}</h5>
                     <button type="button" className="btn btn-outline-secondary btn-rounded waves-effect" data-toggle="modal" data-target="#infoUserModal">   
@@ -119,12 +116,6 @@ function UserInitialPage () {
 
                     <UserInfoModal User={user} />
 
-                </div>
-
-                <div className="col-6">
-
-                    <UpdateForm initialValues={user} onSubmit={values => updateHandle(values)}/>
-                    {console.log("USER: ", user)}
                 </div>
 
             </div>

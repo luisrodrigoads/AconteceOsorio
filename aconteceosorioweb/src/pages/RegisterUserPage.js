@@ -6,6 +6,7 @@ import FormRegisterCulturalPlace from './forms/FormRegisterCulturalPlace';
 import {withRouter} from 'react-router-dom';
 
 import FormData from 'form-data'
+import UserModel from '../models/UserModel';
 
 function RegisterUserPage(){
 
@@ -29,7 +30,7 @@ function RegisterUserPage(){
 
         switch (userType) {
             case 'institution':
-                return <FormRegisterInstitution onSubmit={values => handleInstituteForm(values)}/>
+                return <FormRegisterInstitution isUpdateForm={false} initialValues={UserModel} onSubmit={values => handleInstituteForm(values)}/>
             case 'cultural_place':
                 return <FormRegisterCulturalPlace onSubmit={values => handleInstituteForm(values)}  handleImage = { values => fileSelectedHandler(values) }  otherPictures={ files['otherPictures'] }/>
             default: 
