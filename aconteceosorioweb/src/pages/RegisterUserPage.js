@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { instituteSignup } from '../actions/authActions';
-import HeaderPage from './componentsPage/HeaderPage';
 import FormRegisterInstitution from './forms/FormRegisterInstitution';
 import { useDispatch} from 'react-redux';
 import FormRegisterCulturalPlace from './forms/FormRegisterCulturalPlace';
@@ -57,8 +56,6 @@ function RegisterUserPage(){
     
     return(
         <div className="container-fluid">
-            <HeaderPage urlPath="/" textButton="Voltar"/>
-
             <div className="row  align-items-center justify-content-center ">
                 <div className="card col-lg-3 col-md-5 col-sm-10 m-3 p-3 bg-light shadow"> 
                     <div className="form-group">

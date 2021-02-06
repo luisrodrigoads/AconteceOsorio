@@ -1,6 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-import ConfirmModalDialog from './ConfirmModalDialog';
+
 
 export default function HeaderPage (props) {
 

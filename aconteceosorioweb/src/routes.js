@@ -1,5 +1,5 @@
 import React,{useEffect} from 'react';
-import {useDispatch} from 'react-redux'
+import {useDispatch, useSelector} from 'react-redux'
 import InitialPage from './pages/InitialPage';
 import LoginPage from './pages/LoginPage';
 import LogoutPage from './pages/LogoutPage';
@@ -9,6 +9,7 @@ import AuthOrApp from  './main/Auth';
 import RegisterUserPage from './pages/RegisterUserPage';
 
 import { relogin } from './actions/authActions';
+import HeaderPage from './pages/componentsPage/HeaderPage';
 
 function ProtectedRoute({component: Component, ...rest}){
 
@@ -28,6 +29,7 @@ function ProtectedRoute({component: Component, ...rest}){
 
 export default function MainRoutes(){
 
+    const user = useSelector(state => state.user.personalInfo);
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -37,8 +39,15 @@ export default function MainRoutes(){
     }, [dispatch]);
 
     return(
-        
+        <>
+         
             <Router>
+
+                <HeaderPage 
+                    urlPath={ user._id === '' ? "/LoginPage" : '/Logout' }
+                    textButton= { user._id === '' ? "Entrar" : "Sair" }  
+                    name={user.fantasyName}/>
+        
                 <Route exact path='/' component={InitialPage} />
                 <Route path='/LoginPage' component={LoginPage}/>
                 <Route path='/RegisterUserPage' component={RegisterUserPage}/>
@@ -46,6 +55,6 @@ export default function MainRoutes(){
                 
                 <Route path='/Logout' component={LogoutPage}/>
             </Router>
-
+        </>
     );
 }
