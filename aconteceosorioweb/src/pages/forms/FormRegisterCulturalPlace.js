@@ -1,21 +1,26 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import {Field, reduxForm} from 'redux-form'
 
 import styles from '../../styles/FormRegisterUserStyle';
 
 const FormRegisterCulturalPlace = props => {
 
-    const { handleSubmit,handleImage} = props
+    const { handleSubmit, handleImage} = props
+
+    useEffect(() => {
+        props.change('userType', 'CULTURAL_PLACE')
+    }, [props]);
 
     const [files] = useState(props.otherPictures)
 
-    const renderImages = () =>
+    const renderImages = () => {
         files.map((element, index) =>
             <img
                 key={ index }
                 style={styles.otherImage} 
                 src={ URL.createObjectURL(element) } 
                 alt="img cultural_place" />)
+    }
 
     const formComponents = [
         {   
@@ -100,19 +105,6 @@ const FormRegisterCulturalPlace = props => {
                         );
                     })}
                   
-                    
-                    <div className="form-group">
-                        <div style={styles.labelInputDiv} className="row justify-content-between">
-                            <label htmlFor="userType">Tipo de Usuário:</label>
-                            <h5 style={styles.markingRequiredInput}>*</h5>
-                        </div>
-                        <div className="input-group"> 
-                            <Field required name="userType" component="select" className="form-control select">
-                                <option value="CULTURAL_PLACE" defaultValue >Espaço cultural</option>
-                            </Field>
-                        </div>
-                    </div>
-
                     {formCheckComponents.map(compCheck => {
                         return(
                             <div key={compCheck.name}>
@@ -161,4 +153,4 @@ const FormRegisterCulturalPlace = props => {
 
 }
 
-export default reduxForm({form: 'formRegisterCulturalPlace'})(FormRegisterCulturalPlace)
+export default reduxForm({form: 'formRegisterCulturalPlace'})(FormRegisterCulturalPlace);

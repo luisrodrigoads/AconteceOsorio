@@ -1,10 +1,14 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import {Field, reduxForm} from 'redux-form'
 
 import styles from '../../styles/FormRegisterUserStyle';
 
 const FormRegisterUser = props => {
-        
+    
+    useEffect(() => {
+        props.change('userType', 'INSTITUTION')
+    }, [props]);
+
     const formComponents = [
         {   
             label: 'Razão Social:',
@@ -63,18 +67,6 @@ const FormRegisterUser = props => {
                             </div>
                         );
                     })}
-                             
-                    <div className="form-group">
-                        <div style={styles.labelInputDiv} className="row justify-content-between">
-                            <label htmlFor="userType">Tipo de Usuário:</label>
-                            <h5 style={styles.markingRequiredInput}>*</h5>
-                        </div>
-                        <div className="input-group"> 
-                            <Field required name="userType" component="select" className="form-control select">
-                                <option value="INSTITUTION" defaultValue >Instituição</option>
-                            </Field>
-                        </div>
-                    </div>
 
                     <div className="form-group">
                         <div style={styles.labelInputDiv} className="row justify-content-between">
@@ -111,4 +103,5 @@ const FormRegisterUser = props => {
     )
 }
 
-export default reduxForm({form: 'formRegisterUser'})(FormRegisterUser)
+
+export default reduxForm({form: 'formRegisterUser'})(FormRegisterUser);
