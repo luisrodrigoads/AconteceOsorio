@@ -32,7 +32,7 @@ function RegisterUserPage(){
             case 'institution':
                 return <FormRegisterInstitution isUpdateForm={false} initialValues={UserModel} onSubmit={values => handleInstituteForm(values)}/>
             case 'cultural_place':
-                return <FormRegisterCulturalPlace onSubmit={values => handleInstituteForm(values)}  handleImage = { values => fileSelectedHandler(values) }  otherPictures={ files['otherPictures'] }/>
+                return <FormRegisterCulturalPlace isUpdateForm={false} onSubmit={values => handleInstituteForm(values)}  handleImage = { values => fileSelectedHandler(values) }  otherPictures={ files['otherPictures'] }/>
             default: 
                 return null;
         }

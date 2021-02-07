@@ -4,12 +4,22 @@ const UserModel = {
         fantasyName: '',
         cnpj: '',
         responsiblePerson: '',
+        //
+        linkedInstitution: '',
+        //
         phone: '',
         email: '',
         password: '',
         address: '',
         institutionType: '',
-        userType: '',  
+        userType: '', 
+        //
+        chargingFee: false,
+        bathroom: false,
+        diaperChanger: false,
+        wheelchairAccessibility: false,
+        otherPictures:[],
+        //
         description: '',
     
 }

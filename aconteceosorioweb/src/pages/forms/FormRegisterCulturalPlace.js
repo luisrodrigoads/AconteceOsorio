@@ -5,10 +5,10 @@ import styles from '../../styles/FormRegisterUserStyle';
 
 const FormRegisterCulturalPlace = props => {
 
-    const { handleSubmit, handleImage} = props
 
     useEffect(() => {
         props.change('userType', 'CULTURAL_PLACE')
+        console.log(files)
     }, [props]);
 
     const [files] = useState(props.otherPictures)
@@ -84,7 +84,10 @@ const FormRegisterCulturalPlace = props => {
     return(
         <div className="row  align-items-center justify-content-center ">
             <div className="card col-lg-3 col-md-5 col-sm-10 m-3 p-3 bg-light shadow">
-                <form onSubmit={handleSubmit} encType="multipart/form-data">
+                <form
+                    initialvalues={props.initialValues ? props.initialValues : ''}
+                    onSubmit={props.handleSubmit} encType="multipart/form-data"
+                >
 
                     {formComponents.map(comp => {
                         return (
@@ -139,13 +142,13 @@ const FormRegisterCulturalPlace = props => {
                         type="file" 
                         name="otherPictures" 
                         accept="image/png, image/jpeg" 
-                        onChange={ handleImage } 
+                        onChange={ props.handleImage } 
                         multiple 
                         style={{ display: 'none' }} />
 
                     <h6 style={styles.markingRequiredInput}>Todos os campos marcados com (*) são obrigatórios.</h6>
 
-                    <button  type="submit" className="btn btn-secondary btn-lg btn-block">Cadastrar</button>
+                    <button  type="submit" className="btn btn-secondary btn-lg btn-block">{props.isUpdateForm ? 'Atualizar' : 'Cadastrar'}</button>
                 </form> 
             </div>
     </div>
