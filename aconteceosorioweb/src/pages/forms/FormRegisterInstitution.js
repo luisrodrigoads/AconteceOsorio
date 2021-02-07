@@ -39,9 +39,10 @@ const FormRegisterUser = props => {
             name: 'email',
         },
         {   
-            label: 'Senha:',
+            label: 'Alterar Senha:',
             name: 'password',
-            type: 'password'
+            type: 'password',
+            autocomplete: 'on'
         },
     ];
 
@@ -49,7 +50,7 @@ const FormRegisterUser = props => {
         <div className="row  align-items-center justify-content-center ">
             <div className="card col-lg-3 col-md-5 col-sm-10 m-3 p-3 bg-light shadow">
                 <form
-                    initialValues={props.initialValues}
+                    initialvalues={props.initialValues}
                     onSubmit={props.handleSubmit}
                 >
                     
@@ -65,6 +66,7 @@ const FormRegisterUser = props => {
                                     name={comp.name}
                                     component='input'
                                     type={comp.type ? comp.type : 'text'}
+                                    autoComplete={comp.autocomplete ? comp.autocomplete : 'off'}
                                     className='form-control'
                                 />
                             </div>
@@ -107,4 +109,7 @@ const FormRegisterUser = props => {
 }
 
 
-export default reduxForm({form: 'formRegisterUser',enableReinitialize: true})(FormRegisterUser);
+export default reduxForm({
+    form: 'formRegisterUser',
+    enableReinitialize: true
+})(FormRegisterUser);

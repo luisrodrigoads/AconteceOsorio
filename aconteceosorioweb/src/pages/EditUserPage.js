@@ -28,7 +28,7 @@ function EditUserPage(){
 
     return(
         <div className="container-fluid">
-            {renderCorrectForm()}
+            { renderCorrectForm() }
         </div>
     );
 

@@ -10,7 +10,6 @@ function LoginPage() {
     const user = useSelector(state => state.user.personalInfo);
 
     const handleForm = data => {
-        console.log("FORM LOGIN HANDLED")
         console.log(data);
         dispatch(login(data));
     }

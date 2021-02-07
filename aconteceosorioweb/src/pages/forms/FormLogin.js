@@ -14,7 +14,8 @@ const FormLogin = props => {
         {
             label: 'Senha',
             name: 'password',
-            type: 'password'
+            type: 'password',
+            autocomplete: 'on'
         },
     ];
 
@@ -32,6 +33,7 @@ const FormLogin = props => {
                                         name={comp.name}
                                         component='input'
                                         type={comp.type ? comp.type : 'text'}
+                                        autoComplete={comp.autocomplete ? comp.autocomplete : 'off'}
                                         className='form-control'
                                     />
                                 </div>
