@@ -36,7 +36,7 @@ app.get('/updateToken', (req, res) => AuthUser.updateToken(req, res));
 app.post('/tradeTokenToUser', (req, res) => AuthUser.tradeTokenToUser(req, res));
 
 app.post('/updateUserImg', upload.single('image'), (req, res) => userDAO.updateImg(req, res));
-app.post('/updateUser', (req, res) => userDAO.update(req, res));
+app.post('/updateUser', upload.array('images',10), (req, res) => userDAO.update(req, res));
 app.post('/disableUser', (req,res) => userDAO.disableUser(req,res));
 app.post('/enableUser', (req,res) => userDAO.enableUser(req,res));
 

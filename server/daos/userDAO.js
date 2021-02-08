@@ -47,33 +47,36 @@ module.exports = {
 
     update(req, res) {
 
-        const data = req.body;
-        console.log("Updating user: ", data, req.decoded)
+        let data = req.body;
         
-        if(!req.file){
-            let changePassword = false;
-    
-            if(data['newPassword'] != null){
-                changePassword = true
-                if(data['newPassword'] != data['newPasswordConfirm'])
-                    return res.status(202).json('Senhas não conferem')
-    
-                else if(data['newPassword'].length < 5)
-                    return res.status(202).json('A senha deve ter no mínimo 5 digitos')
-    
-            }
-            if(Object.keys(data).length == 0)
-                return res.status(202).json('Você precisa atualizar no mínimo um campo!')
-                
-            user.findOneAndUpdate({_id: req.decoded._id}, data, {new: true}, (err, result) => {
-                if(err)
-                    return res.status(500).json('Internal server error!')
-    
-                    console.log(result);
-                return res.status(200).json(result)
-
-             }) 
+        let paths = new Array()
+        if (req.files) {
+            req.files.forEach(pic => paths.push(pic.filename));
         }
+
+       
+        let changePassword = false;
+
+        if(data['newPassword'] != null){
+            changePassword = true
+            if(data['newPassword'] != data['newPasswordConfirm'])
+                return res.status(202).json('Senhas não conferem')
+
+            else if(data['newPassword'].length < 5)
+                return res.status(202).json('A senha deve ter no mínimo 5 digitos')
+
+        }
+
+//        if(Object.keys(data).length == 0)
+//            return res.status(202).json('Você precisa atualizar no mínimo um campo!')
+            
+        user.findOneAndUpdate({_id: req.decoded._id}, {data, $push:{otherPictures: paths} }, {new: true}, (err, result) => {
+            if(err)
+                return res.status(500).json('Internal server error!')
+            
+            return res.status(200).json(result)
+        }) 
+        
     
     },
 

@@ -48,7 +48,7 @@ const FormRegisterUser = props => {
 
     return(
         <div className="row  align-items-center justify-content-center ">
-            <div className="card col-lg-3 col-md-5 col-sm-10 m-3 p-3 bg-light shadow">
+            <div className="card col-lg-6 col-md-6 col-sm-10 m-3 p-3 bg-light shadow">
                 <form
                     initialvalues={props.initialValues}
                     onSubmit={props.handleSubmit}

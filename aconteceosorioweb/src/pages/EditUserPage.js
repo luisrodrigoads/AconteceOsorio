@@ -13,30 +13,28 @@ function EditUserPage(){
 
     const dispatch = useDispatch();
 
-    const [files, setFiles] = useState(user.otherPictures)
+    const [files, setFiles] = useState({images: user.otherPictures})
 
     const updateHandle = values => {
         dispatch(updateUser(values))
     }
 
     const fileSelectedHandler = event =>{
-        let otherPictures = files
-        Object.values(event.target.files).map(picture => otherPictures.push(picture))
-        setFiles({otherPictures})
+        let images = files['images'];
+        Object.values(event.target.files).map(picture => images.push(picture))
+        setFiles({images})
     }
 
     const updateHandleFormData = values => {
         const fd = new FormData()
 
-
-        if(files !== undefined)
-        files.forEach(img => fd.append(files,img))
+        if(files['images'] !== undefined)
+            files['images'].forEach(img => {if (typeof(img) !== 'string') fd.append('images',img)});
 
         for (let key in values)
             if(values.hasOwnProperty(key))
                 fd.append(key, values[key])
 
-        setFiles(user.otherPictures)
         dispatch(updateUser(fd))
     }
 
@@ -45,7 +43,7 @@ function EditUserPage(){
             case 'INSTITUTION':
                 return <FormRegisterInstitution isUpdateForm={true} initialValues={user} onSubmit={values => updateHandle(values)}/>
             case 'CULTURAL_PLACE':
-                return <FormRegisterCulturalPlace isUpdateForm={true} initialValues={user} onSubmit={values => updateHandleFormData(values)} handleImage={values => fileSelectedHandler(values)} otherPictures={files}/>
+                return <FormRegisterCulturalPlace isUpdateForm={true} initialValues={user} onSubmit={values => updateHandleFormData(values)} handleImage={values => fileSelectedHandler(values)} images={ files['images'] }/>
             default:
                 return null;
         }

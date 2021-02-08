@@ -1,25 +1,32 @@
 import React, { useEffect, useState } from 'react'
 import {Field, reduxForm} from 'redux-form'
+import BASE_URL from '../../config/consts';
 
 import styles from '../../styles/FormRegisterUserStyle';
 
+
 const FormRegisterCulturalPlace = props => {
 
+    const [files] = useState(props.images)
 
     useEffect(() => {
         props.change('userType', 'CULTURAL_PLACE')
-        console.log(files)
     }, [props]);
 
-    const [files] = useState(props.otherPictures)
-
+    
     const renderImages = () => {
-        files.map((element, index) =>
-            <img
-                key={ index }
-                style={styles.otherImage} 
-                src={ URL.createObjectURL(element) } 
-                alt="img cultural_place" />)
+        return (
+            <div>
+            {files.map( (element, index) =>  
+                <img
+                    key={ index }
+                    style={styles.otherImage} 
+                    src={ typeof(element) == 'string' ? `${BASE_URL}/${element}` : URL.createObjectURL(element) } 
+                    alt="img cultural_place" />
+            )}
+            </div>
+        );
+            
     }
 
     const formComponents = [
@@ -83,7 +90,7 @@ const FormRegisterCulturalPlace = props => {
 
     return(
         <div className="row  align-items-center justify-content-center ">
-            <div className="card col-lg-3 col-md-5 col-sm-10 m-3 p-3 bg-light shadow">
+            <div className="card col-lg-6 col-md-6 col-sm-10 m-3 p-3 bg-light shadow">
                 <form
                     initialvalues={props.initialValues ? props.initialValues : ''}
                     onSubmit={props.handleSubmit} encType="multipart/form-data"
@@ -129,8 +136,11 @@ const FormRegisterCulturalPlace = props => {
                     </div>
                    
                     <div className="row" style={styles.imagesRenderDiv}>
-                        { renderImages()}
+                        <h2>Imagens</h2>
+                       
                     </div>
+
+                    { renderImages()}
 
                     <label 
                         htmlFor="select-pictures"
@@ -142,7 +152,7 @@ const FormRegisterCulturalPlace = props => {
                         type="file" 
                         name="otherPictures" 
                         accept="image/png, image/jpeg" 
-                        onChange={ props.handleImage } 
+                        onChange={ e => props.handleImage(e) } 
                         multiple 
                         style={{ display: 'none' }} />
 
@@ -156,4 +166,4 @@ const FormRegisterCulturalPlace = props => {
 
 }
 
-export default reduxForm({form: 'formRegisterCulturalPlace'})(FormRegisterCulturalPlace);
+export default reduxForm({form: 'formRegisterCulturalPlace', enableReinitialize: true})(FormRegisterCulturalPlace);

@@ -6,8 +6,7 @@ const storage = multer.diskStorage({
 		callback(null, path.join(__dirname, '../uploads/'))
 	},
 	filename: function(req, file, callback) {
-        console.log("Renaming image")
-		const nameRegex = /(.+?)(\.[^.]*$|$)/
+        const nameRegex = /(.+?)(\.[^.]*$|$)/
 		const fileName = nameRegex.exec(file.originalname)[1]
 		callback(
 			null,
