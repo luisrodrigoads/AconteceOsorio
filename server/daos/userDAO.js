@@ -37,7 +37,7 @@ module.exports = {
                 new user(dataNewUser).save(err => 
                     err ?
                         res.status(202).json('Erro cadastrando usuário: ' + err) :
-                        res.status(200).json('Instituição criada com sucesso!')
+                        res.status(200).json('Usuário criado com sucesso!')
                 )
             }
         })

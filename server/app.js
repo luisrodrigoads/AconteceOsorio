@@ -26,7 +26,7 @@ const AuthUser = require('./auth/authUser');
 
 //public routes
 app.post('/login', (req, res) => AuthUser.login(req, res));
-app.post('/signup', upload.array('otherPictures',3),(req, res) => userDAO.signup(req, res));
+app.post('/signup', upload.array('images',10),(req, res) => userDAO.signup(req, res));
 app.post('/validateToken', (req, res) => AuthUser.validateToken(req, res));
 
 app.use('*', validateToken);

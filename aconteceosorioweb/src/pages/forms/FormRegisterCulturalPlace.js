@@ -17,13 +17,19 @@ const FormRegisterCulturalPlace = props => {
     const renderImages = () => {
         return (
             <div>
-            {files.map( (element, index) =>  
-                <img
-                    key={ index }
-                    style={styles.otherImage} 
-                    src={ typeof(element) == 'string' ? `${BASE_URL}/${element}` : URL.createObjectURL(element) } 
-                    alt="img cultural_place" />
-            )}
+            {
+
+                files ?
+                    files.map( (element, index) =>  
+                    <img
+                        key={ index }
+                        style={styles.otherImage} 
+                        src={ typeof(element) == 'string' ? `${BASE_URL}/${element}` : URL.createObjectURL(element) } 
+                        alt="img cultural_place" />
+                    )
+                    :
+                    null
+            }
             </div>
         );
             

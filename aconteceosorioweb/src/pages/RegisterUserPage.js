@@ -14,12 +14,12 @@ function RegisterUserPage(){
 
     const [userType, setUserType] = useState('')
 
-    const [files, setFiles] = useState({ otherPictures: [] })
+    const [files, setFiles] = useState({images: UserModel.otherPictures })
 
     const fileSelectedHandler = event =>{
-        let otherPictures = files['otherPictures']
-        Object.values(event.target.files).map(picture => otherPictures.push(picture))
-        setFiles({otherPictures})
+        let images = files['images'];
+        Object.values(event.target.files).map(picture => images.push(picture))
+        setFiles({images})
     }
 
     const changeUserForm = e => {
@@ -32,7 +32,7 @@ function RegisterUserPage(){
             case 'institution':
                 return <FormRegisterInstitution isUpdateForm={false} initialValues={UserModel} onSubmit={values => handleInstituteForm(values)}/>
             case 'cultural_place':
-                return <FormRegisterCulturalPlace isUpdateForm={false} onSubmit={values => handleInstituteForm(values)}  handleImage = { values => fileSelectedHandler(values) }  otherPictures={ files['otherPictures'] }/>
+                return <FormRegisterCulturalPlace isUpdateForm={false} onSubmit={values => handleInstituteForm(values)}  handleImage = { values => fileSelectedHandler(values) }  images={ files['images'] }/>
             default: 
                 return null;
         }
@@ -43,16 +43,16 @@ function RegisterUserPage(){
 
         const fd = new FormData()
             
-            if(files['otherPictures'] !== undefined)
-                files['otherPictures'].forEach(img => fd.append('otherPictures',img))
+            if(files['images'] !== undefined)
+            files['images'].forEach(img => fd.append('images',img));
 
             for (let key in values)
                 if(values.hasOwnProperty(key))
                     fd.append(key, values[key])
 
-            setFiles({ otherPictures: []})
+            
             dispatch(instituteSignup(fd))
-  
+            //setFiles({ images: []})
     }
     
     return(
