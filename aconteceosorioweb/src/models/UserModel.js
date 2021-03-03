@@ -21,6 +21,26 @@ const UserModel = {
         otherPictures:[],
         //
         description: '',
+        //promoter
+        cpf: '',
+        socialMedias:[
+                {
+                    typeOfMedia:'FACEBOOK',
+                    linkOfMedia:''
+                },
+                {
+                    typeOfMedia:'INSTAGRAM',
+                    linkOfMedia:''
+                },
+                {
+                    typeOfMedia:'SPOTIFY',
+                    linkOfMedia:''
+                },
+                {
+                    typeOfMedia:'LINKEDIN',
+                    linkOfMedia:''
+                },
+        ],
     
 }
 

@@ -1,43 +1,45 @@
-import React, { useEffect } from 'react'
+import React, {useEffect} from 'react'
 import {Field, reduxForm} from 'redux-form'
 
 import styles from '../../styles/FormRegisterUserStyle';
 
-const FormRegisterUser = props => {
-    
+const FormRegisterPromoter = props => {
+
     useEffect(() => {
-        props.change('userType', 'INSTITUTION')
-    }, [props]);
+        props.change('userType','PROMOTER')
+    },[props]);
 
     const formComponents = [
-        {   
-            label: 'Razão Social:',
-            name: 'companyName',
-        },
+       
         {   
             label: 'Nome Fantasia:',
             name: 'fantasyName',
         },
         {   
-            label: 'CNPJ:',
-            name: 'cnpj',
+            label: 'CPF:',
+            name: 'cpf',
         },
         {   
-            label: 'Pessoa Responsável:',
-            name: 'responsiblePerson',
+            label: 'CNPJ:',
+            name: 'cnpj',
+            required: false,
         },
         {   
             label: 'Telefone:',
             name: 'phone',
         },
         {   
+            label: 'Email:',
+            name: 'email',
+        },
+        {   
             label: 'Endereço:',
             name: 'address',
         },
         {   
-            label: 'Email:',
-            name: 'email',
-        },
+            label: 'Instituição vinculada:',
+            name: 'linkedInstitution',
+        }, 
         {   
             label: 'Senha:',
             name: 'password',
@@ -59,10 +61,13 @@ const FormRegisterUser = props => {
                             <div key={comp.name} className="form-group">
                                 <div style={styles.labelInputDiv} className="row justify-content-between">   
                                     <label htmlFor={comp.name}>{comp.label}</label>
-                                    <h5 style={styles.markingRequiredInput}>*</h5>
+                                    {
+                                        comp.required === false ? null : <h5 style={styles.markingRequiredInput}>*</h5>
+                                    }
+                                    
                                 </div>
                                 <Field
-                                    required
+                                    required={comp.required ? comp.required : true}
                                     name={comp.name}
                                     component='input'
                                     type={comp.type ? comp.type : 'text'}
@@ -72,21 +77,6 @@ const FormRegisterUser = props => {
                             </div>
                         );
                     })}
-
-                    <div className="form-group">
-                        <div style={styles.labelInputDiv} className="row justify-content-between">
-                            <label htmlFor="institutionType">Tipo de Instituição</label>
-                            <h5 style={styles.markingRequiredInput}>*</h5>
-                        </div>
-                        
-                        <div className="input-group"> 
-                            <Field required name="institutionType" component="select" className="form-control select">
-                                <option value="" disabled defaultValue>Selecione um tipo</option>
-                                <option value="Cientifica" >Científica</option>
-                                <option value="Cultural">Cultural</option>
-                            </Field>
-                        </div>
-                    </div>
 
                     <div className="form-group">
                         <div style={styles.labelInputDiv} className="row justify-content-between">
@@ -105,11 +95,10 @@ const FormRegisterUser = props => {
                 </form> 
             </div>
     </div>
-    )
+    )    
 }
 
-
 export default reduxForm({
-    form: 'formRegisterUser',
+    form: 'formRegisterPromoter',
     enableReinitialize: true
-})(FormRegisterUser);
+})(FormRegisterPromoter);
