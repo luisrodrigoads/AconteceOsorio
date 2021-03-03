@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import React, { useState,useRef } from 'react'
 import { useSelector, useDispatch} from 'react-redux';
 import {Link, withRouter} from 'react-router-dom';
 import { disableUser, enableUser, updateUser, updateUserImg } from '../actions/userActions';
@@ -9,6 +9,8 @@ import UserInfoModal from './componentsPage/UserInfoModal';
 function UserInitialPage () {
 
     const user = useSelector(state => state.user.personalInfo);
+
+    const [visibleImages,setVisibleImages] = useState(false);
 
     const dispatch = useDispatch();
 
@@ -113,6 +115,41 @@ function UserInitialPage () {
                     <button type="button" className="btn btn-outline-secondary btn-rounded waves-effect" data-toggle="modal" data-target="#infoUserModal">   
                             Mais informações
                     </button>
+
+                   
+                        {
+                            user.userType === 'SERVICES' || user.userType === 'PROMOTER' ?
+                                null
+                            :
+                            <>
+                                {
+                                    !visibleImages ?
+                                        <h5 style={{margin:'15px'}} onClick={()=>setVisibleImages(true)} >Ver imagens</h5>
+                                    :
+                                    <>
+                                        <h5 style={{margin:'15px'}} onClick={()=>setVisibleImages(false)}>Ocultar</h5>
+                                        <div className="row justify-content-center">
+                                            {
+                                                user.otherPictures.map((item,index)=>{
+                                                    return(
+                                                        <div key={index} className="col-lg-4 col-md-5 col-sm-10 col-5 m-2">
+                                                            <img 
+                                                                src={`${BASE_URL}/${item}`}
+                                                                style={{width:'140px', height:'140px', cursor:'pointer'}} 
+                                                                className="rounded mx-auto d-block"
+                                                                alt="img cultural_place"     
+                                                            />
+                                                        </div>
+                                                    )
+                                                })
+                                            }
+                                        </div>
+                                    </>
+                                }
+                            </>
+                        }
+                    
+
 
                     <UserInfoModal User={user} />
 

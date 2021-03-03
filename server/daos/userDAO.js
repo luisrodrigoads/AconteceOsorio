@@ -71,7 +71,7 @@ module.exports = {
 //            return res.status(202).json('Você precisa atualizar no mínimo um campo!')
             
         delete(data.otherPictures);
-        user.findOneAndUpdate({_id: req.decoded._id}, {data, $push:{otherPictures: paths} }, {new: true}, (err, result) => {
+        user.findOneAndUpdate({_id: req.decoded._id}, {...data, $push:{otherPictures: paths} }, {new: true}, (err, result) => {
             if(err)
                 return res.status(500).json('Internal server error!')
             
