@@ -1,9 +1,49 @@
-import React, {useEffect} from 'react'
+import React, {useEffect, useState} from 'react'
 import {Field, reduxForm} from 'redux-form'
 
 import styles from '../../styles/FormRegisterUserStyle';
 
+const RenderSocialMedia  = props =>{
+
+    return(
+        <div>
+        {
+            props.list ?    
+                props.list.map((element,index) => {
+                    return(
+                    <div key={index}>
+                            <h5>{element.typeof}</h5>
+                            <h5>{element.linkOf}</h5>
+                    </div>
+                   );
+                })
+                :
+                null
+        }    
+        </div>
+    );
+}
+
 const FormRegisterPromoter = props => {
+
+    const [typeOfSocialMedia, settypeOfSocialMedia] = useState('');
+    const [linkOfSocialMedia, setlinkOfSocialMedia] = useState('');
+    const [socialMediaList] = useState([]);
+
+    const objectModel = {
+        typeof:'',
+        linkOf:''
+    }
+
+    function addSocialMedia(){
+       objectModel.typeof = typeOfSocialMedia;
+       objectModel.linkOf = linkOfSocialMedia;
+
+       socialMediaList.push(objectModel);
+       console.log('list socialmedia: ',socialMediaList);
+    }
+
+
 
     useEffect(() => {
         props.change('userType','PROMOTER')
@@ -77,6 +117,41 @@ const FormRegisterPromoter = props => {
                             </div>
                         );
                     })}
+
+                    
+                    <hr/>
+                    <div className="form-group">
+                        <div style={styles.labelInputDiv} className="row justify-content-between">
+                            <label>Redes sociais</label>
+                        </div>
+                        
+                        <div className="input-group"> 
+                            <select value={typeOfSocialMedia} onChange={e => settypeOfSocialMedia(e.target.value)}>
+                                <option value="" disabled defaultValue>Selecione</option>
+                                <option value="Facebook" >Facebook</option>
+                                <option value="Instagram">Instagram</option>
+                                <option value="Spotify">Spotify</option>
+                                <option value="Linkedin">Linkedin</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div className="form-group">
+                        <div style={styles.labelInputDiv} className="row justify-content-between">   
+                            <label>link</label>  
+                        </div>
+                        <input type="text" value={linkOfSocialMedia} onChange={e => setlinkOfSocialMedia(e.target.value)}/>
+                    </div>
+                    <button 
+                        type="button" 
+                        className="btn btn-outline-info btn-lg btn-block"
+                        onClick={addSocialMedia}
+                        >
+                        Adicionar rede social
+                    </button>
+                    <hr/>
+
+                    <RenderSocialMedia list={socialMediaList}/>
 
                     <div className="form-group">
                         <div style={styles.labelInputDiv} className="row justify-content-between">

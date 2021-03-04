@@ -65,24 +65,7 @@ const userSchema = new mongoose.Schema({
 
     //COMPLEMENTARY DATA - PROMOTER
     cpf: String,
-    socialMedias:[
-        {
-            typeOfMedia:String,
-            linkOfMedia:String
-        },
-        {
-            typeOfMedia:String,
-            linkOfMedia:String
-        },
-        {
-            typeOfMedia:String,
-            linkOfMedia:String
-        },
-        {
-            typeOfMedia:String,
-            linkOfMedia:String
-        },
-    ],
+    socialMedias:[],
       
 })
 
