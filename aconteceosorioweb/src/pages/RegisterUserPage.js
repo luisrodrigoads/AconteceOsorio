@@ -17,10 +17,18 @@ function RegisterUserPage(){
 
     const [files, setFiles] = useState({images: UserModel.otherPictures })
 
+    const [listSocialMedias, setListSocialMedias] = useState({medias: UserModel.socialMedias})
+
     const fileSelectedHandler = event =>{
         let images = files['images'];
         Object.values(event.target.files).map(picture => images.push(picture))
         setFiles({images})
+    }
+
+    const socialMediaSelectedHandler = event =>{
+        let medias = listSocialMedias['medias'];
+        Object.values(event.target.listSocialMedias).map(media => medias.push(media))
+        setListSocialMedias({medias})
     }
 
     const changeUserForm = e => {
@@ -35,7 +43,7 @@ function RegisterUserPage(){
             case 'cultural_place':
                 return <FormRegisterCulturalPlace isUpdateForm={false} onSubmit={values => handleInstituteForm(values)}  handleImage = { values => fileSelectedHandler(values) }  images={ files['images'] }/>
             case 'promoter':
-                return <FormRegisterPromoter isUpdateForm={false} initialValues={UserModel} onSubmit={values => handleInstituteForm(values)}/>
+                return <FormRegisterPromoter isUpdateForm={false} initialValues={UserModel} onSubmit={values => handleInstituteForm(values)} handleSocialMedia = {values => socialMediaSelectedHandler(values)} medias={listSocialMedias['medias']} />
             default: 
                 return null;
         }
@@ -49,13 +57,17 @@ function RegisterUserPage(){
             if(files['images'] !== undefined)
             files['images'].forEach(img => fd.append('images',img));
 
+            if(listSocialMedias['medias'] !== undefined)
+            listSocialMedias['medias'].forEach(socMed => fd.append('medias',socMed));
+
             for (let key in values)
                 if(values.hasOwnProperty(key))
                     fd.append(key, values[key])
 
             
             dispatch(instituteSignup(fd))
-            //setFiles({ images: []})
+            setFiles({ images: []})
+            setListSocialMedias({medias: []})
     }
     
     return(

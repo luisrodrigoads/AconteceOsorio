@@ -3,32 +3,12 @@ import {Field, reduxForm} from 'redux-form'
 
 import styles from '../../styles/FormRegisterUserStyle';
 
-const RenderSocialMedia  = props =>{
-
-    return(
-        <div>
-        {
-            props.list ?    
-                props.list.map((element,index) => {
-                    return(
-                    <div key={index}>
-                            <h5>{element.typeof}</h5>
-                            <h5>{element.linkOf}</h5>
-                    </div>
-                   );
-                })
-                :
-                null
-        }    
-        </div>
-    );
-}
-
 const FormRegisterPromoter = props => {
 
     const [typeOfSocialMedia, settypeOfSocialMedia] = useState('');
     const [linkOfSocialMedia, setlinkOfSocialMedia] = useState('');
-    const [socialMediaList] = useState([]);
+    //const [socialMediaList] = useState([]);
+    const [listSocialMedias] = useState(props.medias)
 
     const objectModel = {
         typeof:'',
@@ -39,15 +19,35 @@ const FormRegisterPromoter = props => {
        objectModel.typeof = typeOfSocialMedia;
        objectModel.linkOf = linkOfSocialMedia;
 
-       socialMediaList.push(objectModel);
-       console.log('list socialmedia: ',socialMediaList);
+       props.handleSocialMedia(objectModel);
+       //socialMediaList.push(objectModel);
+       //console.log('list socialmedia: ',socialMediaList);
     }
-
-
 
     useEffect(() => {
         props.change('userType','PROMOTER')
     },[props]);
+
+    const RenderSocialMedia  = () =>{
+
+        return(
+            <div>
+            {
+                listSocialMedias ?    
+                listSocialMedias.map((element,index) => {
+                        return(
+                        <div key={index}>
+                                <h5>{element.typeof}</h5>
+                                <h5>{element.linkOf}</h5>
+                        </div>
+                       );
+                    })
+                    :
+                    null
+            }    
+            </div>
+        );
+    }
 
     const formComponents = [
        
@@ -92,8 +92,8 @@ const FormRegisterPromoter = props => {
         <div className="row  align-items-center justify-content-center ">
             <div className="card col-lg-6 col-md-6 col-sm-10 m-3 p-3 bg-light shadow">
                 <form
-                    initialvalues={props.initialValues}
-                    onSubmit={props.handleSubmit}
+                    initialvalues={props.initialValues ? props.initialValues : ''}
+                    onSubmit={props.handleSubmit} encType="multipart/form-data"
                 >
                     
                     {formComponents.map(comp => {
@@ -151,7 +151,7 @@ const FormRegisterPromoter = props => {
                     </button>
                     <hr/>
 
-                    <RenderSocialMedia list={socialMediaList}/>
+                    {RenderSocialMedia()}
 
                     <div className="form-group">
                         <div style={styles.labelInputDiv} className="row justify-content-between">
