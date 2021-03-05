@@ -3,6 +3,7 @@ const INITIAL_STATE = {
         _id: '',
         companyName: '',
         fantasyName: '',
+        cpf:'',
         cnpj: '',
         responsiblePerson: '',
         phone: '',
@@ -22,7 +23,11 @@ const INITIAL_STATE = {
         chargingFee: true,
         bathroom: true,
         diaperChanger: true,
-        wheelchairAccessibility: true
+        wheelchairAccessibility: true,
+        facebook: '',
+        instagram: '',
+        spotify: '',
+        linkedin: '',
     }
 }
 

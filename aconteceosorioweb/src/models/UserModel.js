@@ -23,7 +23,10 @@ const UserModel = {
         description: '',
         //promoter
         cpf: '',
-        socialMedias:[],  
+        facebook: '',
+        instagram: '',
+        spotify: '',
+        linkedin: '', 
 }
 
 export default UserModel;

@@ -6,6 +6,7 @@ import FormRegisterCulturalPlace from './forms/FormRegisterCulturalPlace';
 import FormRegisterInstitution from './forms/FormRegisterInstitution';
 
 import FormData from 'form-data'
+import FormRegisterPromoter from './forms/FormRegisterPromoter';
 
 function EditUserPage(){
 
@@ -44,6 +45,8 @@ function EditUserPage(){
                 return <FormRegisterInstitution isUpdateForm={true} initialValues={user} onSubmit={values => updateHandle(values)}/>
             case 'CULTURAL_PLACE':
                 return <FormRegisterCulturalPlace isUpdateForm={true} initialValues={user} onSubmit={values => updateHandleFormData(values)} handleImage={values => fileSelectedHandler(values)} images={ files['images'] }/>
+            case 'PROMOTER':
+                return <FormRegisterPromoter isUpdateForm={true} initialValues={user} onSubmit={values => updateHandle(values)}/>
             default:
                 return null;
         }

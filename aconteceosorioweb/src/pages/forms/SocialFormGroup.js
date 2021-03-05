@@ -31,13 +31,9 @@ export function SocialFormGroup() {
                     <div key={comp.name} className="form-group">
                         <div style={styles.labelInputDiv} className="row justify-content-between">
                             <label htmlFor={comp.name}>{comp.label}</label>
-                            {
-                                comp.required ? <h5 style={styles.markingRequiredInput}>*</h5> : null
-                            }
-
                         </div>
                         <Field
-                            required={comp.required ? comp.required : false}
+                            
                             name={comp.name}
                             component='input'
                             type={comp.type ? comp.type : 'text'}

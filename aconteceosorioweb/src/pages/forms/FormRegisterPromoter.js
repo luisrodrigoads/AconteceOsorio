@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React, {useEffect} from 'react'
 import {Field, reduxForm} from 'redux-form'
 
 import styles from '../../styles/FormRegisterUserStyle';
@@ -9,7 +9,6 @@ const FormRegisterPromoter = props => {
     useEffect(() => {
         props.change('userType','PROMOTER')
     },[props]);
-
     
     const formComponents = [
        
@@ -57,7 +56,7 @@ const FormRegisterPromoter = props => {
                 <h2>Dados Gerais</h2>
                 <form
                     initialvalues={props.initialValues ? props.initialValues : ''}
-                    onSubmit={props.handleSubmit} encType="multipart/form-data"
+                    onSubmit={props.handleSubmit} 
                 >
                     
                     {formComponents.map(comp => {
@@ -70,14 +69,26 @@ const FormRegisterPromoter = props => {
                                     }
                                     
                                 </div>
-                                <Field
-                                    required={comp.required ? comp.required : true}
-                                    name={comp.name}
-                                    component='input'
-                                    type={comp.type ? comp.type : 'text'}
-                                    autoComplete={comp.autocomplete ? comp.autocomplete : 'off'}
-                                    className='form-control'
-                                />
+                                {
+                                    comp.required === false ?
+                                        <Field
+                                            name={comp.name}
+                                            component='input'
+                                            type={comp.type ? comp.type : 'text'}
+                                            autoComplete={comp.autocomplete ? comp.autocomplete : 'off'}
+                                            className='form-control'  
+                                        />
+                                    :
+                                        <Field
+                                            required
+                                            name={comp.name}
+                                            component='input'
+                                            type={comp.type ? comp.type : 'text'}
+                                            autoComplete={comp.autocomplete ? comp.autocomplete : 'off'}
+                                            className='form-control'  
+                                        />
+                                }
+                               
                             </div>
                         );
                     })}
