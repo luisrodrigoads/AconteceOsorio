@@ -20,15 +20,20 @@ const userSchema = new mongoose.Schema({
 
     accountActivation: {
         type: Boolean,
-        default: true   //IT IS NOT VALIDATED?
+        default: true  
     },
 
     profilePhoto: {
         type: String,
         default: "default-avatar.png"
     },
-    
-    
+
+    facebook: String,
+    instagram: String,
+    spotify: String,
+    linkedin: String,
+
+        
     //COMPLEMENTARY DATA - INSTITUTION
     companyName: String,
     fantasyName: String,
@@ -65,7 +70,6 @@ const userSchema = new mongoose.Schema({
 
     //COMPLEMENTARY DATA - PROMOTER
     cpf: String,
-    socialMedias:[],
       
 })
 
