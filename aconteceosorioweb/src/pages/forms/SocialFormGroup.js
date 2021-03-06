@@ -8,18 +8,22 @@ export function SocialFormGroup() {
         {
             label: 'Facebook',
             name: 'facebook',
+            icon: 'images/facebook.png',
         },
         {
             label: 'Instagram',
             name: 'instagram',
+            icon: 'images/instagram.png',
         },
         {
             label: 'Spotify',
             name: 'spotify',
+            icon: 'images/spotify.png',
         },
         {
             label: 'Linkedin',
             name: 'linkedin',
+            icon: 'images/linkedin.png',
         },
     ];
 
@@ -29,17 +33,22 @@ export function SocialFormGroup() {
             {socialFormComponents.map(comp => {
                 return (
                     <div key={comp.name} className="form-group">
-                        <div style={styles.labelInputDiv} className="row justify-content-between">
-                            <label htmlFor={comp.name}>{comp.label}</label>
-                        </div>
-                        <Field
+                        <div style={styles.labelInputDiv} className="row ">
+                            <div>
+                                <img style={{width:'29px',height:'29px'}} src={comp.icon} alt={comp.label} title={comp.label}/>
+                            </div>
+                            <div className="col-10 col-lg-11 col-md-11 col-sm-11">
+                                <Field  
+                                name={comp.name}
+                                component='input'
+                                type={comp.type ? comp.type : 'text'}
+                                autoComplete={comp.autocomplete ? comp.autocomplete : 'off'}
+                                className='form-control'
+                                />
+                            </div>
                             
-                            name={comp.name}
-                            component='input'
-                            type={comp.type ? comp.type : 'text'}
-                            autoComplete={comp.autocomplete ? comp.autocomplete : 'off'}
-                            className='form-control'
-                        />
+                        </div>
+                        
                     </div>
                 );
             })}

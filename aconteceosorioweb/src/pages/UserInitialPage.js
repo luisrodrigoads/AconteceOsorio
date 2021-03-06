@@ -17,6 +17,20 @@ function UserInitialPage () {
     const inputFile = useRef(null) 
     const closeModal = useRef(null);
 
+    const ShowSocialMedia = (props) => {
+
+        if(props.socialMedia){
+            return(
+                <a href={props.socialMedia} target="_blank" rel="noreferrer">
+                    <img style={{width:'35px',height:'35px',margin:'10px'}} src={props.socialMediaIcon} alt={props.socialMediaName} title={props.socialMediaName}/>
+                </a>
+            )
+        }else{
+            return null;
+        }
+
+    }
+    
     const handlePhotoClick = () => {
         inputFile.current.click();
     }
@@ -112,6 +126,13 @@ function UserInitialPage () {
                     <hr/>
                     <h2>{user.fantasyName}</h2>
                     <h5>{user.description}</h5>
+                    <div className="row justify-content-center m-3">
+                        <ShowSocialMedia socialMedia={user.facebook} socialMediaIcon={'images/facebook.png'} socialMediaName={'facebook'}/>
+                        <ShowSocialMedia socialMedia={user.instagram} socialMediaIcon={'images/instagram.png'} socialMediaName={'instagram'}/>
+                        <ShowSocialMedia socialMedia={user.spotify} socialMediaIcon={'images/spotify.png'} socialMediaName={'spotify'}/>
+                        <ShowSocialMedia socialMedia={user.linkedin} socialMediaIcon={'images/linkedin.png'} socialMediaName={'linkedin'}/>
+                    </div>
+
                     <button type="button" className="btn btn-outline-secondary btn-rounded waves-effect" data-toggle="modal" data-target="#infoUserModal">   
                             Mais informações
                     </button>

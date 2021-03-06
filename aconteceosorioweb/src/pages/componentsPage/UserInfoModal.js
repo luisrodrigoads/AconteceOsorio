@@ -23,10 +23,20 @@ export default function UserInfoModal ({User: user}){
                             </button>
                     </div>
                     <div className="modal-body text-justify">
-                        <h6><b>Razão social: </b>{user.companyName}</h6>
-                        <hr/>
                         <h6><b>Nome Fantasia: </b>{user.fantasyName}</h6>
                         <hr/>
+                        {
+                            user.userType === 'PROMOTER' ?
+                            <>
+                            <h6><b>CPF: </b>{user.cpf}</h6>
+                            <hr/>
+                            </>
+                            :
+                            <>
+                            <h6><b>Razão social: </b>{user.companyName}</h6>
+                            <hr/>
+                            </>
+                        }
                         <h6><b>Email: </b>{user.email}</h6>
                         <hr/>
                         <h6><b>Telefone: </b>{user.phone}</h6>
@@ -35,8 +45,25 @@ export default function UserInfoModal ({User: user}){
                         <hr/>
                         <h6><b>CNPJ: </b>{user.cnpj}</h6>
                         <hr/>
-                        <h6><b>Pessoa responsável: </b>{user.responsiblePerson}</h6>
-                        <hr/>
+                        {
+                            user.userType === 'PROMOTER' ? 
+                            null
+                            :
+                            <>
+                            <h6><b>Pessoa responsável: </b>{user.responsiblePerson}</h6>
+                            <hr/>
+                            </>
+                        }
+                        {
+                            user.userType === 'PROMOTER' ?
+                            <>
+                            <h6><b>Instituição vinculada: </b>{user.linkedInstitution}</h6>
+                            <hr/>
+                            </>
+                            :
+                            null
+                        }
+                       
                         {renderComplementaryInfo()} 
                         <h6><b>Descrição: </b>{user.description}</h6>
                     </div>
