@@ -11,8 +11,15 @@ export default function CulturalPlaceModalInfo({User:user}){
 
         return(
             <>
-                <h6><b>Instituição vinculada: </b>{user.linkedInstitution}</h6>
-                <hr/>
+                {
+                    user.linkedInstitution ?
+                    <>
+                    <h6><b>Instituição vinculada: </b>{user.linkedInstitution}</h6>
+                    <hr/>
+                    </>
+                    :
+                    null
+                }   
                 <h6><b>Cobrança taxa: </b>{renderValue(user.chargingFee)}</h6>
                 <hr/>
                 <h6><b>Possui banheiro: </b>{renderValue(user.bathroom)}</h6>

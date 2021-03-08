@@ -139,7 +139,7 @@ function UserInitialPage () {
 
                    
                         {
-                            user.userType === 'SERVICES' || user.userType === 'PROMOTER' ?
+                            user.userType === 'SERVICES' || user.userType === 'PROMOTER' || user.userType === 'INSTITUTION' ?
                                 null
                             :
                             <>

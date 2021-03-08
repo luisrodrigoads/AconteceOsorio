@@ -34,19 +34,20 @@ const FormRegisterPromoter = props => {
             name: 'email',
         },
         {   
+            label: 'Senha:',
+            name: 'password',
+            type: 'password',
+            autocomplete: 'on'
+        },
+        {   
             label: 'Endereço:',
             name: 'address',
         },
         {   
             label: 'Instituição vinculada:',
             name: 'linkedInstitution',
-        }, 
-        {   
-            label: 'Senha:',
-            name: 'password',
-            type: 'password',
-            autocomplete: 'on'
-        },
+            required: false,
+        },    
     ];
 
   

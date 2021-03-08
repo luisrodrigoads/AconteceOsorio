@@ -3,6 +3,7 @@ import {Field, reduxForm} from 'redux-form'
 import BASE_URL from '../../config/consts';
 
 import styles from '../../styles/FormRegisterUserStyle';
+import { SocialFormGroup } from './SocialFormGroup';
 
 
 const FormRegisterCulturalPlace = props => {
@@ -55,6 +56,7 @@ const FormRegisterCulturalPlace = props => {
         {   
             label: 'Instituição vinculada:',
             name: 'linkedInstitution',
+            required: false,
         },
         {   
             label: 'Telefone:',
@@ -71,7 +73,8 @@ const FormRegisterCulturalPlace = props => {
         {   
             label: 'Senha:',
             name: 'password',
-            type: 'password'
+            type: 'password',
+            autocomplete: 'on'
         },
     ];
 
@@ -107,16 +110,30 @@ const FormRegisterCulturalPlace = props => {
                             <div key={comp.name} className="form-group">
                                 <div style={styles.labelInputDiv} className="row justify-content-between">   
                                     <label htmlFor={comp.name}>{comp.label}</label>
-                                    <h5 style={styles.markingRequiredInput}>*</h5>
+                                    {
+                                        comp.required === false ? null : <h5 style={styles.markingRequiredInput}>*</h5>
+                                    }
                                 </div>
                                 
-                                <Field
-                                    required
-                                    name={comp.name}
-                                    component='input'
-                                    type={comp.type ? comp.type : 'text'}
-                                    className='form-control'
-                                />
+                                {
+                                    comp.required === false ?
+                                        <Field
+                                            name={comp.name}
+                                            component='input'
+                                            type={comp.type ? comp.type : 'text'}
+                                            autoComplete={comp.autocomplete ? comp.autocomplete : 'off'}
+                                            className='form-control'  
+                                        />
+                                    :
+                                        <Field
+                                            required
+                                            name={comp.name}
+                                            component='input'
+                                            type={comp.type ? comp.type : 'text'}
+                                            autoComplete={comp.autocomplete ? comp.autocomplete : 'off'}
+                                            className='form-control'  
+                                        />
+                                }
                             </div>
                         );
                     })}
@@ -130,6 +147,12 @@ const FormRegisterCulturalPlace = props => {
                             </div>           
                         );
                     })}
+
+                    <hr/>
+
+                    <SocialFormGroup/>
+
+                    <hr/>
 
                     <div className="form-group">
                         <div style={styles.labelInputDiv} className="row justify-content-between">
