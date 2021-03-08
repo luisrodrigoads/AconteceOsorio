@@ -55,9 +55,19 @@ export default function UserInfoModal ({User: user}){
                             </>
                         }
                         {
-                            user.userType === 'PROMOTER' ?
+                            user.userType === 'PROMOTER' && user.linkedInstitution?
                             <>
                             <h6><b>Instituição vinculada: </b>{user.linkedInstitution}</h6>
+                            <hr/>
+                            </>
+                            :
+                            null
+                        }
+
+                        {
+                            user.userType === 'INSTITUTION' && user.institutionType ?
+                            <>
+                            <h6><b>Tipo de instituição: </b>{user.institutionType}</h6>
                             <hr/>
                             </>
                             :

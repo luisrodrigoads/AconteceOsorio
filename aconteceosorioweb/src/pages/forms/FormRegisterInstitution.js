@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import {Field, reduxForm} from 'redux-form'
 
 import styles from '../../styles/FormRegisterUserStyle';
+import { SocialFormGroup } from './SocialFormGroup';
 
 const FormRegisterUser = props => {
     
@@ -76,17 +77,22 @@ const FormRegisterUser = props => {
                     <div className="form-group">
                         <div style={styles.labelInputDiv} className="row justify-content-between">
                             <label htmlFor="institutionType">Tipo de Instituição</label>
-                            <h5 style={styles.markingRequiredInput}>*</h5>
                         </div>
                         
                         <div className="input-group"> 
-                            <Field required name="institutionType" component="select" className="form-control select">
+                            <Field name="institutionType" component="select" className="form-control select">
                                 <option value="" disabled defaultValue>Selecione um tipo</option>
                                 <option value="Cientifica" >Científica</option>
                                 <option value="Cultural">Cultural</option>
                             </Field>
                         </div>
                     </div>
+
+                    <hr/>
+                    
+                    <SocialFormGroup/>
+
+                    <hr/>
 
                     <div className="form-group">
                         <div style={styles.labelInputDiv} className="row justify-content-between">
