@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import React, { useState,useRef } from 'react'
 import { useSelector, useDispatch} from 'react-redux';
 import {Link, withRouter} from 'react-router-dom';
 import { disableUser, enableUser, updateUser, updateUserImg } from '../actions/userActions';
@@ -9,6 +9,9 @@ import UserInfoModal from './componentsPage/UserInfoModal';
 function UserInitialPage () {
 
     const user = useSelector(state => state.user.personalInfo);
+
+    const [visibleDescription, setVisibleDescription] = useState(false);
+    const maxLenghtDescription = 100;
 
     const dispatch = useDispatch();
 
@@ -123,7 +126,21 @@ function UserInitialPage () {
                     </Link>
                     <hr/>
                     <h2>{user.fantasyName}</h2>
-                    <h5>{user.description}</h5>
+                    {
+                        visibleDescription ?
+                            <h5>{user.description}</h5>
+                        :
+                        <>
+                            <h5>{user.description.substring(0,maxLenghtDescription) + (user.description.length > maxLenghtDescription ? "..." : " ")}</h5>
+                            {
+                                user.description.length > maxLenghtDescription ?
+                                <h5 style={{color:'#4682b4'}} onClick={()=>{setVisibleDescription(true);}} >Ver Mais</h5>
+                                :
+                                null
+                            }
+                        </>
+                    }
+                    
                     <div className="row justify-content-center m-3">
                         <ShowSocialMedia socialMedia={user.facebook} socialMediaIcon={'images/facebook.png'} socialMediaName={'facebook'}/>
                         <ShowSocialMedia socialMedia={user.instagram} socialMediaIcon={'images/instagram.png'} socialMediaName={'instagram'}/>
