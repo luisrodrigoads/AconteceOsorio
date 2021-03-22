@@ -31,7 +31,7 @@ export const relogin = () => {
                 axios.get(`${BASE_URL}/updateToken`)
                     .then(response => {
 
-                        if (response.status == 200) {
+                        if (response.status === 200) {
                             axios.defaults.headers.common['authorization'] = response.data.token;
 
                             data.token = response.data.token;

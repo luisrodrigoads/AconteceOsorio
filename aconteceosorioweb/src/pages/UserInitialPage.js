@@ -1,4 +1,4 @@
-import React, { useState,useRef } from 'react'
+import React, { useRef } from 'react'
 import { useSelector, useDispatch} from 'react-redux';
 import {Link, withRouter} from 'react-router-dom';
 import { disableUser, enableUser, updateUser, updateUserImg } from '../actions/userActions';
@@ -9,8 +9,6 @@ import UserInfoModal from './componentsPage/UserInfoModal';
 function UserInitialPage () {
 
     const user = useSelector(state => state.user.personalInfo);
-
-    const [visibleImages,setVisibleImages] = useState(false);
 
     const dispatch = useDispatch();
 
@@ -142,31 +140,64 @@ function UserInitialPage () {
                             user.userType === 'SERVICES' || user.userType === 'PROMOTER' || user.userType === 'INSTITUTION' ?
                                 null
                             :
-                            <>
-                                {
-                                    !visibleImages ?
-                                        <h5 style={{margin:'15px'}} onClick={()=>setVisibleImages(true)} >Ver imagens</h5>
-                                    :
+                            <>         
+                                    <button type="button" style={{marginLeft:'15px'}} className="btn btn-outline-secondary btn-rounded waves-effect" data-toggle="modal" data-target="#myModal">Ver Imagens</button>
+
                                     <>
-                                        <h5 style={{margin:'15px'}} onClick={()=>setVisibleImages(false)}>Ocultar</h5>
-                                        <div className="row justify-content-center">
-                                            {
-                                                user.otherPictures.map((item,index)=>{
-                                                    return(
-                                                        <div key={index} className="col-lg-4 col-md-5 col-sm-10 col-5 m-2">
-                                                            <img 
-                                                                src={`${BASE_URL}/${item}`}
-                                                                style={{width:'140px', height:'140px', cursor:'pointer'}} 
-                                                                className="rounded mx-auto d-block"
-                                                                alt="img cultural_place"     
-                                                            />
+                                    <div className="modal fade" id="myModal" role="dialog">
+                                        <div className="modal-dialog modal-lg">
+                                            <div className="modal-content">
+
+                                                <div className="modal-header">
+                                                    <button type="button" className="close" data-dismiss="modal">&times;</button>
+                                                </div>
+
+                                                <div className="modal-body">
+
+                                                    <div id="carousel-example-generic" className="carousel slide" data-ride="carousel">
+                                                        
+                                                        <div className="carousel-inner">
+                                                            {
+                                                                user.otherPictures.map((item,index)=>{
+                                                                    return(
+                                                                        <div key={index} className={index === 0 ? "carousel-item active" : "carousel-item"}>
+                                                                            <img 
+                                                                                src={`${BASE_URL}/${item}`}
+                                                                                style={{width:'100%',height:'100%'}}
+                                                                                alt="img cultural_place"
+                                                                            />
+                                                                        </div>
+                                                                    )
+                                                                })
+                                                            }
                                                         </div>
-                                                    )
-                                                })
-                                            }
+
+                                                        <a className="carousel-control-prev" href="#carousel-example-generic" role="button" data-slide="prev">
+                                                        <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+                                                        <span className="sr-only">Anterior</span>
+                                                    </a>
+                                                    <a className="carousel-control-next" href="#carousel-example-generic" role="button" data-slide="next">
+                                                        <span className="carousel-control-next-icon" aria-hidden="true"></span>
+                                                        <span className="sr-only">Próximo</span>
+												    </a>
+
+                                                    </div>
+
+
+                                                    
+
+                                                </div>
+                                                
+                                                <div className="modal-footer">
+                                                    <form className="form-inline">
+                                                        <button type="button" className="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                                                    </form>             
+                                                </div>
+
+                                            </div>
                                         </div>
-                                    </>
-                                }
+                                    </div>
+                                    </>                              
                             </>
                         }
                     
