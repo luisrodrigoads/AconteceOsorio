@@ -32,6 +32,8 @@ const userSchema = new mongoose.Schema({
     instagram: String,
     spotify: String,
     linkedin: String,
+    youtube: String,
+    otherLink: String,
 
         
     //COMPLEMENTARY DATA - INSTITUTION
@@ -70,7 +72,27 @@ const userSchema = new mongoose.Schema({
 
     //COMPLEMENTARY DATA - PROMOTER
     cpf: String,
+
+    //COMPLEMENTARY DATA - ARTIST
+    birthDate: Date,
+    areasOfExpertise: [],
+    portfolioLinks:[],
+    targetAudience:[],
       
 })
+
+/*Areas of Expertise
+{
+  area: String,
+  subAreas:[String],
+},
+*/
+
+/*
+{
+  titleLink: String,
+  urlLink: String,
+}
+*/
 
 module.exports = userSchema
