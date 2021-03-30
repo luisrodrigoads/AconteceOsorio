@@ -8,6 +8,7 @@ import {withRouter} from 'react-router-dom';
 import FormData from 'form-data'
 import UserModel from '../models/UserModel';
 import FormRegisterPromoter from './forms/FormRegisterPromoter';
+import FormRegisterArtist from './forms/FormRegisterArtist';
 
 function RegisterUserPage(){
 
@@ -36,6 +37,8 @@ function RegisterUserPage(){
                 return <FormRegisterCulturalPlace isUpdateForm={false} onSubmit={values => handleInstituteForm(values)}  handleImage = { values => fileSelectedHandler(values) }  images={ files['images'] }/>
             case 'promoter':
                 return <FormRegisterPromoter isUpdateForm={false} initialValues={UserModel} onSubmit={values => handleInstituteForm(values)} />
+            case 'artist':
+                return <FormRegisterArtist isUpdateForm={false}  initialValues={UserModel} onSubmit={values => handleInstituteForm(values)} handleImage= { values => fileSelectedHandler(values)} images={files['images']}/>
             default: 
                 return null;
         }
@@ -70,6 +73,7 @@ function RegisterUserPage(){
                                 <option value="institution">Instituição</option>
                                 <option value="cultural_place">Espaço cultural</option>
                                 <option value="promoter">Promotor cultural</option>
+                                <option value="artist">Artista</option>
                                 <option value="other">Outro</option>
                             </select>
                         </div>

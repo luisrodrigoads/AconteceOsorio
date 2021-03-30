@@ -26,7 +26,16 @@ const UserModel = {
         facebook: '',
         instagram: '',
         spotify: '',
-        linkedin: '', 
+        linkedin: '',
+        youtube: '',
+        otherLink:'',
+        
+        //artist
+        birthDate: '',
+        areasOfExpertise: [],
+        portfolioLinks:[],
+        targetAudience:[],
+
 }
 
 export default UserModel;

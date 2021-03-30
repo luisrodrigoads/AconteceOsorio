@@ -25,6 +25,16 @@ export function SocialFormGroup() {
             name: 'linkedin',
             icon: 'images/linkedin.png',
         },
+        {
+            label: 'Youtube',
+            name: 'youtube',
+            icon: 'images/youtube.png',
+        },
+        {
+            label: 'Outro Link',
+            name: 'otherLink',
+            icon: 'images/otherLink.png',
+        },
     ];
 
     return (
