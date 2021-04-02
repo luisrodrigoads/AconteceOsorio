@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import {Field, reduxForm} from 'redux-form'
+import {Field, FieldArray, reduxForm} from 'redux-form'
 import BASE_URL from '../../config/consts';
 
 import styles from '../../styles/FormRegisterUserStyle';
@@ -34,13 +34,98 @@ const FormRegisterArtist = props => {
             
     }
 
+        const renderSubAreas = ({fields}) => (
+            <>
+                <button className="btn btn-info" type="button" onClick={() => fields.push()}>
+                    Adicionar SubArea
+                </button>
+            <hr/>
+                 
+            {fields.map((subAreaArtist, index) => (
+            
+            <div key={index} className="form-group" style={{backgroundColor:'#eee',padding:'5px'}}>
+                <div className="row">
+                    <div>
+                        <Field
+                            name={subAreaArtist}
+                            type="text"
+                            component='input'
+                            label="SubÁrea"
+                            style={{marginLeft:'30px',marginRight:'10px'}}
+                        />
+                    </div>
+                    <div>
+                        <button
+                        className="btn btn-danger"
+                        type="button"
+                        onClick={() => fields.remove(index)}
+                        >
+                            X
+                        </button>
+                    </div>
+                    
+                </div>
+            </div>
+            
+            ))}
+            
+            </>
+        )
+
+        const renderAreas = ({fields}) => (
+            <>
+            <button className="btn btn-info" type="button" onClick={() => fields.push({})}>
+                Adicionar Área
+            </button>
+            
+            
+            {fields.map((areaArtist, index) => (
+            <div key={index} style={{backgroundColor:'#efefef'}} className="form-group">
+                <div  style={{padding:'5px',marginTop:'20px',marginLeft:'5px',marginRight:'5px'}} className="row">
+                    <div >
+                        <h4 style={{marginRight:'10px'}}>Área</h4>
+                    </div>
+                    <div >
+                        <Field
+                        style={{marginRight:'10px'}}
+                        name={`${areaArtist}.area`}
+                        type="text"
+                        component='input'
+                        label="Área"
+                        />
+                    </div>
+                    <div>
+                        <button
+                        className="btn btn-danger"
+                        type="button"
+                        onClick={() => fields.remove(index)}
+                        >
+                            X
+                        </button>
+                    </div>
+                </div>
+                <FieldArray name={`${areaArtist}.subAreas`} component={renderSubAreas} />
+            </div>
+            ))}
+            </>
+        )
+
+        const FieldArraysForm = () => {
+        
+            return (   
+                <FieldArray name="areasOfExpertise" component={renderAreas} />      
+            )
+        }
+
+    
+
     const formComponents = [
         {   
-            label: 'Razão Social:',//personal name
+            label: 'Nome pessoal:',//personal name
             name: 'companyName',
         },
         {   
-            label: 'Nome Fantasia:',//artistic name
+            label: 'Nome Artístico:',//artistic name
             name: 'fantasyName',
         },
         {   
@@ -122,6 +207,7 @@ const FormRegisterArtist = props => {
 
                     <hr/>
 
+                   <FieldArraysForm />
                   
                     <div className="form-group">
                         <div style={styles.labelInputDiv} className="row justify-content-between">

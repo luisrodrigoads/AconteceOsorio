@@ -32,7 +32,7 @@ const UserModel = {
         
         //artist
         birthDate: '',
-        areasOfExpertise: [],
+        areasOfExpertise:[],
         portfolioLinks:[],
         targetAudience:[],
 
