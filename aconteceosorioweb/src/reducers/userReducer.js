@@ -28,6 +28,14 @@ const INITIAL_STATE = {
         instagram: '',
         spotify: '',
         linkedin: '',
+        youtube: '',
+        otherLink: '',
+
+        //Complementary data - artist
+        birthDate: '',
+        areasOfExpertise: [],
+        portfolioLinks:[],
+        targetAudience:[],
     }
 }
 

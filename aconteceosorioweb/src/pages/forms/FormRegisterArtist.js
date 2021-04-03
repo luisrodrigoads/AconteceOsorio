@@ -78,7 +78,6 @@ const FormRegisterArtist = props => {
                 Adicionar Área
             </button>
             
-            
             {fields.map((areaArtist, index) => (
             <div key={index} style={{backgroundColor:'#efefef'}} className="form-group">
                 <div  style={{padding:'5px',marginTop:'20px',marginLeft:'5px',marginRight:'5px'}} className="row">
@@ -112,12 +111,54 @@ const FormRegisterArtist = props => {
 
         const FieldArraysForm = () => {
         
-            return (   
+            return (  
+            
                 <FieldArray name="areasOfExpertise" component={renderAreas} />      
+             
             )
         }
 
-    
+        const renderTargetAudience = ({fields}) => (
+            <>
+            <button className="btn btn-info" type="button" onClick={() => fields.push({})}>
+                Adicionar Público alvo
+            </button>
+            
+            {fields.map((ageAudience, index) => (
+            <div key={index} style={{backgroundColor:'#efefef'}} className="form-group">
+                <div  style={{padding:'5px',marginTop:'20px',marginLeft:'5px',marginRight:'5px'}} className="row">
+                    <div >
+                        <h4 style={{marginRight:'10px'}}>Área</h4>
+                    </div>
+                    <div >
+                        <Field
+                        style={{marginRight:'10px'}}
+                        name={ageAudience}
+                        type="text"
+                        component='input'
+                        label="Faixa etária"
+                        />
+                    </div>
+                    <div>
+                        <button
+                        className="btn btn-danger"
+                        type="button"
+                        onClick={() => fields.remove(index)}
+                        >
+                            X
+                        </button>
+                    </div>
+                </div>
+            </div>
+            ))}
+            </>
+        )
+
+        const ArrayFormTargetAudience = () =>{
+            return (
+                <FieldArray name="targetAudience" component={renderTargetAudience}/>
+            )
+        }
 
     const formComponents = [
         {   
@@ -208,6 +249,10 @@ const FormRegisterArtist = props => {
                     <hr/>
 
                    <FieldArraysForm />
+
+                   <hr/>
+
+                   <ArrayFormTargetAudience />
                   
                     <div className="form-group">
                         <div style={styles.labelInputDiv} className="row justify-content-between">
