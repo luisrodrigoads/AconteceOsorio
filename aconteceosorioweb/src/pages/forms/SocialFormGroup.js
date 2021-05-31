@@ -45,7 +45,7 @@ export function SocialFormGroup() {
                     <div key={comp.name} className="form-group">
                         <div style={styles.labelInputDiv} className="row ">
                             <div>
-                                <img style={{width:'29px',height:'29px'}} src={comp.icon} alt={comp.label} title={comp.label}/>
+                                <img style={styles.socialMediaIconForm} src={comp.icon} alt={comp.label} title={comp.label}/>
                             </div>
                             <div className="col-10 col-lg-11 col-md-11 col-sm-11">
                                 <Field  

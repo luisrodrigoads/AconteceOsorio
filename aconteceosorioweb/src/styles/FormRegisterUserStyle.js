@@ -34,6 +34,10 @@ const styles = {
         margin: '0px 5px',
         marginTop: '-14px',
         borderRadius: '3px'
+    },
+    socialMediaIconForm:{
+        width:'29px',
+        height:'29px'
     }
 }
 

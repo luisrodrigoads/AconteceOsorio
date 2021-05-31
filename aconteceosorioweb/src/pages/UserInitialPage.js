@@ -6,6 +6,8 @@ import BASE_URL from '../config/consts';
 import ListOfEvents from './componentsPage/ListOfEvents';
 import UserInfoModal from './componentsPage/UserInfoModal';
 
+import styles from '../styles/UserInitialPageStyle';
+
 function UserInitialPage () {
 
     const user = useSelector(state => state.user.personalInfo);
@@ -23,7 +25,7 @@ function UserInitialPage () {
         if(props.socialMedia){
             return(
                 <a href={props.socialMedia} target="_blank" rel="noreferrer">
-                    <img style={{width:'35px',height:'35px',margin:'10px'}} src={props.socialMediaIcon} alt={props.socialMediaName} title={props.socialMediaName}/>
+                    <img style={styles.socialMediaIcon} src={props.socialMediaIcon} alt={props.socialMediaName} title={props.socialMediaName}/>
                 </a>
             )
         }else{
@@ -70,12 +72,12 @@ function UserInitialPage () {
             <div className="row  justify-content-center">
                 <div className="col-lg-3 col-md-5 col-sm-10 m-3 p-3 text-center">
                       
-                    <input type="file" id="file" ref={inputFile} style={{display: "none"}} onChange={e => updatePerfilPhoto(e)}/>
+                    <input type="file" id="file" ref={inputFile} style={styles.inputChangePersonalPhoto} onChange={e => updatePerfilPhoto(e)}/>
                     
-                    <button type="button" data-toggle="modal" data-target="#exampleModal" style={{border: 'none'}}>
+                    <button type="button" data-toggle="modal" data-target="#exampleModal" style={styles.buttonChangePersonalPhoto}>
                         <img 
                             src={`${BASE_URL}/${user.profilePhoto}`}
-                            style={{width:'200px', height:'200px', cursor:'pointer'}} 
+                            style={styles.imgChangePersonalPhoto} 
                             className="rounded mx-auto d-block" 
                             title="Clique para alterar"
                             alt="Sua foto de perfil"
@@ -120,9 +122,9 @@ function UserInitialPage () {
                         </div>
                     </div>                    
 
-                    <h5 style={{color:'#4682b4',marginTop:'10px'}} data-toggle="modal" data-target="#visibilityUserModal">{user.accountActivation ? 'Deixar conta invisivel' : 'Deixar conta visivel'}</h5>
+                    <h5 style={styles.textChangeVisibilityUser} data-toggle="modal" data-target="#visibilityUserModal">{user.accountActivation ? 'Deixar conta invisivel' : 'Deixar conta visivel'}</h5>
                     <Link to="/EditUserPage">
-                        <h5 style={{color:'#4682b4'}}>Editar informações</h5>
+                        <h5 style={styles.textLinkStyle}>Editar informações</h5>
                     </Link>
                     <hr/>
                     <h2>{user.fantasyName}</h2>
@@ -134,7 +136,7 @@ function UserInitialPage () {
                             <h5>{user.description.substring(0,maxLenghtDescription) + (user.description.length > maxLenghtDescription ? "..." : " ")}</h5>
                             {
                                 user.description.length > maxLenghtDescription ?
-                                <h5 style={{color:'#4682b4'}} onClick={()=>{setVisibleDescription(true);}} >Ver Mais</h5>
+                                <h5 style={styles.textLinkStyle} onClick={()=>{setVisibleDescription(true);}} >Ver Mais</h5>
                                 :
                                 null
                             }
@@ -158,7 +160,7 @@ function UserInitialPage () {
                                 null
                             :
                             <>         
-                                    <button type="button" style={{marginLeft:'15px'}} className="btn btn-outline-secondary btn-rounded waves-effect" data-toggle="modal" data-target="#myModal">Ver Imagens</button>
+                                    <button type="button" style={styles.seeMoreImagesUser} className="btn btn-outline-secondary btn-rounded waves-effect" data-toggle="modal" data-target="#myModal">Ver Imagens</button>
 
                                     <>
                                     <div className="modal fade" id="myModal" role="dialog">
@@ -180,7 +182,7 @@ function UserInitialPage () {
                                                                         <div key={index} className={index === 0 ? "carousel-item active" : "carousel-item"}>
                                                                             <img 
                                                                                 src={`${BASE_URL}/${item}`}
-                                                                                style={{width:'100%',height:'100%'}}
+                                                                                style={styles.otherImagesUser}
                                                                                 alt="img cultural_place"
                                                                             />
                                                                         </div>
