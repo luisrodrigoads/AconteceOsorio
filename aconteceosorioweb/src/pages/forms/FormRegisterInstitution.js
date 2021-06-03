@@ -1,10 +1,14 @@
 import React, { useEffect } from 'react'
 import {Field, reduxForm} from 'redux-form'
+import {createTextMask} from 'redux-form-input-masks'
 
 import styles from '../../styles/FormRegisterUserStyle';
 import { SocialFormGroup } from './SocialFormGroup';
 
 const FormRegisterUser = props => {
+
+    const cnpjMask = createTextMask({pattern: '99.999.999/9999-99'})
+    const phoneMask = createTextMask({pattern: '(99) 99999-9999'})
     
     useEffect(() => {
         props.change('userType', 'INSTITUTION')
@@ -22,6 +26,7 @@ const FormRegisterUser = props => {
         {   
             label: 'CNPJ:',
             name: 'cnpj',
+            mask: cnpjMask,
         },
         {   
             label: 'Pessoa Responsável:',
@@ -30,6 +35,7 @@ const FormRegisterUser = props => {
         {   
             label: 'Telefone:',
             name: 'phone',
+            mask: phoneMask,
         },
         {   
             label: 'Endereço:',
@@ -63,6 +69,7 @@ const FormRegisterUser = props => {
                                     <h5 style={styles.markingRequiredInput}>*</h5>
                                 </div>
                                 <Field
+                                    { ...comp?.mask}
                                     required
                                     name={comp.name}
                                     component='input'

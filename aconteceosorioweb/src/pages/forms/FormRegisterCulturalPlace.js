@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import {Field, reduxForm} from 'redux-form'
+import {createTextMask} from 'redux-form-input-masks'
+
 import BASE_URL from '../../config/consts';
 
 import styles from '../../styles/FormRegisterUserStyle';
@@ -7,6 +9,9 @@ import { SocialFormGroup } from './SocialFormGroup';
 
 
 const FormRegisterCulturalPlace = props => {
+
+    const cnpjMask = createTextMask({pattern: '99.999.999/9999-99'})
+    const phoneMask = createTextMask({pattern: '(99) 99999-9999'})
 
     const [files] = useState(props.images)
 
@@ -48,6 +53,7 @@ const FormRegisterCulturalPlace = props => {
         {   
             label: 'CNPJ:',
             name: 'cnpj',
+            mask: cnpjMask,
         },
         {   
             label: 'Pessoa Responsável:',
@@ -61,6 +67,7 @@ const FormRegisterCulturalPlace = props => {
         {   
             label: 'Telefone:',
             name: 'phone',
+            mask: phoneMask,
         },
         {   
             label: 'Endereço:',
@@ -126,6 +133,7 @@ const FormRegisterCulturalPlace = props => {
                                         />
                                     :
                                         <Field
+                                            { ...comp?.mask}
                                             required
                                             name={comp.name}
                                             component='input'

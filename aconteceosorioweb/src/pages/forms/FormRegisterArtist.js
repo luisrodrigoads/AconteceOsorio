@@ -1,11 +1,16 @@
 import React, { useEffect, useState } from 'react'
 import {Field, FieldArray, reduxForm} from 'redux-form'
-import BASE_URL from '../../config/consts';
+import {createTextMask} from 'redux-form-input-masks'
 
+import BASE_URL from '../../config/consts';
 import styles from '../../styles/FormRegisterUserStyle';
 import { SocialFormGroup } from './SocialFormGroup';
 
 const FormRegisterArtist = props => {
+
+    const cnpjMask = createTextMask({pattern: '99.999.999/9999-99'})
+    const phoneMask = createTextMask({pattern: '(99) 99999-9999'})
+    const cpfMask = createTextMask({pattern: '999.999.999-99'})
 
     const [files] = useState(props.images)
 
@@ -172,15 +177,18 @@ const FormRegisterArtist = props => {
         {   
             label: 'CPF:',
             name: 'cpf',
+            mask: cpfMask,
         },
         {   
             label: 'CNPJ:',
             name: 'cnpj',
             required: false,
+            mask: cnpjMask,
         },
         {   
             label: 'Telefone:',
             name: 'phone',
+            mask: phoneMask,
         },
         {   
             label: 'Endereço:',
@@ -220,6 +228,7 @@ const FormRegisterArtist = props => {
                                 {
                                     comp.required === false ?
                                         <Field
+                                            { ...comp?.mask}
                                             name={comp.name}
                                             component='input'
                                             type={comp.type ? comp.type : 'text'}
@@ -228,6 +237,7 @@ const FormRegisterArtist = props => {
                                         />
                                     :
                                         <Field
+                                            { ...comp?.mask}
                                             required
                                             name={comp.name}
                                             component='input'
