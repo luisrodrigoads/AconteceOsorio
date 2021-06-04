@@ -1,4 +1,7 @@
 import React from 'react';
+import cnpjFormatted from '../../helper/cnpjFormatted';
+import cpfFormatted from '../../helper/cpfFormatted';
+import phoneFormatted from '../../helper/phoneFormatted';
 import CulturalPlaceModalInfo from './CulturalPlaceModalInfo';
 
 export default function UserInfoModal ({User: user}){
@@ -28,7 +31,7 @@ export default function UserInfoModal ({User: user}){
                         {
                             user.userType === 'PROMOTER' ?
                             <>
-                            <h6><b>CPF: </b>{user.cpf}</h6>
+                            <h6><b>CPF: </b>{cpfFormatted(user.cpf)}</h6>
                             <hr/>
                             </>
                             :
@@ -39,11 +42,11 @@ export default function UserInfoModal ({User: user}){
                         }
                         <h6><b>Email: </b>{user.email}</h6>
                         <hr/>
-                        <h6><b>Telefone: </b>{user.phone}</h6>
+                        <h6><b>Telefone: </b>{phoneFormatted(user.phone)}</h6>
                         <hr/>
                         <h6><b>Endereço: </b>{user.address}</h6>
                         <hr/>
-                        <h6><b>CNPJ: </b>{user.cnpj}</h6>
+                        <h6><b>CNPJ: </b>{ cnpjFormatted(user.cnpj)}</h6>
                         <hr/>
                         {
                             user.userType === 'PROMOTER' ? 
