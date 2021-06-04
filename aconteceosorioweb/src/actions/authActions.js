@@ -122,7 +122,19 @@ export const instituteSignup = values => {
                 if (response.status === 202)
                     toastr.error('Erro!', response.data)
                 else if (response.status === 200) {
+
+                    if(response.data.userType === 'INSTITUTION')
+                        dispatch(reset('formRegisterUser'))
+                    else if(response.data.userType === 'CULTURAL_PLACE')
+                        dispatch(reset('formRegisterCulturalPlace'))
+                    else if(response.data.userType === 'PROMOTER')
+                        dispatch(reset('formRegisterPromoter'))
+                    else
+                        dispatch(reset('formRegisterArtist'))     
+
+                    window.location = '/LoginPage'    
                     toastr.success('Cadastro realizado com Sucesso!')
+        
                 }
             })
             .catch(error => toastr.error('Ocorreu um erro no servidor!', 'Tente mais tarde'))
