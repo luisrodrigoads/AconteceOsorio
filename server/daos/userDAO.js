@@ -53,7 +53,6 @@ module.exports = {
         if (req.files) {
             req.files.forEach(pic => paths.push(pic.filename));
         }
-
        
         let changePassword = false;
 
@@ -134,6 +133,54 @@ module.exports = {
             )
         }).catch(err => res.status(202).json('Internal server error!'))
 
+    },
+
+    getAllArtist(req, res){
+        user.find({userType: 'ARTIST'})
+         .select('fantasyName userType profilePhoto description')
+         .exec((err, response) => {
+            if(err) {
+                console.log(err);
+                return res.status(500).json("Error on server side - get artists");
+            }
+            return res.status(200).json(response);
+        });
+    },
+
+    getAllInstitution(req, res){
+        user.find({userType: 'INSTITUTION'})
+         .select('fantasyName userType profilePhoto description')
+         .exec((err, response) => {
+            if(err) {
+                console.log(err);
+                return res.status(500).json("Error on server side - get artists");
+            }
+            return res.status(200).json(response);
+        });
+    },
+
+    getAllCulturalPlace(req, res){
+        user.find({userType: 'CULTURAL_PLACE'})
+         .select('fantasyName userType profilePhoto description')
+         .exec((err, response) => {
+            if(err) {
+                console.log(err);
+                return res.status(500).json("Error on server side - get artists");
+            }
+            return res.status(200).json(response);
+        });
+    },
+
+    getAllCulturalPromoter(req, res){
+        user.find({userType: 'PROMOTER'})
+         .select('fantasyName userType profilePhoto description')
+         .exec((err, response) => {
+            if(err) {
+                console.log(err);
+                return res.status(500).json("Error on server side - get artists");
+            }
+            return res.status(200).json(response);
+        });
     },
 
     async delete(req, res) {
