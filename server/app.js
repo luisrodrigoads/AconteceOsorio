@@ -2,6 +2,7 @@ const cors = require('cors');
 const express =  require('express');
 
 const userDAO = require('./daos/userDAO');
+const culturalEventsDAO = require('./daos/culturalEventsDAO');
 
 const validateToken = require('./config/validateToken');
 
@@ -35,16 +36,19 @@ app.post('/validateToken', (req, res) => AuthUser.validateToken(req, res));
 app.get('/updateToken', validateToken,(req, res) => AuthUser.updateToken(req, res));
 app.post('/tradeTokenToUser', validateToken,(req, res) => AuthUser.tradeTokenToUser(req, res));
 
-app.post('/updateUserImg', upload.single('image'), (req, res) => userDAO.updateImg(req, res));
-app.post('/updateUser', upload.array('images',10), (req, res) => userDAO.update(req, res));
-app.post('/disableUser', (req,res) => userDAO.disableUser(req,res));
-app.post('/enableUser', (req,res) => userDAO.enableUser(req,res));
+app.post('/updateUserImg',validateToken ,upload.single('image'), (req, res) => userDAO.updateImg(req, res));
+app.post('/updateUser',validateToken ,upload.array('images',10), (req, res) => userDAO.update(req, res));
+app.post('/disableUser', validateToken,(req,res) => userDAO.disableUser(req,res));
+app.post('/enableUser', validateToken,(req,res) => userDAO.enableUser(req,res));
+
+app.post('culturalEvent', validateToken,(req, res) => culturalEventsDAO.setCulturalEvent(req, res));
 
 //public user routes
 app.get('/institutions', (req,res) => userDAO.getAllInstitution(req, res));
 app.get('/culturalPlaces', (req,res) => userDAO.getAllCulturalPlace(req, res));
 app.get('/culturalPromoters', (req,res) => userDAO.getAllCulturalPromoter(req, res));
 app.get('/artists', (req,res) => userDAO.getAllArtist(req, res));
+app.get('/culturalEvents', (req,res) => culturalEventsDAO.getAllCulturalEvents(req, res));
 
 
 

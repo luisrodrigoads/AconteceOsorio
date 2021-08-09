@@ -16,7 +16,13 @@ module.exports = {
             req.files.forEach(pic => paths.push(pic.filename))
 
         dataNewUser.otherPictures = paths
+
+        if(req.body.areasOfExpertise)
+            dataNewUser.areasOfExpertise = JSON.parse(req.body.areasOfExpertise);
     
+        if(req.body.targetAudience)
+            dataNewUser.targetAudience = JSON.parse(req.body.targetAudience);
+
         //checks if the email received is really an email
         if(!dataNewUser.email.match(emailRegex))
             return res.status(202).json('Email inválido.')

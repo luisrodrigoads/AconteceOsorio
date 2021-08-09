@@ -1,6 +1,7 @@
 const mongoose =  require('mongoose')
 
 const userSchema = require('../models/userSchema')
+const culturalEventSchema = require('../models/culturalEventSchema')
 
 console.log("Connecting to DB...")
 mongoose.connect(
@@ -19,5 +20,6 @@ mongoose.connect(
 });
 
 const user = mongoose.model('user', userSchema)
+const culturalEvent = mongoose.model('culturalEvent', culturalEventSchema)
 
-module.exports = { user }
+module.exports = { user, culturalEvent }
