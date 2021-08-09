@@ -49,13 +49,13 @@ const FormRegisterArtist = props => {
             {fields.map((subAreaArtist, index) => (
             
             <div key={index} className="form-group" style={{backgroundColor:'#eee',padding:'5px'}}>
-                <div className="row">
+                <div className="row justify-content-around">
                     <div>
                         <Field
                             name={subAreaArtist}
                             type="text"
-                            component='input'
-                            label="SubÁrea"
+                            component={renderField}
+                            placeholder="subarea"
                             style={{marginLeft:'30px',marginRight:'10px'}}
                         />
                     </div>
@@ -94,8 +94,8 @@ const FormRegisterArtist = props => {
                         style={{marginRight:'10px'}}
                         name={`${areaArtist}.area`}
                         type="text"
-                        component='input'
-                        label="Área"
+                        placeholder="area"
+                        component={renderField}
                         />
                     </div>
                     <div>
@@ -114,14 +114,18 @@ const FormRegisterArtist = props => {
             </>
         )
 
-        const FieldArraysForm = () => {
+        const AreasOfExpertiseForm = () => {
         
             return (  
-            
                 <FieldArray name="areasOfExpertise" component={renderAreas} />      
-             
             )
         }
+
+        const renderField = ({ input, type ,placeholder}) => (
+            <>
+              <input {...input} type={type} placeholder={placeholder} />
+            </>
+          )
 
         const renderTargetAudience = ({fields}) => (
             <>
@@ -132,16 +136,14 @@ const FormRegisterArtist = props => {
             {fields.map((ageAudience, index) => (
             <div key={index} style={{backgroundColor:'#efefef'}} className="form-group">
                 <div  style={{padding:'5px',marginTop:'20px',marginLeft:'5px',marginRight:'5px'}} className="row">
-                    <div >
-                        <h4 style={{marginRight:'10px'}}>Área</h4>
-                    </div>
+                 
                     <div >
                         <Field
                         style={{marginRight:'10px'}}
                         name={ageAudience}
                         type="text"
-                        component='input'
-                        label="Faixa etária"
+                        component={renderField}
+                        placeholder="Faixa etaria" 
                         />
                     </div>
                     <div>
@@ -258,7 +260,7 @@ const FormRegisterArtist = props => {
 
                     <hr/>
 
-                   <FieldArraysForm />
+                    <AreasOfExpertiseForm />
 
                    <hr/>
 

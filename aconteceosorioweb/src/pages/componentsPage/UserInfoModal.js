@@ -2,6 +2,7 @@ import React from 'react';
 import cnpjFormatted from '../../helper/cnpjFormatted';
 import cpfFormatted from '../../helper/cpfFormatted';
 import phoneFormatted from '../../helper/phoneFormatted';
+import ArtistModalInfo from './ArtistModalInfo';
 import CulturalPlaceModalInfo from './CulturalPlaceModalInfo';
 
 export default function UserInfoModal ({User: user}){
@@ -10,6 +11,8 @@ export default function UserInfoModal ({User: user}){
     const renderComplementaryInfo = () =>{
         if(user.userType === 'CULTURAL_PLACE'){
            return <CulturalPlaceModalInfo User={user}/>;
+        }else if(user.userType === 'ARTIST'){
+            return <ArtistModalInfo User={user} />;
         }else{
            return null;
         }
@@ -29,7 +32,7 @@ export default function UserInfoModal ({User: user}){
                         <h6><b>Nome Fantasia: </b>{user.fantasyName}</h6>
                         <hr/>
                         {
-                            user.userType === 'PROMOTER' ?
+                            user.userType === 'PROMOTER' || user.userType === 'ARTIST' ?
                             <>
                             <h6><b>CPF: </b>{cpfFormatted(user.cpf)}</h6>
                             <hr/>
@@ -45,11 +48,17 @@ export default function UserInfoModal ({User: user}){
                         <h6><b>Telefone: </b>{phoneFormatted(user.phone)}</h6>
                         <hr/>
                         <h6><b>Endereço: </b>{user.address}</h6>
-                        <hr/>
-                        <h6><b>CNPJ: </b>{ cnpjFormatted(user.cnpj)}</h6>
+                        {
+                            user.cnpj ? (
+                                <>
+                                <hr/>
+                                <h6><b>CNPJ: </b>{ cnpjFormatted(user.cnpj)}</h6>
+                                </>
+                            ) : null
+                        }
                         <hr/>
                         {
-                            user.userType === 'PROMOTER' ? 
+                            user.userType === 'PROMOTER' || user.userType === 'ARTIST' ? 
                             null
                             :
                             <>
@@ -78,6 +87,7 @@ export default function UserInfoModal ({User: user}){
                         }
                        
                         {renderComplementaryInfo()} 
+
                         <h6><b>Descrição: </b>{user.description}</h6>
                     </div>
                      <div className="modal-footer">

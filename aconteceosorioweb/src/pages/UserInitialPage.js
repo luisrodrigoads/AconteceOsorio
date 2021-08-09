@@ -11,11 +11,12 @@ import styles from '../styles/UserInitialPageStyle';
 function UserInitialPage () {
 
     const user = useSelector(state => state.user.personalInfo);
-
+   
     const [visibleDescription, setVisibleDescription] = useState(false);
     const maxLenghtDescription = 100;
 
     const dispatch = useDispatch();
+
 
     const inputFile = useRef(null) 
     const closeModal = useRef(null);
@@ -128,6 +129,8 @@ function UserInitialPage () {
                     </Link>
                     <hr/>
                     <h2>{user.fantasyName}</h2>
+
+                    
                     {
                         visibleDescription ?
                             <h5>{user.description}</h5>

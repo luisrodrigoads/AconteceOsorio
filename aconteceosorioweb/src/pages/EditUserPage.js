@@ -4,6 +4,7 @@ import { withRouter } from 'react-router-dom'
 import { updateUser } from '../actions/userActions';
 import FormRegisterCulturalPlace from './forms/FormRegisterCulturalPlace';
 import FormRegisterInstitution from './forms/FormRegisterInstitution';
+import FormRegisterArtist from './forms/FormRegisterArtist';
 
 import FormData from 'form-data'
 import FormRegisterPromoter from './forms/FormRegisterPromoter';
@@ -32,9 +33,13 @@ function EditUserPage(){
         if(files['images'] !== undefined)
             files['images'].forEach(img => {if (typeof(img) !== 'string') fd.append('images',img)});
 
-        for (let key in values)
-            if(values.hasOwnProperty(key))
-                fd.append(key, values[key])
+            for (let key in values) {
+                console.log(key, 'tipo', typeof(values[key]))
+                if (key === 'areasOfExpertise' || key === 'targetAudience') {
+                    fd.append(key, JSON.stringify(values[key]));
+                } else if (values.hasOwnProperty(key))
+                    fd.append(key, values[key])
+            }
 
         dispatch(updateUser(fd))
     }
@@ -47,6 +52,8 @@ function EditUserPage(){
                 return <FormRegisterCulturalPlace isUpdateForm={true} initialValues={user} onSubmit={values => updateHandleFormData(values)} handleImage={values => fileSelectedHandler(values)} images={ files['images'] }/>
             case 'PROMOTER':
                 return <FormRegisterPromoter isUpdateForm={true} initialValues={user} onSubmit={values => updateHandle(values)}/>
+            case 'ARTIST':
+                return <FormRegisterArtist isUpdateForm={true} initialValues={user} onSubmit={values => updateHandle(values)} />
             default:
                 return null;
         }

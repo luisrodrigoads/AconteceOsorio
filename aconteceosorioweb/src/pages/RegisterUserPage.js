@@ -1,27 +1,27 @@
 import React, { useState } from 'react';
 import { instituteSignup } from '../actions/authActions';
 import FormRegisterInstitution from './forms/FormRegisterInstitution';
-import { useDispatch} from 'react-redux';
+import { useDispatch } from 'react-redux';
 import FormRegisterCulturalPlace from './forms/FormRegisterCulturalPlace';
-import {withRouter} from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 
 import FormData from 'form-data'
 import UserModel from '../models/UserModel';
 import FormRegisterPromoter from './forms/FormRegisterPromoter';
 import FormRegisterArtist from './forms/FormRegisterArtist';
 
-function RegisterUserPage(){
+function RegisterUserPage() {
 
     const dispatch = useDispatch();
 
     const [userType, setUserType] = useState('')
 
-    const [files, setFiles] = useState({images: UserModel.otherPictures })
+    const [files, setFiles] = useState({ images: UserModel.otherPictures })
 
-    const fileSelectedHandler = event =>{
+    const fileSelectedHandler = event => {
         let images = files['images'];
         Object.values(event.target.files).map(picture => images.push(picture))
-        setFiles({images})
+        setFiles({ images })
     }
 
     const changeUserForm = e => {
@@ -32,14 +32,14 @@ function RegisterUserPage(){
 
         switch (userType) {
             case 'institution':
-                return <FormRegisterInstitution isUpdateForm={false} initialValues={UserModel} onSubmit={values => handleInstituteForm(values)}/>
+                return <FormRegisterInstitution isUpdateForm={false} initialValues={UserModel} onSubmit={values => handleInstituteForm(values)} />
             case 'cultural_place':
-                return <FormRegisterCulturalPlace isUpdateForm={false} onSubmit={values => handleInstituteForm(values)}  handleImage = { values => fileSelectedHandler(values) }  images={ files['images'] }/>
+                return <FormRegisterCulturalPlace isUpdateForm={false} onSubmit={values => handleInstituteForm(values)} handleImage={values => fileSelectedHandler(values)} images={files['images']} />
             case 'promoter':
                 return <FormRegisterPromoter isUpdateForm={false} initialValues={UserModel} onSubmit={values => handleInstituteForm(values)} />
             case 'artist':
-                return <FormRegisterArtist isUpdateForm={false}  initialValues={UserModel} onSubmit={values => handleInstituteForm(values)} handleImage= { values => fileSelectedHandler(values)} images={files['images']}/>
-            default: 
+                return <FormRegisterArtist isUpdateForm={false} onSubmit={values => handleInstituteForm(values)} handleImage={values => fileSelectedHandler(values)} images={files['images']} />
+            default:
                 return null;
         }
 
@@ -47,24 +47,30 @@ function RegisterUserPage(){
 
     const handleInstituteForm = values => {
 
+        console.log("values")
+        console.log(values)
         const fd = new FormData()
-            
-            if(files['images'] !== undefined)
-            files['images'].forEach(img => fd.append('images',img));
 
-            for (let key in values)
-                if(values.hasOwnProperty(key))
-                    fd.append(key, values[key])
+        if (files['images'] !== undefined)
+            files['images'].forEach(img => fd.append('images', img));
 
-            
-            dispatch(instituteSignup(fd))
-            setFiles({ images: []})
+        console.log('parsing form')
+        for (let key in values) {
+            console.log(key, 'tipo', typeof(values[key]))
+            if (key === 'areasOfExpertise' || key === 'targetAudience') {
+                fd.append(key, JSON.stringify(values[key]));
+            } else if (values.hasOwnProperty(key))
+                fd.append(key, values[key])
+        }
+        
+        dispatch(instituteSignup(fd))
+        setFiles({ images: [] })
     }
-    
-    return(
+
+    return (
         <div className="container-fluid">
             <div className="row  align-items-center justify-content-center ">
-                <div className="card col-lg-3 col-md-5 col-sm-10 m-3 p-3 bg-light shadow"> 
+                <div className="card col-lg-3 col-md-5 col-sm-10 m-3 p-3 bg-light shadow">
                     <div className="form-group">
                         <label>Selecione o tipo de usuário</label>
                         <div className="input-group">
@@ -77,12 +83,12 @@ function RegisterUserPage(){
                                 <option value="other">Outro</option>
                             </select>
                         </div>
-                    </div>    
+                    </div>
                 </div>
             </div>
- 
-            { renderCorrectForm() }
-            
+
+            { renderCorrectForm()}
+
         </div>
     );
 }
