@@ -167,6 +167,63 @@ const FormRegisterArtist = props => {
             )
         }
 
+        const renderPortfolioLinks = ({fields}) =>(
+            <>
+            <button className="btn btn-info" type="button" onClick={() => fields.push({})}>
+                Adicionar Link Portfolio 
+            </button>
+            
+            {fields.map((portLink, index) => (
+            <div key={index} style={{backgroundColor:'#efefef'}} className="form-group">
+                
+                    <div  style={{padding:'5px',marginTop:'20px',marginLeft:'5px',marginRight:'5px'}} className="row">
+                    
+                        <div >
+                            <Field
+                            style={{marginRight:'10px'}}
+                            name={`${portLink}.title`}
+                            type="text"
+                            component={renderField}
+                            placeholder="Título" 
+                            />
+                        </div>
+                        
+                    </div>
+                    <div  style={{padding:'5px',marginTop:'20px',marginLeft:'5px',marginRight:'5px'}} className="row">
+                    
+                        <div >
+                            <Field
+                            style={{marginRight:'10px'}}
+                            name={`${portLink}.urlLink`}
+                            type="text"
+                            component={renderField}
+                            placeholder="www.meuportfolio.com" 
+                            />
+                        </div>
+                        
+                    </div>
+                    <div>
+                        <button
+                            className="btn btn-danger"
+                            type="button"
+                            onClick={() => fields.remove(index)}
+                        >
+                            X
+                        </button>
+                    </div>
+                
+                <hr/>
+            </div>
+            ))}
+            </>
+        )
+
+        const ArrayFormPortfolioLinks = () =>{
+            return (
+                <FieldArray name="portfolioLinks" component={renderPortfolioLinks}/>
+            )
+        }
+
     const formComponents = [
         {   
             label: 'Nome pessoal:',//personal name
@@ -265,6 +322,9 @@ const FormRegisterArtist = props => {
                    <hr/>
 
                    <ArrayFormTargetAudience />
+
+                    <hr/>
+                   <ArrayFormPortfolioLinks />
                   
                     <div className="form-group">
                         <div style={styles.labelInputDiv} className="row justify-content-between">
