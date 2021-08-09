@@ -23,6 +23,9 @@ module.exports = {
         if(req.body.targetAudience)
             dataNewUser.targetAudience = JSON.parse(req.body.targetAudience);
 
+        if(req.body.portfolioLinks)
+            dataNewUser.portfolioLinks = JSON.parse(req.body.portfolioLinks);
+
         //checks if the email received is really an email
         if(!dataNewUser.email.match(emailRegex))
             return res.status(202).json('Email inválido.')
