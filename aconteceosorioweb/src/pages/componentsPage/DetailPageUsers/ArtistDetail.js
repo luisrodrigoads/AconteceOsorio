@@ -14,16 +14,6 @@ const ArtistDetail = props => {
 
     const closeModal = useRef(null);
 
-    //{user.fantasyName}
-    //{user.address}
-    //{user.email}
-    //{user.description}
-
-    // otherPictures
-    //portfolioLinks
-    //targetAudience
-    //areasOfExpertise
-
     const ShowSocialMedia = (props) => {
         if(props.social){
             return(

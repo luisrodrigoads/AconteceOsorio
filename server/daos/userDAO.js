@@ -205,16 +205,6 @@ module.exports = {
                 }
             })
 
-        /*let msg;
-        if(userData === null) {
-            msg = 'Invalid ID';
-            res.status(202);
-        }else{
-            msg = 'Usuário Deletado';
-            res.status(200);
-        }*/
-
-        //return res.json({msg});
     }
 
 }
