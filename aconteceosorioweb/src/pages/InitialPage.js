@@ -14,6 +14,8 @@ function InitialPage () {
 
     const [typeData,setTypeData] = useState('');
 
+    const [hover, setHover] = useState(false);
+
     const renderList = (typeOfData) => {
         
         console.log(`typeOfData ${typeOfData}`);
@@ -34,22 +36,22 @@ function InitialPage () {
         <div className="container-fluid">
                        
             <div className="row justify-content-around" style={styles.typeOfDataDiv}>
-                <div onClick={()=> setTypeData('events')} className="col-lg-1 col-md-2 col-sm-2 col-5 d-sm-block m-2 bg-light shadow-sm">
+                <div onClick={()=> setTypeData('events')} onMouseOver={()=>setHover(true)} onMouseLeave={()=>setHover(false)} style={hover ? {cursor:'pointer'}:{}} className="col-lg-1 col-md-2 col-sm-2 col-5 d-sm-block m-2 bg-light shadow-sm">
                     <h6>Eventos</h6>
                 </div>
-                <div onClick={()=> setTypeData('artists')} className="col-lg-1 col-md-2 col-sm-2 col-5 d-sm-block m-2 bg-light shadow-sm">
+                <div onClick={()=> setTypeData('artists')} onMouseOver={()=>setHover(true)} onMouseLeave={()=>setHover(false)} style={hover ? {cursor:'pointer'}:{}} className="col-lg-1 col-md-2 col-sm-2 col-5 d-sm-block m-2 bg-light shadow-sm">
                     <h6>Artistas</h6>
                 </div>
-                <div onClick={()=> setTypeData('events')} className="col-lg-2 col-md-4 col-sm-4 col-6 d-sm-block m-2 bg-light shadow-sm">
+                <div onClick={()=> setTypeData('events')} onMouseOver={()=>setHover(true)} onMouseLeave={()=>setHover(false)} style={hover ? {cursor:'pointer'}:{}} className="col-lg-2 col-md-4 col-sm-4 col-6 d-sm-block m-2 bg-light shadow-sm">
                     <h6>Prestadores de serviços</h6>
                 </div>
-                <div onClick={()=> setTypeData('culturalPlaces')} className="col-lg-2 col-md-4 col-sm-4 col-4 d-sm-block m-2 bg-light shadow-sm">
+                <div onClick={()=> setTypeData('culturalPlaces')} onMouseOver={()=>setHover(true)} onMouseLeave={()=>setHover(false)} style={hover ? {cursor:'pointer'}:{}} className="col-lg-2 col-md-4 col-sm-4 col-4 d-sm-block m-2 bg-light shadow-sm">
                     <h6>Espaços Culturais</h6>
                 </div>
-                <div onClick={()=> setTypeData('institutions')} className="col-lg-1 col-md-3 col-sm-3 m-2 col-4 d-sm-block bg-light shadow-sm">
+                <div onClick={()=> setTypeData('institutions')} onMouseOver={()=>setHover(true)} onMouseLeave={()=>setHover(false)} style={hover ? {cursor:'pointer'}:{}} className="col-lg-1 col-md-3 col-sm-3 m-2 col-4 d-sm-block bg-light shadow-sm">
                     <h6>Instituições</h6>
                 </div>
-                <div onClick={()=> setTypeData('culturalPromoters')} className="col-lg-2 col-md-4 col-sm-4 col-6 d-sm-block m-2 bg-light shadow-sm">
+                <div onClick={()=> setTypeData('culturalPromoters')} onMouseOver={()=>setHover(true)} onMouseLeave={()=>setHover(false)} style={hover ? {cursor:'pointer'}:{}} className="col-lg-2 col-md-4 col-sm-4 col-6 d-sm-block m-2 bg-light shadow-sm">
                     <h6>Promotores de eventos</h6>
                 </div>
             </div>
