@@ -50,6 +50,8 @@ app.get('/culturalPromoters', (req,res) => userDAO.getAllCulturalPromoter(req, r
 app.get('/artists', (req,res) => userDAO.getAllArtist(req, res));
 app.get('/culturalEvents', (req,res) => culturalEventsDAO.getAllCulturalEvents(req, res));
 
+app.get('/deleteUser/:id',(req,res)=> userDAO.delete(req, res));
+
 
 
 app.listen(port,() => console.log('Server on port: ' + port));

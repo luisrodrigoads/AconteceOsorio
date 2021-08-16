@@ -146,7 +146,7 @@ module.exports = {
 
     getAllArtist(req, res){
         user.find({userType: 'ARTIST'})
-         .select('fantasyName userType profilePhoto description')
+         .select('fantasyName phone address email userType profilePhoto facebook instagram spotify linkedin youtube otherLink otherPictures areasOfExpertise targetAudience portfolioLinks description')
          .exec((err, response) => {
             if(err) {
                 console.log(err);
@@ -158,7 +158,7 @@ module.exports = {
 
     getAllInstitution(req, res){
         user.find({userType: 'INSTITUTION'})
-         .select('fantasyName userType profilePhoto description')
+         .select('fantasyName cnpj responsiblePerson phone address email institutionType userType instagram spotify linkedin youtube otherLink profilePhoto description')
          .exec((err, response) => {
             if(err) {
                 console.log(err);
@@ -170,7 +170,7 @@ module.exports = {
 
     getAllCulturalPlace(req, res){
         user.find({userType: 'CULTURAL_PLACE'})
-         .select('fantasyName userType profilePhoto description')
+         .select('fantasyName cnpj responsiblePerson linkedInstitution address email chargingFee bathroom diaperChanger wheelchairAccessibility facebook instagram spotify linkedin youtube otherLink userType profilePhoto description otherPictures')
          .exec((err, response) => {
             if(err) {
                 console.log(err);
@@ -182,7 +182,7 @@ module.exports = {
 
     getAllCulturalPromoter(req, res){
         user.find({userType: 'PROMOTER'})
-         .select('fantasyName userType profilePhoto description')
+         .select('fantasyName  phone email address linkedInstitution userType profilePhoto facebook instagram spotify linkedin youtube otherLink description')
          .exec((err, response) => {
             if(err) {
                 console.log(err);
@@ -192,20 +192,29 @@ module.exports = {
         });
     },
 
-    async delete(req, res) {
-        const id = req.params.id;
-        const userData = await user.findByIdAndDelete(id);
+    delete(req, res) {
+        const idUser = req.params.id;
+        /*const userData = user.findByIdAndDelete(idUser);*/
+        user
+            .deleteOne({ _id : idUser})
 
-        let msg;
+            .exec((err, result) => {
+                if(err) res.status(400).json(err);
+                else {
+                    res.status(200).json({result});
+                }
+            })
+
+        /*let msg;
         if(userData === null) {
             msg = 'Invalid ID';
             res.status(202);
         }else{
             msg = 'Usuário Deletado';
             res.status(200);
-        }
+        }*/
 
-        return res.json({msg});
+        //return res.json({msg});
     }
 
 }
