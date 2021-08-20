@@ -3,6 +3,8 @@ import {Field, FieldArray, reduxForm} from 'redux-form'
 import {createTextMask} from 'redux-form-input-masks'
 
 import BASE_URL from '../../config/consts';
+import areasOfExpertiseArtist from '../../staticData/areasOfExpertiseArtist';
+import targetAudience from '../../staticData/targetAudience';
 import styles from '../../styles/FormRegisterUserStyle';
 import { SocialFormGroup } from './SocialFormGroup';
 
@@ -39,7 +41,8 @@ const FormRegisterArtist = props => {
             
     }
 
-        const renderSubAreas = ({fields}) => (
+        const renderSubAreas = ({fields, data}) => (
+
             <>
                 <button className="btn btn-info" type="button" onClick={() => fields.push()}>
                     Adicionar SubArea
@@ -53,11 +56,21 @@ const FormRegisterArtist = props => {
                     <div>
                         <Field
                             name={subAreaArtist}
-                            type="text"
-                            component={renderField}
-                            placeholder="subarea"
+                            component="select"
                             style={{marginLeft:'30px',marginRight:'10px'}}
-                        />
+                        >
+                            <option></option>
+                            {
+                                filterArea(getValueOfArea(data)) && 
+                                    (
+                                        filterArea(getValueOfArea(data))[0].subAreas.map((sub) => {
+                                            return (
+                                                <option value={sub}>{sub}</option>
+                                            );
+                                        })
+                                    )
+                            }
+                        </Field>
                     </div>
                     <div>
                         <button
@@ -78,6 +91,7 @@ const FormRegisterArtist = props => {
         )
 
         const renderAreas = ({fields}) => (
+
             <>
             <button className="btn btn-info" type="button" onClick={() => fields.push({})}>
                 Adicionar Área
@@ -91,12 +105,20 @@ const FormRegisterArtist = props => {
                     </div>
                     <div >
                         <Field
+                        id={index}
                         style={{marginRight:'10px'}}
                         name={`${areaArtist}.area`}
-                        type="text"
-                        placeholder="area"
-                        component={renderField}
-                        />
+                        component="select"
+                        >
+                            <option></option>
+                            {
+                                areasOfExpertiseArtist.map((a) => {
+                                    return (
+                                        <option value={a.area}>{a.area}</option>
+                                    );
+                                })
+                            }
+                        </Field>
                     </div>
                     <div>
                         <button
@@ -108,11 +130,28 @@ const FormRegisterArtist = props => {
                         </button>
                     </div>
                 </div>
-                <FieldArray name={`${areaArtist}.subAreas`} component={renderSubAreas} />
+                
+                <FieldArray name={`${areaArtist}.subAreas`} data={document.getElementById(index)} component={renderSubAreas} />
             </div>
             ))}
+            
             </>
         )
+
+        const filterArea = data => {
+            return areasOfExpertiseArtist.filter(function (a) {
+                if(a.area === data)
+                    return a.subAreas;
+            })
+        } 
+
+        const getValueOfArea = data => {
+            var e = data;
+            var value = e?.value;
+
+            return value ? value : 'valor vazio';
+        }
+
 
         const AreasOfExpertiseForm = () => {
         
@@ -141,10 +180,18 @@ const FormRegisterArtist = props => {
                         <Field
                         style={{marginRight:'10px'}}
                         name={ageAudience}
-                        type="text"
-                        component={renderField}
-                        placeholder="Faixa etaria" 
-                        />
+                        component="select" 
+                        >
+                            <option></option>   
+                            {
+                                targetAudience.map((age) => {
+                                    return(
+                                        <option value={age} >{age}</option>
+                                    );
+                                })
+                            }
+                        </Field>
+
                     </div>
                     <div>
                         <button

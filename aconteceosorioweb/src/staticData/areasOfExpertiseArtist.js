@@ -157,3 +157,5 @@ const areasOfExpertiseArtist = [
         ]
     }
 ];
+
+export default areasOfExpertiseArtist;
