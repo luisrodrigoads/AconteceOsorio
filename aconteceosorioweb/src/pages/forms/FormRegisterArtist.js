@@ -10,85 +10,100 @@ import { SocialFormGroup } from './SocialFormGroup';
 
 const FormRegisterArtist = props => {
 
-    const cnpjMask = createTextMask({pattern: '99.999.999/9999-99'})
-    const phoneMask = createTextMask({pattern: '(99) 99999-9999'})
-    const cpfMask = createTextMask({pattern: '999.999.999-99'})
+        const cnpjMask = createTextMask({pattern: '99.999.999/9999-99'})
+        const phoneMask = createTextMask({pattern: '(99) 99999-9999'})
+        const cpfMask = createTextMask({pattern: '999.999.999-99'})
 
-    const [files] = useState(props.images)
+        const [files] = useState(props.images)
 
-    useEffect(() => {
-        props.change('userType', 'ARTIST')
-    }, [props]);
+        useEffect(() => {
+            props.change('userType', 'ARTIST')
+            console.log('Initial values', props.initialValues);
+        }, [props]);
 
-    const renderImages = () => {
-        return (
-            <div>
-            {
+        const renderImages = () => {
+            return (
+                <div>
+                {
 
-                files ?
-                    files.map( (element, index) =>  
-                    <img
-                        key={ index }
-                        style={styles.otherImage} 
-                        src={ typeof(element) == 'string' ? `${BASE_URL}/${element}` : URL.createObjectURL(element) } 
-                        alt="img cultural_place" />
-                    )
-                    :
-                    null
-            }
-            </div>
-        );
-            
-    }
-
-        const renderSubAreas = ({fields, data}) => (
-
-            <>
-                <button className="btn btn-info" type="button" onClick={() => fields.push()}>
-                    Adicionar SubArea
-                </button>
-            <hr/>
-                 
-            {fields.map((subAreaArtist, index) => (
-            
-            <div key={index} className="form-group" style={{backgroundColor:'#eee',padding:'5px'}}>
-                <div className="row justify-content-around">
-                    <div>
-                        <Field
-                            name={subAreaArtist}
-                            component="select"
-                            style={{marginLeft:'30px',marginRight:'10px'}}
-                        >
-                            <option></option>
-                            {
-                                filterArea(getValueOfArea(data)) && 
-                                    (
-                                        filterArea(getValueOfArea(data))[0].subAreas.map((sub) => {
-                                            return (
-                                                <option value={sub}>{sub}</option>
-                                            );
-                                        })
-                                    )
-                            }
-                        </Field>
-                    </div>
-                    <div>
-                        <button
-                        className="btn btn-danger"
-                        type="button"
-                        onClick={() => fields.remove(index)}
-                        >
-                            X
-                        </button>
-                    </div>
-                    
+                    files ?
+                        files.map( (element, index) =>  
+                        <img
+                            key={ index }
+                            style={styles.otherImage} 
+                            src={ typeof(element) == 'string' ? `${BASE_URL}/${element}` : URL.createObjectURL(element) } 
+                            alt="img cultural_place" />
+                        )
+                        :
+                        null
+                }
                 </div>
-            </div>
-            
-            ))}
-            
-            </>
-        )
+            );
+                
+        }
+
+        const renderSubAreas = ({fields, data}) => {
+        
+            return (
+
+                <>
+                    <button className="btn btn-info" type="button" onClick={() => fields.push()}>
+                        Adicionar SubArea
+                    </button>
+                <hr/>
+                    
+                {fields.map((subAreaArtist, index) => (
+                
+                <div key={index} className="form-group" style={{backgroundColor:'#eee',padding:'5px'}}>
+                    <div className="row justify-content-around">
+                        <div>
+                            <Field
+                                name={subAreaArtist}
+                                component="select"
+                                style={{marginLeft:'30px',marginRight:'10px'}}
+                            >
+                                {/*<option></option>*/}
+                                {
+                                    
+                                    /*filterArea(getValueOfArea(data)) && 
+                                        (
+                                            filterArea(getValueOfArea(data))[0].subAreas.map((sub) => {
+                                                props.initialValues.areasOfExpertise.map((ar)=>{
+                                                    if(getValueOfArea(data) === ar.area){
+
+                                                        ar.subAreas && (ar.subAreas.map((s) => {
+                                                            return (<option selected value={s}>{s}</option>);
+                                                        }))
+                                                    }
+                                                })
+
+                                                return (
+                                                    <option value={sub}>{sub}</option>
+                                                );
+                                            })
+                                        )
+                                     */
+                                }
+                            </Field>
+                        </div>
+                        <div>
+                            <button
+                            className="btn btn-danger"
+                            type="button"
+                            onClick={() => fields.remove(index)}
+                            >
+                                X
+                            </button>
+                        </div>
+                        
+                    </div>
+                </div>
+                
+                ))}
+                
+                </>
+            )
+        }
 
         const renderAreas = ({fields}) => (
 
@@ -110,12 +125,16 @@ const FormRegisterArtist = props => {
                         name={`${areaArtist}.area`}
                         component="select"
                         >
-                            <option></option>
+                            {/* <option></option> */}
                             {
                                 areasOfExpertiseArtist.map((a) => {
+                                    props.initialValues.areasOfExpertise.map((ar) => {
+                                        if(ar.area === a.area)
+                                            return <option selected value={a.area}>{a.area}</option>
+                                    })
                                     return (
                                         <option value={a.area}>{a.area}</option>
-                                    );
+                                    ); 
                                 })
                             }
                         </Field>
@@ -149,7 +168,8 @@ const FormRegisterArtist = props => {
             var e = data;
             var value = e?.value;
 
-            return value ? value : 'valor vazio';
+            const ret = value ? value : 'valor vazio';
+            return ret;
         }
 
 
@@ -182,9 +202,13 @@ const FormRegisterArtist = props => {
                         name={ageAudience}
                         component="select" 
                         >
-                            <option></option>   
+                            {/*<option></option>*/}   
                             {
                                 targetAudience.map((age) => {
+                                    props.initialValues.targetAudience.map((ta) => {
+                                        if(age === ta)
+                                            return <option selected value={age} >{age}</option>
+                                    })
                                     return(
                                         <option value={age} >{age}</option>
                                     );
@@ -322,6 +346,7 @@ const FormRegisterArtist = props => {
                 >
                     
                     {formComponents.map(comp => {
+                        console.log('initialvalues',props.initialValues);
                         return (
                             <div key={comp.name} className="form-group">
                                 <div style={styles.labelInputDiv} className="row justify-content-between">   

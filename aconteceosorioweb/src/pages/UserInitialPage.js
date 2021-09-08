@@ -127,6 +127,9 @@ function UserInitialPage () {
                     <Link to="/EditUserPage">
                         <h5 style={styles.textLinkStyle}>Editar informações</h5>
                     </Link>
+                    <Link to="/RegisterEvent">
+                        <h5 style={styles.textLinkStyle}>Cadastrar evento</h5>
+                    </Link>
                     <hr/>
                     <h2>{user.fantasyName}</h2>
 
@@ -260,14 +263,14 @@ function UserInitialPage () {
                             id="tabCulturalEvents"
                             role="tabpanel"   
                         >
-                            <ListOfEvents/>
+                            <ListOfEvents  />
                         </div>
                         <div 
                             className="tab-pane fade"
                             id="tabCulturalActivities"
                             role="tabpanel"
                         >
-                            <ListOfEvents/>
+                            <ListOfEvents  />
                         </div>
                 </div> 
 

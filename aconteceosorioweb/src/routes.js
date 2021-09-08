@@ -12,6 +12,7 @@ import { relogin } from './actions/authActions';
 import HeaderPage from './pages/componentsPage/HeaderPage';
 import EditUserPage from './pages/EditUserPage';
 import DetailsUser from './pages/DetailsUser';
+import RegisterEvent from './pages/RegisterEvent';
 
 function ProtectedRoute({component: Component, ...rest}){
 
@@ -56,7 +57,8 @@ export default function MainRoutes(){
                 <Route path='/DetailsUser' component={DetailsUser} />
                 <ProtectedRoute path='/InitialUserPage' component={UserInitialPage} />
                 <ProtectedRoute path='/EditUserPage' component={EditUserPage }/>
-                
+                <ProtectedRoute path='/RegisterEvent' component={RegisterEvent} />
+
                 <Route path='/Logout' component={LogoutPage}/>
             </Router>
         </>

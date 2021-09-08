@@ -20,7 +20,7 @@ function InitialPage () {
         
         console.log(`typeOfData ${typeOfData}`);
         if(!typeOfData || typeOfData === 'events'){
-            return <ListOfEvents />;
+            return <ListOfEvents culturalEvent={false} />;
         }else if(typeOfData === 'artists'){
             return <ListOfArtists />;
         }else if(typeOfData === 'culturalPlaces'){
