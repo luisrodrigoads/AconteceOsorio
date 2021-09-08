@@ -41,7 +41,9 @@ app.post('/updateUser',validateToken ,upload.array('images',10), (req, res) => u
 app.post('/disableUser', validateToken,(req,res) => userDAO.disableUser(req,res));
 app.post('/enableUser', validateToken,(req,res) => userDAO.enableUser(req,res));
 
-app.post('culturalEvent', validateToken,(req, res) => culturalEventsDAO.setCulturalEvent(req, res));
+app.post('/culturalEvent', validateToken,(req, res) => culturalEventsDAO.setCulturalEvent(req, res));
+app.get('/culturalEvent/:id', validateToken,(req, res) => culturalEventsDAO.deleteCulturalEvent(req, res));
+app.get('/userEvents', validateToken,(req, res) => culturalEventsDAO.getUserCulturalEvent(req, res));
 
 //public user routes
 app.get('/institutions', (req,res) => userDAO.getAllInstitution(req, res));

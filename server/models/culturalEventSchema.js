@@ -5,6 +5,10 @@ const culturalEventSchema = new mongoose.Schema({
     eventTitle: String,
     eventDescription: String,
     dateOcurrEvent: Date,
+    eventType: {
+        type: String,
+        enum: ['CULTURAL_ACTIVITY','CULTURAL_EVENT'],
+    },
     dateCreate: {
         type: Number,
         default: Date.now

@@ -30,7 +30,12 @@ const getAllCulturalEvents = (req, res) => {
 }
 
 const setCulturalEvent = async (req, res) => {
+    console.log('setCulturalEvent');
+    console.log(req.body);
+
     const newCulturalEvent = await new culturalEvent(req.body)
+
+    console.log(newCulturalEvent);
 
     const currentUser = decodeJWT(req.headers['authorization'])
 
