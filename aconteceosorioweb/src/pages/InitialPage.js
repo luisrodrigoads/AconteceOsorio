@@ -18,9 +18,8 @@ function InitialPage () {
 
     const renderList = (typeOfData) => {
         
-        console.log(`typeOfData ${typeOfData}`);
-        if(!typeOfData || typeOfData === 'events'){
-            return <ListOfEvents culturalEvent={false} />;
+        if(typeOfData.length < 1 || typeOfData === 'events'){
+            return <ListOfEvents />;
         }else if(typeOfData === 'artists'){
             return <ListOfArtists />;
         }else if(typeOfData === 'culturalPlaces'){

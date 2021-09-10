@@ -16,6 +16,8 @@ const FormRegisterArtist = props => {
 
         const [files] = useState(props.images)
 
+        const [editArea,setEditArea] = useState(props.isUpdateForm ? false : true);
+
         useEffect(() => {
             props.change('userType', 'ARTIST')
             console.log('Initial values', props.initialValues);
@@ -42,120 +44,112 @@ const FormRegisterArtist = props => {
                 
         }
 
-        const renderSubAreas = ({fields, data}) => {
-        
+         const renderSubAreas = ({fields, data}) => {
             return (
 
-                <>
-                    <button className="btn btn-info" type="button" onClick={() => fields.push()}>
-                        Adicionar SubArea
+                 <>
+                     <button className="btn btn-info" type="button" onClick={() => fields.push()}>
+                         Adicionar SubArea
                     </button>
-                <hr/>
+                    <hr/>
                     
-                {fields.map((subAreaArtist, index) => (
+                 {fields.map((subAreaArtist, index) => (
                 
-                <div key={index} className="form-group" style={{backgroundColor:'#eee',padding:'5px'}}>
-                    <div className="row justify-content-around">
-                        <div>
-                            <Field
-                                name={subAreaArtist}
-                                component="select"
-                                style={{marginLeft:'30px',marginRight:'10px'}}
-                            >
-                                {/*<option></option>*/}
-                                {
+                 <div key={index} className="form-group" style={{backgroundColor:'#eee',padding:'5px'}}>
+                     <div className="row justify-content-around">
+                         <div>
+                             <Field
+                                 name={subAreaArtist}
+                                 component="select"
+                                 style={{marginLeft:'30px',marginRight:'10px'}}
+                             >
+                                 {/*<option></option>*/}
+                                 {
                                     
-                                    /*filterArea(getValueOfArea(data)) && 
-                                        (
-                                            filterArea(getValueOfArea(data))[0].subAreas.map((sub) => {
-                                                props.initialValues.areasOfExpertise.map((ar)=>{
-                                                    if(getValueOfArea(data) === ar.area){
+                                     filterArea(getValueOfArea(data)) && 
+                                         (
+                                             filterArea(getValueOfArea(data))[0].subAreas.map((sub) => {
 
-                                                        ar.subAreas && (ar.subAreas.map((s) => {
-                                                            return (<option selected value={s}>{s}</option>);
-                                                        }))
-                                                    }
-                                                })
-
-                                                return (
-                                                    <option value={sub}>{sub}</option>
-                                                );
-                                            })
-                                        )
-                                     */
-                                }
-                            </Field>
-                        </div>
-                        <div>
-                            <button
-                            className="btn btn-danger"
-                            type="button"
-                            onClick={() => fields.remove(index)}
-                            >
-                                X
-                            </button>
-                        </div>
+                                                 return (
+                                                     <option value={sub}>{sub}</option>
+                                                 );
+                                             })
+                                             
+                                         )
+                                     
+                                 }
+                             </Field>
+                         </div>
+                         <div>
+                             <button
+                             className="btn btn-danger"
+                             type="button"
+                             onClick={() => fields.remove(index)}
+                             >
+                                 X
+                             </button>
+                         </div>
                         
-                    </div>
-                </div>
+                     </div>
+                 </div>
                 
-                ))}
+                 ))}
                 
-                </>
-            )
-        }
+                 </>
+             )
+         }
 
-        const renderAreas = ({fields}) => (
+         const renderNewAreas = ({fields}) => (
 
-            <>
-            <button className="btn btn-info" type="button" onClick={() => fields.push({})}>
-                Adicionar Área
-            </button>
+             <>
+             <button className="btn btn-info" type="button" onClick={() => fields.push({})}>
+                 Adicionar Área
+             </button>
             
-            {fields.map((areaArtist, index) => (
-            <div key={index} style={{backgroundColor:'#efefef'}} className="form-group">
-                <div  style={{padding:'5px',marginTop:'20px',marginLeft:'5px',marginRight:'5px'}} className="row">
-                    <div >
-                        <h4 style={{marginRight:'10px'}}>Área</h4>
-                    </div>
-                    <div >
-                        <Field
-                        id={index}
-                        style={{marginRight:'10px'}}
-                        name={`${areaArtist}.area`}
-                        component="select"
-                        >
-                            {/* <option></option> */}
-                            {
-                                areasOfExpertiseArtist.map((a) => {
-                                    props.initialValues.areasOfExpertise.map((ar) => {
-                                        if(ar.area === a.area)
-                                            return <option selected value={a.area}>{a.area}</option>
-                                    })
-                                    return (
-                                        <option value={a.area}>{a.area}</option>
-                                    ); 
-                                })
-                            }
-                        </Field>
-                    </div>
-                    <div>
-                        <button
-                        className="btn btn-danger"
-                        type="button"
-                        onClick={() => fields.remove(index)}
-                        >
-                            X
-                        </button>
-                    </div>
-                </div>
-                
-                <FieldArray name={`${areaArtist}.subAreas`} data={document.getElementById(index)} component={renderSubAreas} />
-            </div>
-            ))}
-            
-            </>
-        )
+             {fields.map((areaArtist, index) => {
+
+             return (
+                 <div key={index} style={{backgroundColor:'#efefef'}} className="form-group">
+                     <div  style={{padding:'5px',marginTop:'20px',marginLeft:'5px',marginRight:'5px'}} className="row">
+                         <div >
+                             <h4 style={{marginRight:'10px'}}>Área</h4>
+                         </div>
+                         <div >
+                             <Field
+                             id={index}
+                             style={{marginRight:'10px'}}
+                             name={`${areaArtist}.area`}
+                             component="select"
+                             >
+                                 {/* <option></option> */}
+                                 {
+                                     areasOfExpertiseArtist.map((a) => {
+                                         return (
+                                             <option value={a.area}>{a.area}</option>
+                                         ); 
+                                     })
+                                 }
+                             </Field>
+                         </div>
+                         <div>
+                             <button
+                             className="btn btn-danger"
+                             type="button"
+                             onClick={() => fields.remove(index)}
+                             >
+                                 X
+                             </button>
+                         </div>
+                     </div>
+                     {console.log('element', fields[index])}
+                 <FieldArray name={`${areaArtist}.subAreas`} data={document.getElementById(index)} component={renderSubAreas} />
+                 </div>
+             )}
+             )}
+             </>
+         )
+
+
 
         const filterArea = data => {
             return areasOfExpertiseArtist.filter(function (a) {
@@ -172,11 +166,54 @@ const FormRegisterArtist = props => {
             return ret;
         }
 
+        const renderAreas = ({fields}) => {
+            return (
+                <>
+                    
+                    {props.initialValues && props.initialValues.areasOfExpertise.map( (field) => (
+                       
+                       <div style={{border: '1px solid #e6e6e6', borderRadius: '5px',padding: '5px',marginBottom: '10px', color: 'grey'}}>
+                        <h4>{field.area}</h4>
+                        <hr/>
+                        {field.subAreas.map((sub) => (
+                            <h5>{sub}</h5>
+                        ))}
+                       </div>
+                    ))}
+                </>
+            )
+            
+        }
 
-        const AreasOfExpertiseForm = () => {
+
+        const AreasOfExpertiseForm = ({fields}) => {
         
-            return (  
-                <FieldArray name="areasOfExpertise" component={renderAreas} />      
+            return (
+                <>
+                <div style={{display:'flex',flexDirection: 'row',width:'100%',alignItems: 'center', justifyContent: 'space-between'}}>
+                    <h2>Areas de atuação</h2>
+                    {
+                        props.isUpdateForm ? (
+                            <button
+                            className="btn btn-warning"
+                            style={{color: 'white'}}
+                            onClick={() => {setEditArea(true);}}
+                            >
+                                Editar
+                            </button>
+                        ) : (
+                            null
+                        )
+                    }
+                    
+                </div> 
+                {
+                    editArea ? <FieldArray name="areasOfExpertise" component={renderNewAreas} /> 
+                        : <FieldArray name="areasOfExpertise" component={renderAreas} />
+                } 
+                      
+            
+                </>
             )
         }
 
@@ -205,7 +242,7 @@ const FormRegisterArtist = props => {
                             {/*<option></option>*/}   
                             {
                                 targetAudience.map((age) => {
-                                    props.initialValues.targetAudience.map((ta) => {
+                                    props.initialValues?.targetAudience.map((ta) => {
                                         if(age === ta)
                                             return <option selected value={age} >{age}</option>
                                     })
