@@ -12,9 +12,30 @@ const getUserCulturalEvent = (req, res) => {
         .exec((err, result) => {
             if(err) return res.status(400).json(err)
             else {
-                res.status(200).json({result})
+                res.status(200).json(result)
             }
         })
+}
+
+const getCulturalEventByDate = (req, res) => {
+    const dateEvent = req.params.dateEvent;
+    console.log(new Date(req.params.dateEvent).toISOString());
+    culturalEvent
+        .find({
+            $and: [
+                {"dateStart":{$gte: new Date(dateEvent).toISOString()}},
+                {"dateEnd":{$lte: new Date(dateEvent).toISOString()}}
+            ]
+        })
+        .sort()
+        .exec((err, result) => {
+            if(err) return res.status(400).json(err)
+            else {
+                console.log(result)
+                res.status(200).json(result)
+            }
+        })
+
 }
 
 const getAllCulturalEvents = (req, res) => {
@@ -24,18 +45,14 @@ const getAllCulturalEvents = (req, res) => {
         .exec((err, result) => {
             if(err) res.status(400).json(err);
             else {
-                res.status(200).json({result});
+                res.status(200).json(result);
             }
         })
 }
 
 const setCulturalEvent = async (req, res) => {
-    console.log('setCulturalEvent');
-    console.log(req.body);
 
     const newCulturalEvent = await new culturalEvent(req.body)
-
-    console.log(newCulturalEvent);
 
     const currentUser = decodeJWT(req.headers['authorization'])
 
@@ -55,16 +72,18 @@ const deleteCulturalEvent = (req, res) => {
     const currentUser = decodeJWT(req.headers['authorization'])
 
     const culturalEventID = req.params.id;
-
     culturalEvent
         .deleteOne({whoCreated: currentUser._id, _id: culturalEventID})
-
         .exec((err, result) => {
-            if(err) return res.status(400).json(err)
+            if(err){
+                console.log('batata errada')
+                return res.status(400).json(err)
+            } 
             else {
+                console.log('batata certo')
                 res.status(200).json({result})
             }
         })
 }
 
-module.exports = {getUserCulturalEvent, getAllCulturalEvents, setCulturalEvent, deleteCulturalEvent}
+module.exports = {getUserCulturalEvent, getAllCulturalEvents, setCulturalEvent, deleteCulturalEvent, getCulturalEventByDate}

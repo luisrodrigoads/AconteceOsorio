@@ -3,7 +3,7 @@ import { useSelector, useDispatch} from 'react-redux';
 import {Link, withRouter} from 'react-router-dom';
 import { disableUser, enableUser, updateUser, updateUserImg } from '../actions/userActions';
 import BASE_URL from '../config/consts';
-import ListOfEvents from './componentsPage/ListOfEvents';
+import ListOfUserEvents from './componentsPage/ListOfUserEvents';
 import UserInfoModal from './componentsPage/UserInfoModal';
 
 import styles from '../styles/UserInitialPageStyle';
@@ -263,14 +263,14 @@ function UserInitialPage () {
                             id="tabCulturalEvents"
                             role="tabpanel"   
                         >
-                            <ListOfEvents  />
+                            <ListOfUserEvents  />
                         </div>
                         <div 
                             className="tab-pane fade"
                             id="tabCulturalActivities"
                             role="tabpanel"
                         >
-                            <ListOfEvents  />
+                            <ListOfUserEvents  />
                         </div>
                 </div> 
 

@@ -51,6 +51,11 @@ app.get('/culturalPlaces', (req,res) => userDAO.getAllCulturalPlace(req, res));
 app.get('/culturalPromoters', (req,res) => userDAO.getAllCulturalPromoter(req, res));
 app.get('/artists', (req,res) => userDAO.getAllArtist(req, res));
 app.get('/culturalEvents', (req,res) => culturalEventsDAO.getAllCulturalEvents(req, res));
+app.get('/filterEventByDate/:dateEvent',(req, res) => culturalEventsDAO.getCulturalEventByDate(req, res));
+
+//get options to register event
+app.get('/instituteOptions', (req,res) => userDAO.getInstitutions(req, res));
+app.get('/culturalPlaceOptions', (req,res) => userDAO.getCulturalPlaces(req, res));
 
 app.get('/deleteUser/:id',(req,res)=> userDAO.delete(req, res));
 

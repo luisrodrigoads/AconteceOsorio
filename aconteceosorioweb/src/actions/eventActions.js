@@ -13,7 +13,7 @@ export const getEvents = () => {
 			.then(response =>
 				dispatch({
 					type: EVENTS_FETCHED,
-					payload: response.data.result
+					payload: response.data
 				})
 			)
 			.catch(error => toastr.error('Erro!', 'Internal server error'))

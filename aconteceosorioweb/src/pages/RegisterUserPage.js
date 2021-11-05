@@ -13,7 +13,6 @@ import FormRegisterArtist from './forms/FormRegisterArtist';
 function RegisterUserPage() {
 
     const dispatch = useDispatch();
-
     const [userType, setUserType] = useState('')
 
     const [files, setFiles] = useState({ images: UserModel.otherPictures })
@@ -29,7 +28,7 @@ function RegisterUserPage() {
     }
 
     const renderCorrectForm = () => {
-
+        
         switch (userType) {
             case 'institution':
                 return <FormRegisterInstitution isUpdateForm={false} initialValues={UserModel} onSubmit={values => handleInstituteForm(values)} />

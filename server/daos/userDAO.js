@@ -192,6 +192,30 @@ module.exports = {
         });
     },
 
+    getInstitutions(req, res){
+        user.find({userType: 'INSTITUTION'})
+        .select('fantasyName')
+        .exec((err, response) => {
+           if(err) {
+               console.log(err);
+               return res.status(500).json("Error on server side - get artists");
+           }
+           return res.status(200).json(response);
+       });
+    },
+
+    getCulturalPlaces(req, res){
+        user.find({userType: 'CULTURAL_PLACE'})
+        .select('fantasyName')
+        .exec((err, response) => {
+           if(err) {
+               console.log(err);
+               return res.status(500).json("Error on server side - get artists");
+           }
+           return res.status(200).json(response);
+       });
+    },
+
     delete(req, res) {
         const idUser = req.params.id;
         /*const userData = user.findByIdAndDelete(idUser);*/

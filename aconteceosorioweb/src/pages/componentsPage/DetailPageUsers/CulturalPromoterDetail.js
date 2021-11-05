@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import ListOfEvents from './../../componentsPage/ListOfEvents';
+import ListOfEvents from './../InitialPageLists/ListOfEvents';
 import CulturalPromoterPublicModal from '../ModalUsers/CulturalPromoterPublicModal';
 import BASE_URL from '../../../config/consts';
 

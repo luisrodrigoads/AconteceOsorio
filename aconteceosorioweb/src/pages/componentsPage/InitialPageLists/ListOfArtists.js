@@ -17,7 +17,7 @@ export default function ListOfArtists () {
     return(
         <div className="row justify-content-center">
                 
-                {
+                { 
                     list === undefined ? null : (
                     list.map((item,index) => {
                         return(

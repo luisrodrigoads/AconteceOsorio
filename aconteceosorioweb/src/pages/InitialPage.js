@@ -1,8 +1,9 @@
 import React from 'react';
-import ListOfEvents from './componentsPage/ListOfEvents';
+
 import {withRouter} from 'react-router-dom';
 
 import styles from '../styles/InitialPageStyle';
+import ListOfEvents from './componentsPage/InitialPageLists/ListOfEvents';
 import ListOfArtists from './componentsPage/InitialPageLists/ListOfArtists';
 import ListOfInstitutions from './componentsPage/InitialPageLists/ListOfInstitutions';
 import ListOfCulturalPlaces from './componentsPage/InitialPageLists/ListOfCulturalPlaces';
