@@ -7,7 +7,6 @@ import BASE_URL from '../../config/consts';
 import styles from '../../styles/FormRegisterUserStyle';
 import { SocialFormGroup } from './SocialFormGroup';
 
-
 const FormRegisterCulturalPlace = props => {
 
     const cnpjMask = createTextMask({pattern: '99.999.999/9999-99'})
@@ -24,7 +23,6 @@ const FormRegisterCulturalPlace = props => {
         return (
             <div>
             {
-
                 files ?
                     files.map( (element, index) =>  
                     <img

@@ -53,9 +53,8 @@ function RegisterUserPage() {
         if (files['images'] !== undefined)
             files['images'].forEach(img => fd.append('images', img));
 
-        console.log('parsing form')
         for (let key in values) {
-            console.log(key, 'tipo', typeof(values[key]))
+            
             if (key === 'areasOfExpertise' || key === 'targetAudience' || key === 'portfolioLinks') {
                 fd.append(key, JSON.stringify(values[key]));
             } else if (values.hasOwnProperty(key))

@@ -31,17 +31,22 @@ function RegisterEvent(){
     }
 
     const handleEventForm = values => {
-        console.log('Handle submit');
+        console.log('Handle submit event');
         console.log(values);
 
-        // const fd = new FormData();
+        /* const fd = new FormData();
 
-        // for(let key in values)
-        //     if(values.hasOwnProperty(key))
-        //         fd.append(key, values[key]);
+         if(file['image'] !== undefined)
+                fd.append('image',file);
 
-        // dispatch(postEvent(fd))
+         for(let key in values){
+             if(values.hasOwnProperty(key)){
+                fd.append(key, values[key]);
+                console.log(`${key}: ${values[key]}`);
+            }
+        }
 
+        dispatch(postEvent(fd))*/
         dispatch(postEvent(values));
 
     }

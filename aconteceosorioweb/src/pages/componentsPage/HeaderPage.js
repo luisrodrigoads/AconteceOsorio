@@ -27,7 +27,7 @@ export default function HeaderPage (props) {
                             {props.name &&
                                 <Link to='InitialUserPage'>
                                     <h2 className="navbar-brand text-white">
-                                    {props.name} - PERFIL
+                                    {props.name} |
                                     </h2>
                                 </Link>
                             }
