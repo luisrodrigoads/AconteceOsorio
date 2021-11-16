@@ -16,7 +16,6 @@ export const relogin = () => {
 
         try {
             const data = JSON.parse(localStorage.getItem('acontece-osorio'));
-            console.log(data);
 
             if (data) {
 

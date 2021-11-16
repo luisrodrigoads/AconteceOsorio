@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 
 export default function ListOfArtists () {
 
-    const dispatch = useDispatch()
+    const dispatch = useDispatch() 
     const list = useSelector(state => state.artists.artistList) || undefined
     
     useEffect(() => {

@@ -1,9 +1,9 @@
 import React, { useState, useRef } from 'react';
-import ListOfEvents from './../InitialPageLists/ListOfEvents';
 import CulturalPromoterPublicModal from '../ModalUsers/CulturalPromoterPublicModal';
 import BASE_URL from '../../../config/consts';
 
 import styles from '../../../styles/UserInitialPageStyle';
+import ListEventsPublicUser from './ListEventsPublicUser';
 
 const CulturalPromoterDetail = props => {
 
@@ -102,14 +102,14 @@ const CulturalPromoterDetail = props => {
                         id="tabCulturalEvents"
                         role="tabpanel"   
                     >
-                        <ListOfEvents/>
+                        <ListEventsPublicUser idUser={user._id} />
                     </div>
                     <div 
                         className="tab-pane fade"
                         id="tabCulturalActivities"
                         role="tabpanel"
                     >
-                        <ListOfEvents/>
+                        <ListEventsPublicUser idUser={user._id} />
                     </div>
             </div> 
 

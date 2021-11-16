@@ -16,7 +16,7 @@ export const getEvents = () => {
 					payload: response.data
 				})
 			)
-			.catch(error => toastr.error('Erro!', 'Internal server error'))
+			.catch(error => console.log('get user private events catch')/*toastr.error('Erro!', 'Internal server error')*/)
 	}
 }
 
@@ -32,6 +32,7 @@ export const deleteEvent = id => {
 }
 
 export const postEvent = values => dispatch => {
+	
 	axios
 		.post(`${BASE_URL}/culturalEvent`, values/*, {
 			headers: {
@@ -45,9 +46,11 @@ export const postEvent = values => dispatch => {
 			else if (response.status === 200) {
 				dispatch(reset('newReportForm'))
 				window.location = '/InitialUserPage'          
-				toastr.success('Sucesso!', 'Novo registro inserido com sucesso!')
+				toastr.success('Sucesso!', 'Novo evento cadastrado com sucesso!')
 			}
 		})
 		.catch(error => toastr.error('Erro!', 'Internal server error'))
+
+	
 }
 

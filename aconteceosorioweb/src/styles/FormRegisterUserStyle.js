@@ -38,7 +38,18 @@ const styles = {
     socialMediaIconForm:{
         width:'29px',
         height:'29px'
-    }
+    },
+    buttonChangePersonalPhoto:{
+        border: 'none'
+    },
+    inputChangePersonalPhoto:{
+        display: "none",
+    },
+    imgChangePersonalPhoto:{
+        width:'200px',
+        height:'200px',
+        cursor:'pointer'
+    },
 }
 
 export default styles;

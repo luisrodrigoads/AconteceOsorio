@@ -9,6 +9,7 @@ import "../../../styles/PaginationStyle.css";
 
 import moment from 'react-widgets-moment'
 import momentLocaliser from 'react-widgets-moment'
+import { Link } from 'react-router-dom';
 
 const PER_PAGE = 3;
 
@@ -87,7 +88,9 @@ export default function ListOfEvents (props) {
                             
                             return(
                                 <div key={id} className="card col-lg-3 col-md-5 col-sm-10 m-3 bg-light shadow">
-                                    <img className="card-img-top" style={{width:'100%',height:'300px'}} src='images/violao.jpg' alt="Alternative description"/>
+                                    <Link to={{pathname: '/DetailsUser', state: item}}>
+                                        <img className="card-img-top" style={{width:'100%',height:'300px'}} src='images/violao.jpg' alt="Alternative description"/>
+                                    </Link>
                                     <div className="card-body">
                                         <h5 className="card-title">{item.eventTitle}</h5>
                                         <p className="card-text">{item.eventDescription}</p>
