@@ -3,12 +3,12 @@ import ArtistDetail from './componentsPage/DetailPageUsers/ArtistDetail'
 import CulturalPlaceDetail from './componentsPage/DetailPageUsers/CulturalPlaceDetail'
 import CulturalPromoterDetail from './componentsPage/DetailPageUsers/CulturalPromoterDetail'
 import InstitutionDetail from './componentsPage/DetailPageUsers/InstitutionDetail'
+import EventDetail from './componentsPage/DetailPageUsers/EventDetail'
 
  const DetailsUser = props => {
 
     const detail = props.location.state
-    console.log("detail:");
-    console.log(detail);
+ 
 
     if(detail.userType === 'ARTIST') {
         return <ArtistDetail user={detail} />;
@@ -18,6 +18,8 @@ import InstitutionDetail from './componentsPage/DetailPageUsers/InstitutionDetai
         return <CulturalPlaceDetail user={detail} />;
     }else if(detail.userType === 'PROMOTER'){
         return <CulturalPromoterDetail user={detail} />;
+    }else if(detail?.eventType){
+        return <EventDetail culturalEvent={detail} />;
     }
 
     
