@@ -1,4 +1,4 @@
-const { user } = require('../config/db');
+const { user, culturalEvent } = require('../config/db');
 
 const emailRegex = /\S+@\S+\.\S+/;
 const passwordRegex = /((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]).{6})/;
@@ -146,7 +146,7 @@ module.exports = {
 
     getAllArtist(req, res){
         user.find({userType: 'ARTIST'})
-         .select('fantasyName phone address email userType profilePhoto facebook instagram spotify linkedin youtube otherLink otherPictures areasOfExpertise targetAudience portfolioLinks description')
+         .select('_id fantasyName phone address email userType profilePhoto facebook instagram spotify linkedin youtube otherLink otherPictures areasOfExpertise targetAudience portfolioLinks description')
          .exec((err, response) => {
             if(err) {
                 console.log(err);
@@ -158,7 +158,7 @@ module.exports = {
 
     getAllInstitution(req, res){
         user.find({userType: 'INSTITUTION'})
-         .select('fantasyName cnpj responsiblePerson phone address email institutionType userType instagram spotify linkedin youtube otherLink profilePhoto description')
+         .select('_id fantasyName cnpj responsiblePerson phone address email institutionType userType instagram spotify linkedin youtube otherLink profilePhoto description')
          .exec((err, response) => {
             if(err) {
                 console.log(err);
@@ -170,7 +170,7 @@ module.exports = {
 
     getAllCulturalPlace(req, res){
         user.find({userType: 'CULTURAL_PLACE'})
-         .select('fantasyName cnpj responsiblePerson linkedInstitution address email chargingFee bathroom diaperChanger wheelchairAccessibility facebook instagram spotify linkedin youtube otherLink userType profilePhoto description otherPictures')
+         .select('_id fantasyName cnpj responsiblePerson linkedInstitution address email chargingFee bathroom diaperChanger wheelchairAccessibility facebook instagram spotify linkedin youtube otherLink userType profilePhoto description otherPictures')
          .exec((err, response) => {
             if(err) {
                 console.log(err);
@@ -182,7 +182,7 @@ module.exports = {
 
     getAllCulturalPromoter(req, res){
         user.find({userType: 'PROMOTER'})
-         .select('fantasyName  phone email address linkedInstitution userType profilePhoto facebook instagram spotify linkedin youtube otherLink description')
+         .select('_id fantasyName  phone email address linkedInstitution userType profilePhoto facebook instagram spotify linkedin youtube otherLink description')
          .exec((err, response) => {
             if(err) {
                 console.log(err);
@@ -225,7 +225,9 @@ module.exports = {
             .exec((err, result) => {
                 if(err) res.status(400).json(err);
                 else {
-                    res.status(200).json({result});
+                    culturalEvent.deleteMany({whoCreated: idUser});
+                    res.status(200);
+                    return res.json('Usuário deletado');
                 }
             })
 

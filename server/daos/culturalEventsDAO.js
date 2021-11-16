@@ -17,6 +17,20 @@ const getUserCulturalEvent = (req, res) => {
         })
 }
 
+const getUserPublicCulturalEvent = (req, res) => {
+    const UserID = req.params.id;
+
+    culturalEvent
+        .find({whoCreated: UserID})
+        .sort({ dateCreate: -1})
+        .exec((err, result) => {
+            if(err) return res.status(400).json(err)
+            else {
+                res.status(200).json(result)
+            }
+        })
+}
+
 const getCulturalEventByDate = (req, res) => {
     const dateEvent = req.params.dateEvent;
     console.log(new Date(req.params.dateEvent).toISOString());
@@ -58,7 +72,7 @@ const setCulturalEvent = async (req, res) => {
 
     newCulturalEvent.whoCreated = currentUser._id
     
-    newCulturalEvent.save().then(response => 
+     newCulturalEvent.save().then(response => 
             user.findOne({_id: currentUser._id }, (err, result) => {
                 result.culturalEvents.push(response._id)
                 result.save()
@@ -86,4 +100,19 @@ const deleteCulturalEvent = (req, res) => {
         })
 }
 
-module.exports = {getUserCulturalEvent, getAllCulturalEvents, setCulturalEvent, deleteCulturalEvent, getCulturalEventByDate}
+const deleteAllCulturalEvent = (req, res) => {
+   
+    culturalEvent
+        .deleteMany()
+        .exec((err, result) => {
+            if(err){
+                return res.status(400).json(err)
+            } 
+            else {
+                res.status(200);
+                res.json('todos os eventos excluidos')
+            }
+        })
+}
+
+module.exports = {getUserCulturalEvent, getUserPublicCulturalEvent, getAllCulturalEvents, setCulturalEvent, deleteCulturalEvent, deleteAllCulturalEvent, getCulturalEventByDate}
