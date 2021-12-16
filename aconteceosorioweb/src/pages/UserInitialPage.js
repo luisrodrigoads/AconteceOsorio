@@ -263,14 +263,14 @@ function UserInitialPage () {
                             id="tabCulturalEvents"
                             role="tabpanel"   
                         >
-                            <ListOfUserEvents  />
+                            <ListOfUserEvents type="CULTURAL_EVENT" />
                         </div>
                         <div 
                             className="tab-pane fade"
                             id="tabCulturalActivities"
                             role="tabpanel"
                         >
-                            <ListOfUserEvents  />
+                            <ListOfUserEvents type="CULTURAL_ACTIVITY"  />
                         </div>
                 </div> 
 

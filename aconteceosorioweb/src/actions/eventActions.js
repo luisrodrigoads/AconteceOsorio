@@ -32,25 +32,28 @@ export const deleteEvent = id => {
 }
 
 export const postEvent = values => dispatch => {
+
+	console.log('values in action post event')
+	console.log(...values);
 	
 	axios
-		.post(`${BASE_URL}/culturalEvent`, values/*, {
+		.post(`${BASE_URL}/culturalEvent`, values,{
 			headers: {
 				'content-type': 'multipart/form-data'
 			}
-		}*/)
+		})
 		.then(response => {
 			if (response.status === 400) 
 				toastr.error('Erro!', response)
 
 			else if (response.status === 200) {
 				dispatch(reset('newReportForm'))
-				window.location = '/InitialUserPage'          
+				//window.location = '/InitialUserPage'          
 				toastr.success('Sucesso!', 'Novo evento cadastrado com sucesso!')
 			}
 		})
 		.catch(error => toastr.error('Erro!', 'Internal server error'))
-
+		
 	
 }
 

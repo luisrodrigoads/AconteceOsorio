@@ -10,6 +10,7 @@ import "../../../styles/PaginationStyle.css";
 import moment from 'react-widgets-moment'
 import momentLocaliser from 'react-widgets-moment'
 import { Link } from 'react-router-dom';
+import BASE_URL from '../../../config/consts';
 
 const PER_PAGE = 3;
 
@@ -71,8 +72,8 @@ export default function ListOfEvents (props) {
         }
         <div style={{padding: '20px'}} className="row justify-content-center">
             <ReactPaginate
-                previousLabel={"← Previous"}
-                nextLabel={"Next →"}
+                previousLabel={"← Anterior"}
+                nextLabel={"Próxima →"}
                 pageCount={pageCount}
                 onPageChange={handlePageClick}
                 containerClassName={"pagination"}
@@ -89,7 +90,7 @@ export default function ListOfEvents (props) {
                             return(
                                 <div key={id} className="card col-lg-3 col-md-5 col-sm-10 m-3 bg-light shadow">
                                     <Link to={{pathname: '/DetailsUser', state: item}}>
-                                        <img className="card-img-top" style={{width:'100%',height:'300px'}} src='images/violao.jpg' alt="Alternative description"/>
+                                        <img className="card-img-top" style={{width:'100%',height:'300px'}} src={`${BASE_URL}/${item.image}`}  alt="Alternative description"/>
                                     </Link>
                                     <div className="card-body">
                                         <h5 className="card-title">{item.eventTitle}</h5>

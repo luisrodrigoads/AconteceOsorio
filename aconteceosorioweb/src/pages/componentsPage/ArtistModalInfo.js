@@ -8,7 +8,7 @@ export default function ArtistModalInfo({User: user}){
             user.areasOfExpertise ? (
                 <>
                 <h6>Areas de atuação</h6>
-                {user.areasOfExpertise.map((areaItem,indexArea) => {
+                {/*user.areasOfExpertise.map((areaItem,indexArea) => {
                     return (
                         <div className="modal-body text-justify" style={{border: '1px solid grey',marginBottom: '10px',borderRadius: '5px'}} key={indexArea}>
                             <h6>{areaItem.area}</h6>
@@ -22,7 +22,7 @@ export default function ArtistModalInfo({User: user}){
                         </div>
                     );
                 })
-                }  
+                */}  
                 </>
             ): null
         }

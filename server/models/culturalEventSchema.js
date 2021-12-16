@@ -20,6 +20,11 @@ const culturalEventSchema = new mongoose.Schema({
         type: String,
         enum: ['CULTURAL_ACTIVITY','CULTURAL_EVENT'],
     },
+    image: {
+        type: String,
+        default: "default-avatar.png"
+    },
+
     dateStart: Date,
     dateEnd: Date,
     dateCreate: {

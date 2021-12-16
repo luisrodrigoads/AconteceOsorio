@@ -102,14 +102,14 @@ const InstitutionDetail = props => {
                         id="tabCulturalEvents"
                         role="tabpanel"   
                     >
-                        <ListEventsPublicUser idUser={user._id} />
+                        <ListEventsPublicUser idUser={user._id} type="CULTURAL_EVENT" />
                     </div>
                     <div 
                         className="tab-pane fade"
                         id="tabCulturalActivities"
                         role="tabpanel"
                     >
-                        <ListEventsPublicUser idUser={user._id} />
+                        <ListEventsPublicUser idUser={user._id} type="CULTURAL_ACTIVITY" />
                     </div>
             </div> 
 

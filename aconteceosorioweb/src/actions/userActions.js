@@ -50,7 +50,8 @@ export const updateUser = values => {
     return dispatch => {
         
         dispatch({type: LOAD, payload: true})
-        
+        console.log('values action update user');
+        console.log(...values);
         axios.post(`${ BASE_URL }/updateUser`, values)
             .then(response => {
                 

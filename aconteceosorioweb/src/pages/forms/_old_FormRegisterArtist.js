@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import {Field, FieldArray, reduxForm} from 'redux-form'
 import {createTextMask} from 'redux-form-input-masks'
 
@@ -7,7 +7,6 @@ import areasOfExpertiseArtist from '../../staticData/areasOfExpertiseArtist';
 import targetAudience from '../../staticData/targetAudience';
 import styles from '../../styles/FormRegisterUserStyle';
 import { SocialFormGroup } from './SocialFormGroup';
-import SubAreasForm from './SubAreasForm';
 
 const FormRegisterArtist = props => {
 
@@ -19,76 +18,16 @@ const FormRegisterArtist = props => {
 
         const [editArea,setEditArea] = useState(props.isUpdateForm ? false : true);
 
-        //const subAreaSelectValue = useRef('');
-
-        const [listAreas, setListAreas] = useState([]);
-        const [textInputArea, setTextInputArea] = useState('');
-
         useEffect(() => {
             props.change('userType', 'ARTIST')
-            //console.log('Initial values', props.initialValues);
+            console.log('Initial values', props.initialValues);
         }, [props]);
 
-        const addArea = () => {
-            let lastItem = {area: textInputArea, subAreas:[]};
-            let arr = listAreas.concat(lastItem);
-            console.log(`add area ${textInputArea}`);
-            console.log('new array de areas');
-            console.log(arr);
-            setListAreas(arr);
-            setTextInputArea('');
-        }
-
-        const removeArea = (valueRemove) => {
-            console.log(`remove area ${valueRemove}`);
-            let newList = listAreas.filter(value => value.area !== valueRemove)
-            console.log('new array de areas');
-            console.log(newList);
-            setListAreas(newList);
-        }
-
-        const removeSubArea = (areaValue,valueRemove) => {
-            var indexArea = 0;
-            var indexSubArea = 0;
-            var newList = listAreas;
-
-            for(indexArea = 0; indexArea < newList.length; indexArea++){
-                 
-                if(newList[indexArea].area === areaValue){
-
-                    for(indexSubArea = 0; indexSubArea < newList[indexArea].subAreas.length; indexSubArea++){
-                        
-                        if(newList[indexArea].subAreas[indexSubArea] === valueRemove){
-                            newList[indexArea].subAreas.splice(indexSubArea,1);
-                            setListAreas(newList);
-                        }
-
-                    }
-                }
-
-            }
-
-        }
-
-        const addSubArea = (areaValue,subAreaText) => {
-            var indexArea = 0;
-            var newList = listAreas;
-
-            for(indexArea = 0; indexArea < newList.length; indexArea++) {
-
-                if(newList[indexArea].area === areaValue){
-                    newList[indexArea].subAreas.push(subAreaText);
-                    setListAreas(newList);
-                }
-
-            }
-
-        }
-
         const startEditAreas = () => {
-            setEditArea(true);      
+            setEditArea(true);
+            // props.initialValues.areasOfExpertiseArtist = [];
+            console.log('areasofexpertise',props.initialValues.areasOfExpertiseArtist);
         }
-
 
         const renderImages = () => {
             return (
@@ -111,26 +50,129 @@ const FormRegisterArtist = props => {
                 
         }
 
-        const renderAreas = () => {
+         const renderSubAreas = ({fields, data}) => {
             return (
-            <>
-                {/*props.initialValues && props.initialValues.areasOfExpertise.map( (field) => (
-                   
-                   <div style={{border: '1px solid #e6e6e6', borderRadius: '5px',padding: '5px',marginBottom: '10px', color: 'grey'}}>
-                    <h4>{field.area}</h4>
+
+                 <>
+                     <button className="btn btn-info" type="button" onClick={() => fields.push({name: 'Teste'})}>
+                         Adicionar SubArea
+                    </button>
                     <hr/>
-                    {field.subAreas.map((sub) => (
-                        <h5>{sub}</h5>
-                    ))}
-                   </div>
-                ))*/}
-            </>
-            )
-        }
+                    
+                 {fields && 
+                 <pre>
+                    {/* JSON.stringify(props.initialValues.areasOfExpertise[fields.name], null, 2) */}
+                    {JSON.stringify(fields, null, 2)}
+                 </pre>
+                 }
+                 {/*
+                 fields.map((subAreaArtist, index) => (
+                
+                 <div key={index} className="form-group" style={{backgroundColor:'#eee',padding:'5px'}}>
+                     <div className="row justify-content-around">
+                         <div>
+                             <Field
+                                 name={subAreaArtist}
+                                 component="select"
+                                 style={{marginLeft:'30px',marginRight:'10px'}}
+                             >
+                                 {/*<option></option>/}
+                                 {
+                                    
+                                     filterArea(getValueOfArea(data)) && 
+                                         (
+                                             filterArea(getValueOfArea(data))[0].subAreas.map((sub) => {
+
+                                                 return (
+                                                     <option value={sub}>{sub}</option>
+                                                 );
+                                             })
+                                             
+                                         )
+                                     
+                                 }
+                             </Field>
+                         </div>
+                         <div>
+                             <button
+                             className="btn btn-danger"
+                             type="button"
+                             onClick={() => fields.remove(index)}
+                             >
+                                 X
+                             </button>
+                         </div>
+                        
+                     </div>
+                 </div>
+                
+                 ))}
+                    */}
+                 </>
+             )
+         }
+
+         const renderNewAreas = ({fields}) => (
+
+             <>
+             <button className="btn btn-info" type="button" onClick={() => fields.push({})}>
+                 Adicionar Área
+             </button>
+            
+            <h2>Render New Areas</h2>
+             <pre>
+                {JSON.stringify(fields, null, 2)}
+            </pre>
+                
+             {fields && props.initialValues.areasOfExpertise.map((areaArtist, index) => {
+
+             return (
+                 <div key={index} style={{backgroundColor:'#efefef'}} className="form-group">
+                     <div  style={{padding:'5px',marginTop:'20px',marginLeft:'5px',marginRight:'5px'}} className="row">
+                         <div >
+                             <h4 style={{marginRight:'10px'}}>Área</h4>
+                         </div>
+                         <div >
+                             <Field
+                             id={index}
+                             style={{marginRight:'10px'}}
+                             name={`${areaArtist}.area`}
+                             component="select"
+                             >
+                                 {/* <option></option> */}
+                                 {
+                                     areasOfExpertiseArtist.map((a) => {
+                                         return (
+                                             <option value={a.area}>{a.area}</option>
+                                         ); 
+                                     })
+                                 }
+                             </Field>
+                         </div>
+                         <div>
+                             <button
+                             className="btn btn-danger"
+                             type="button"
+                             onClick={() => fields.remove(index)}
+                             >
+                                 X
+                             </button>
+                         </div>
+                     </div>
+                 <FieldArray name={`${areaArtist[index]}.subAreas`} data={document.getElementById(index)} component={renderSubAreas} />
+                 </div>
+             )}
+             )}
+             </>
+         )
+
+
 
         const filterArea = data => {
-            const area = areasOfExpertiseArtist.filter(a => a.area === data)[0];
-            return area.subAreas;
+            return areasOfExpertiseArtist.filter(function (a) {
+                if(a.area === data)
+                    return a.subAreas;
+            })
         } 
 
         const getValueOfArea = data => {
@@ -140,107 +182,42 @@ const FormRegisterArtist = props => {
             const ret = value ? value : 'valor vazio';
             return ret;
         }
-        /*
-        const renderNewAreas = () => {
 
-
-            const removeSubArea = (posArea,posSubArea) => {
-                console.log('remove',props.initialValues.areasOfExpertise[posArea].subAreas[posSubArea]);
-                props.initialValues.areasOfExpertise[posArea].subAreas.splice(posSubArea,1);
-                
-            }
-
+        const renderAreas = () => {
             return (
                 <>
-                    {props.initialValues && props.initialValues.areasOfExpertise.map( (field, posArea) => (
+                    {props.initialValues && props.initialValues.areasOfExpertise.map( (field) => (
                        
                        <div style={{border: '1px solid #e6e6e6', borderRadius: '5px',padding: '5px',marginBottom: '10px', color: 'grey'}}>
-                          
-                        <h2>{field.area}</h2>
-                        { field.subAreas.map((sub,posicao) => (
-                            <div onClick={() => removeSubArea(posArea,posicao)}>
-                                {sub} - X
-                            </div>
+                        <h4>{field.area}</h4>
+                        <hr/>
+                        {field.subAreas.map((sub) => (
+                            <h5>{sub}</h5>
                         ))}
-
-                         <Field
-                             id={`${field.area} edit`}
-                             style={{marginRight:'10px'}}
-                             //ref={subAreaSelectValue}
-                             name={field.area}
-                             component="select"
-                             >
-                                {
-                                     filterArea(field.area).map((subarea) => {
-                                         //console.log("SUBAREA", subarea);
-                                         return (
-                                             <option value={subarea}>{subarea}</option>
-                                         ); 
-                                     })
-                                 }
-                             </Field>
-                             <button onClick={(e) => {
-                                 let doc = document.getElementById(`${field.area} edit`);
-                                 console.log('userefvalue',doc?.value);
-                                 //e.preventDefault();
-                                 field.subAreas.push(doc.value);   //NAO ESTA GERENCIANDO OS STATES CORRETAMENTE...
-                             }}>
-                                 Adicionar
-                             </button>
                        </div>
                     ))}
                 </>
             )
             
-        }*/
-
-        const renderNewAreas = () => {
-
-            return(
-                <>
-                    <select
-                        value={textInputArea}
-                        onChange={(e)=>setTextInputArea(e.target.value)}
-                    >
-                        <option/>
-                        {
-                            areasOfExpertiseArtist.map((item)=>{
-                                return(
-                                    <option value={item.area}>{item.area}</option>
-                                );
-                            })
-                        }
-                    </select>
-                    <button onClick={addArea}>
-                        Adicionar Area
-                    </button>
-
-                    {
-                        listAreas.length > 0 ?
-                            listAreas.map((itemList, index)=>{
-                                return(
-                                    <div key={`area - ${index}`} style={{border: '1px solid black', padding: '10px'}} >
-                                        <p name={itemList.area} onClick={() =>removeArea(itemList.area)}>{itemList.area}</p>
-                                        <SubAreasForm addSubArea={addSubArea} removeSubArea={removeSubArea} itemList={itemList} filterArea={filterArea}/>
-                                    </div>
-                                );
-                            })
-                        : null
-                    }
-
-                </>
-            );
-            
         }
+
 
         const AreasOfExpertiseForm = ({fields}) => {
         
             return (
                 <>
+                <pre>
+                    AreasOfExpertiseForm
+                    Fields:
+                    {JSON.stringify(fields, null, 2)}
+                    Initial Values:
+                    {JSON.stringify(props.initialValues.areasOfExpertise, null, 2)}
+
+                </pre>
                 <div style={{display:'flex',flexDirection: 'row',width:'100%',alignItems: 'center', justifyContent: 'space-between'}}>
                     <h2>Areas de atuação</h2>
                     {
-                        props.isUpdateForm  ? (
+                        props.isUpdateForm ? (
                             <button
                             className="btn btn-warning"
                             style={{color: 'white'}}
@@ -426,11 +403,11 @@ const FormRegisterArtist = props => {
                 <h2>Dados Gerais</h2>
                 <form
                     initialvalues={props.initialValues ? props.initialValues : ''}
-                    onSubmit={props.handleSubmit} encType="multipart/form-data"
+                    onSubmit={props.handleSubmit} 
                 >
                     
                     {formComponents.map(comp => {
-                        //console.log('initialvalues',props.initialValues);
+                        console.log('initialvalues',props.initialValues);
                         return (
                             <div key={comp.name} className="form-group">
                                 <div style={styles.labelInputDiv} className="row justify-content-between">   

@@ -23,10 +23,10 @@ const AuthOrApp = () => {
     if ((auth.user != null) && auth.validToken) {
         axios.defaults.headers.common['authorization'] = auth.user
         axios.defaults.headers.common['user_id'] = user._id
-        axios.defaults.headers.common['Access-Control-Allow-Origin'] = '*'
+       /* axios.defaults.headers.common['Access-Control-Allow-Origin'] = '*'
         axios.defaults.headers.common['Access-Control-Allow-Headers'] = 'Content-Type'
         axios.defaults.headers.common['Content-Type'] = 'application/x-www-form-urlencoded'
-        axios.defaults.headers.common['Accept'] = 'application/json'
+        axios.defaults.headers.common['Accept'] = 'application/json'*/
         return true;
     } else if (!auth.user) {
         return false;

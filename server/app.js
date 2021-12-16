@@ -1,8 +1,9 @@
 const cors = require('cors');
 const express =  require('express');
+const multer = require('multer');
 
 const userDAO = require('./daos/userDAO');
-const culturalEventsDAO = require('./daos/culturalEventsDAO');
+const culturalEventsDAO = require('./daos/culturalEventsDAO'); 
 
 const validateToken = require('./config/validateToken');
 
@@ -15,12 +16,14 @@ const corsOptions = {
     origin: '*'
 }
 
-app.use(cors(corsOptions));
-app.options('*',cors());
+
+
+//app.use(cors(corsOptions));
+app.use(cors());
+//app.options('*',cors());
 
 app.use(express.json());
-app.use(express.urlencoded({extended: false}));
-
+app.use(express.urlencoded({extended: true}));
 app.use(express.static('uploads'));
 
 const AuthUser = require('./auth/authUser');
@@ -41,7 +44,7 @@ app.post('/updateUser',validateToken ,upload.array('images',10), (req, res) => u
 app.post('/disableUser', validateToken,(req,res) => userDAO.disableUser(req,res));
 app.post('/enableUser', validateToken,(req,res) => userDAO.enableUser(req,res));
 
-app.post('/culturalEvent', validateToken,(req, res) => culturalEventsDAO.setCulturalEvent(req, res));
+app.post('/culturalEvent', validateToken, upload.single('image'),(req, res) => culturalEventsDAO.setCulturalEvent(req, res));
 app.get('/culturalEvent/:id', validateToken,(req, res) => culturalEventsDAO.deleteCulturalEvent(req, res));
 app.get('/userEvents', validateToken,(req, res) => culturalEventsDAO.getUserCulturalEvent(req, res));
 

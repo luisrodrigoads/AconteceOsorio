@@ -13,6 +13,7 @@ function RegisterEvent(){
     const dispatch = useDispatch();
 
     const [eventType, setEventType] = useState('');
+    let file;
 
     const changeEventForm = e => {
         setEventType(e.target.value);
@@ -24,30 +25,35 @@ function RegisterEvent(){
             case 'cultural_activity':
                 return <FormRegisterCulturalActivity onSubmit={values => handleEventForm(values)} />
             case 'cultural_event':
-                return <FormRegisterCulturalEvent onSubmit={values => handleEventForm(values)} />
+                return <FormRegisterCulturalEvent onChangeImage={changeImage} onSubmit={values => handleEventForm(values)} />
             default:
                 return null;
         }
     }
 
+    const changeImage = e => {
+        file = e.target.files[0];
+    }
+
     const handleEventForm = values => {
-        console.log('Handle submit event');
+
+        console.log('values of form handleEventForm');
         console.log(values);
 
-        /* const fd = new FormData();
+        const fd = new FormData();
 
-         if(file['image'] !== undefined)
-                fd.append('image',file);
-
-         for(let key in values){
+        if(file !== undefined)
+            fd.append('image',file);
+        
+                
+        for(let key in values){
              if(values.hasOwnProperty(key)){
                 fd.append(key, values[key]);
-                console.log(`${key}: ${values[key]}`);
             }
         }
-
-        dispatch(postEvent(fd))*/
-        dispatch(postEvent(values));
+        console.log('values form data handleeventform');
+        console.log([...fd])
+        dispatch(postEvent(fd));
 
     }
 

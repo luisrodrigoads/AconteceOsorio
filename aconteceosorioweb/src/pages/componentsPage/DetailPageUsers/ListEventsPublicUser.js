@@ -3,7 +3,7 @@ import { useDispatch, useSelector} from 'react-redux';
 import {useEffect } from 'react';
 import {getEventsByPublicUser} from '../../../actions/eventsByPublicUser';
 
-export default function ListEventsPublicUser ({idUser}) {
+export default function ListEventsPublicUser ({idUser,type}) {
 
     const dispatch = useDispatch()
 
@@ -17,7 +17,7 @@ export default function ListEventsPublicUser ({idUser}) {
         <div className="row justify-content-center">
                 {
                         
-                        list.map((item,id) => {
+                        list.filter(ev => ev.eventType === type).map((item,id) => {
                             
                             return(
                                 <div key={id} className="card col-lg-3 col-md-5 col-sm-10 m-3 bg-light shadow">

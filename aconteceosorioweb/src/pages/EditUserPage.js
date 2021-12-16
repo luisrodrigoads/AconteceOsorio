@@ -28,13 +28,17 @@ function EditUserPage(){
     }
 
     const updateHandleFormData = values => {
+
+        console.log('values in update handleformdata ');
+        console.log(values);
+
         const fd = new FormData()
 
         if(files['images'] !== undefined)
             files['images'].forEach(img => {if (typeof(img) !== 'string') fd.append('images',img)});
 
             for (let key in values) {
-                console.log(key, 'tipo', typeof(values[key]))
+                console.log(key, 'tipo', typeof(values[key]), 'valor',values[key]);
                 if (key === 'areasOfExpertise' || key === 'targetAudience') {
                     fd.append(key, JSON.stringify(values[key]));
                 } else if (values.hasOwnProperty(key))
@@ -53,7 +57,7 @@ function EditUserPage(){
             case 'PROMOTER':
                 return <FormRegisterPromoter isUpdateForm={true} initialValues={user} onSubmit={values => updateHandle(values)}/>
             case 'ARTIST':
-                return <FormRegisterArtist isUpdateForm={true} initialValues={user} onSubmit={values => updateHandle(values)} />
+                return <FormRegisterArtist isUpdateForm={true} initialValues={user} onSubmit={values => updateHandleFormData(values)} handleImage={values => fileSelectedHandler(values)} images={ files['images'] } />
             default:
                 return null;
         }

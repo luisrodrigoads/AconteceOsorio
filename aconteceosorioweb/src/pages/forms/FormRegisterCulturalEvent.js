@@ -79,8 +79,9 @@ const FormRegisterCulturalEvent = props => {
         <div className="row  align-items-center justify-content-center ">
             <div className="card col-lg-6 col-md-6 col-sm-10 m-3 p-3 bg-light shadow">
                 <form
-                    initialvalues={props.initialValues}
+                    initialvalues={props.initialValues ? props.initialValues : ''}
                     onSubmit={props.handleSubmit}
+                    encType="multipart/form-data"
                 >
                     
                     {formComponents.map(comp => {
@@ -231,6 +232,14 @@ const FormRegisterCulturalEvent = props => {
                             null
                     }
                     
+                    <hr/>
+
+                    <input
+                        type="file" 
+                        name="file"
+                        accept="image/png, image/jpeg"
+                        onChange={props.onChangeImage}
+                    />
                     <hr/>
 
                     <div className="form-group">

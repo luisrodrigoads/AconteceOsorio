@@ -37,8 +37,8 @@ const getCulturalEventByDate = (req, res) => {
     culturalEvent
         .find({
             $and: [
-                {"dateStart":{$gte: new Date(dateEvent).toISOString()}},
-                {"dateEnd":{$lte: new Date(dateEvent).toISOString()}}
+                {dateStart:{$gte: new Date(dateEvent).toISOString()}},
+                {dateEnd:{$lte: new Date(dateEvent).toISOString()}}
             ]
         })
         .sort()
@@ -66,17 +66,20 @@ const getAllCulturalEvents = (req, res) => {
 
 const setCulturalEvent = async (req, res) => {
 
-    const newCulturalEvent = await new culturalEvent(req.body)
+    const newCulturalEvent = await req.body
 
     const currentUser = decodeJWT(req.headers['authorization'])
 
     newCulturalEvent.whoCreated = currentUser._id
-    
-     newCulturalEvent.save().then(response => 
+
+    if(req.file)
+        newCulturalEvent.image = req.file.filename;
+
+     await new culturalEvent(newCulturalEvent).save().then(response => 
             user.findOne({_id: currentUser._id }, (err, result) => {
                 result.culturalEvents.push(response._id)
                 result.save()
-                    .then(response => res.status(200).json('successfuly request'))
+                    .then(response => res.status(200).json({response}))
                     .catch(err => res.status(500).json('Internal server error'))
             })
     )
