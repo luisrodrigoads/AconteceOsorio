@@ -10,6 +10,8 @@ module.exports = {
 
         let dataNewUser = req.body
 
+        console.log({dataNewUser});
+
         let paths = new Array()
 
         if(req.files)

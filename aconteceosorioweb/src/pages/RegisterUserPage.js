@@ -55,7 +55,7 @@ function RegisterUserPage() {
 
         for (let key in values) {
             
-            if (key === 'areasOfExpertise' || key === 'targetAudience' || key === 'portfolioLinks') {
+            if (key === 'areasOfExpertise' || key === 'targetAudience' || key === 'portfolioLinks' || key === 'subareas') {
                 fd.append(key, JSON.stringify(values[key]));
             } else if (values.hasOwnProperty(key))
                 fd.append(key, values[key])
